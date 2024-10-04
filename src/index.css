@@ -24,6 +24,7 @@
     --input: 180 9% 69%; /* #A1AFB0 */
     --ring: 226 61% 38%; /* #25409C */
     --radius: 0.5rem;
+    --landing: 0 0% 28.24%; /* #484848 */
     --chart-1: 12 76% 61%;
     --chart-2: 173 58% 39%;
     --chart-3: 197 37% 24%;
@@ -50,6 +51,7 @@
     --border: 214 24% 25%; /* Bordas escuras */
     --input: 215 11% 25%; /* Campos de input escuros */
     --ring: 226 61% 38%; /* Azul */
+    --landing: 215 11% 25%;
     --chart-1: 220 70% 50%;
     --chart-2: 160 60% 45%;
     --chart-3: 30 80% 55%;

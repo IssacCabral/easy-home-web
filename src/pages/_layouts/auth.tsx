@@ -8,7 +8,7 @@ export function AuthLayout() {
         <img src={SignInImg} alt="" className="h-full w-full" />
       </div>
 
-      <div className="flex items-center justify-center border border-solid border-rose-400">
+      <div className="flex items-center justify-center">
         <Outlet />
       </div>
     </div>
