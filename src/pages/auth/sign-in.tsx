@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { Link } from "react-router-dom";
 
 export function SignIn() {
   return (
@@ -49,7 +50,9 @@ export function SignIn() {
 
       <footer className="text-center">
         <span className="text-muted">Não tem uma conta?</span>{" "}
-        <span className="font-semibold text-primary">Inscreva-se</span>
+        <Link to="/sign-up">
+          <span className="font-semibold text-primary">Inscreva-se</span>
+        </Link>
       </footer>
     </div>
   );
