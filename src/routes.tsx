@@ -1,7 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import { AuthLayout } from "./pages/_layouts/auth";
-import { SignIn } from "./pages/auth/sign-in";
-import { SignUp } from "./pages/auth/sign-up";
+import { SignIn } from "./pages/auth/sign-in/sign-in";
+import { SignUp } from "./pages/auth/sign-up/sign-up";
 import SignInImg from "@/assets/sign-in-image.jpg";
 import SignUpImg from "@/assets/sign-up-image.jpg";
 import { SignUpLayout } from "./pages/_layouts/sign-up";
