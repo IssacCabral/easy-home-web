@@ -7,9 +7,7 @@ interface AuthLayoutProps {
 export function AuthLayout(props: AuthLayoutProps) {
   return (
     <div className="grid min-h-screen grid-cols-2 antialiased">
-      <div className="h-screen w-full">
-        <img src={props.image} alt="" className="h-full w-full" />
-      </div>
+      <img src={props.image} className="h-screen w-full object-center" />
 
       <div className="flex items-center justify-center">
         <Outlet />
