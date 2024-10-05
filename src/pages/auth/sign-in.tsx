@@ -2,10 +2,16 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Link } from "react-router-dom";
+import LogoImg from "@/assets/logo.png";
 
 export function SignIn() {
   return (
-    <div className="w-[360px] tracking-[-0.02em]">
+    <div className="relative w-[360px] tracking-[-0.02em]">
+      <img
+        src={LogoImg}
+        className="absolute left-1/2 top-0 -mt-36 -translate-x-1/2 transform"
+      />
+
       <header className="mb-8 flex flex-col items-center gap-3">
         <h1
           className="text-xl font-semibold text-primary"
