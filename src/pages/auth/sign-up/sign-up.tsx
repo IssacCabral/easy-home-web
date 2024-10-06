@@ -15,7 +15,7 @@ import { ConfirmPasswordFormItem } from "./components/form-items/confirm-passwor
 const signUpForm = z.object({
   name: z.string(),
   phone: z.string(),
-  user: z.string(),
+  user: z.enum(["landlord", "tenant"]).nullable(),
   email: z.string().email(),
   password: z.string(),
   confirmPassword: z.string(),
@@ -29,7 +29,7 @@ export function SignUp() {
     defaultValues: {
       name: "",
       phone: "",
-      user: "",
+      user: null,
       email: "",
       password: "",
       confirmPassword: "",

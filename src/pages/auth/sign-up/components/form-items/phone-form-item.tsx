@@ -7,7 +7,7 @@ interface PhoneFormItemProps {
     {
       name: string;
       phone: string;
-      user: string;
+      user: "landlord" | "tenant" | null;
       email: string;
       password: string;
       confirmPassword: string;

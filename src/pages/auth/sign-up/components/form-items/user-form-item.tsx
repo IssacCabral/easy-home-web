@@ -13,7 +13,7 @@ interface UserFormItemProps {
     {
       name: string;
       phone: string;
-      user: string;
+      user: "landlord" | "tenant" | null;
       email: string;
       password: string;
       confirmPassword: string;
@@ -28,7 +28,7 @@ export function UserFormItem(props: UserFormItemProps) {
       <FormLabel className="text-landing">Tipo de usuário*</FormLabel>
       <Select
         onValueChange={props.field.onChange}
-        defaultValue={props.field.value}
+        defaultValue={props.field.value ?? ""}
       >
         <FormControl>
           <SelectTrigger className="w-[360px] border-2 border-border text-foreground placeholder:text-muted">

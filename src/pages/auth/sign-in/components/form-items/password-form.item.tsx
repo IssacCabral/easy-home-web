@@ -2,30 +2,26 @@ import { FormControl, FormItem, FormLabel } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { ControllerRenderProps } from "react-hook-form";
 
-interface PasswordFormItemProps {
+interface EmailFormItemProps {
   field: ControllerRenderProps<
     {
-      name: string;
-      phone: string;
-      user: "landlord" | "tenant" | null;
       email: string;
       password: string;
-      confirmPassword: string;
     },
     "password"
   >;
 }
 
-export function PasswordFormItem({ field }: PasswordFormItemProps) {
+export function PasswordFormItem({ field }: EmailFormItemProps) {
   return (
-    <FormItem className="space-y-1">
-      <FormLabel className="text-landing">Senha*</FormLabel>
+    <FormItem className="space-y-2">
+      <FormLabel>Senha</FormLabel>
       <FormControl>
         <Input
           id="password"
           type="password"
-          className="border-2 border-border text-foreground placeholder:text-muted"
-          placeholder="Crie uma senha"
+          className="placeholder: border-2 border-border text-foreground placeholder:text-muted"
+          placeholder="••••••••"
           {...field}
         />
       </FormControl>
