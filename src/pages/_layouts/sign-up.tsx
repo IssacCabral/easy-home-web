@@ -11,7 +11,7 @@ export function SignUpLayout(props: SignUpLayoutProps) {
         <Outlet />
       </div>
 
-      <img src={props.image} className="h-screen w-full object-center" />
+      <img src={props.image} className="h-screen w-full object-cover" />
     </div>
   );
 }
