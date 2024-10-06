@@ -1,119 +1,89 @@
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-import { Link } from "react-router-dom";
+import { SignUpHeader } from "./components/sign-up-header";
+import { SignUpFooter } from "./components/sign-up-footer";
+import { z } from "zod";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { Form, FormField } from "@/components/ui/form";
+import { NameFormItem } from "./components/form-items/name-form-item";
+import { PhoneFormItem } from "./components/form-items/phone-form-item";
+import { UserFormItem } from "./components/form-items/user-form-item";
+import { EmailFormItem } from "./components/form-items/email-form-item";
+import { PasswordFormItem } from "./components/form-items/password-form-item";
+import { ConfirmPasswordFormItem } from "./components/form-items/confirm-password-form-item";
+
+const signUpForm = z.object({
+  name: z.string(),
+  phone: z.string(),
+  user: z.string(),
+  email: z.string().email(),
+  password: z.string(),
+  confirmPassword: z.string(),
+});
+
+type SignUpForm = z.infer<typeof signUpForm>;
 
 export function SignUp() {
+  const form = useForm<SignUpForm>({
+    resolver: zodResolver(signUpForm),
+    defaultValues: {
+      name: "",
+      phone: "",
+      user: "",
+      email: "",
+      password: "",
+      confirmPassword: "",
+    },
+  });
+
+  function handleSignUp(data: SignUpForm) {
+    console.log("data in sign up:", data);
+  }
+
   return (
     <div className="w-[360px] tracking-[-0.02em]">
-      <header className="mb-5 flex flex-col items-center gap-3">
-        <h1
-          className="text-xl font-semibold text-primary"
-          style={{ fontSize: "2rem", lineHeight: "2.75rem" }}
+      <SignUpHeader />
+      <Form {...form}>
+        <form
+          className="mb-6 flex flex-col gap-2"
+          onSubmit={form.handleSubmit(handleSignUp)}
         >
-          Criar conta grátis
-        </h1>
-        <p className="text-landing">
-          Disponibilize imóveis ou encontre sua moradia
-        </p>
-      </header>
-      <form className="mb-6 flex flex-col gap-2">
-        <div className="space-y-1">
-          <Label className="text-landing" htmlFor="name">
-            Nome
-          </Label>
-          <Input
-            id="name"
-            type="text"
-            placeholder="Digite seu nome"
-            className="border-2 border-border text-foreground placeholder:text-muted"
+          <FormField
+            control={form.control}
+            name="name"
+            render={({ field }) => <NameFormItem field={field} />}
           />
-        </div>
-        <div className="space-y-1">
-          <Label className="text-landing" htmlFor="phone">
-            Número para contato
-          </Label>
-          <Input
-            id="phone"
-            type="tel"
-            className="border-2 border-border text-foreground placeholder:text-muted"
-            placeholder="Digite seu telefone"
+          <FormField
+            control={form.control}
+            name="phone"
+            render={({ field }) => <PhoneFormItem field={field} />}
           />
-        </div>
-        <div className="space-y-1">
-          <Label className="text-landing" htmlFor="user-type">
-            Tipo de usuário
-          </Label>
-          <Select>
-            <SelectTrigger className="w-[360px] border-2 border-border text-foreground placeholder:text-muted">
-              <SelectValue placeholder="Você está..." />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem
-                className="focus:bg-popover-foreground"
-                value="tenant"
-              >
-                Buscando imóveis para alugar
-              </SelectItem>
-              <SelectItem
-                className="focus:bg-popover-foreground"
-                value="landlord"
-              >
-                Disponibilizando imóveis para aluguel
-              </SelectItem>
-            </SelectContent>
-          </Select>
-        </div>
-        <div className="space-y-1">
-          <Label className="text-landing" htmlFor="email">
-            Email
-          </Label>
-          <Input
-            id="email"
-            type="email"
-            placeholder="Insira seu email"
-            className="border-2 border-border text-foreground placeholder:text-muted"
+          <FormField
+            control={form.control}
+            name="user"
+            render={({ field }) => <UserFormItem field={field} />}
           />
-        </div>
-        <div className="space-y-1">
-          <Label className="text-landing" htmlFor="password">
-            Senha
-          </Label>
-          <Input
-            id="password"
-            type="password"
-            className="border-2 border-border text-foreground placeholder:text-muted"
-            placeholder="Crie uma senha"
+          <FormField
+            control={form.control}
+            name="email"
+            render={({ field }) => <EmailFormItem field={field} />}
           />
-        </div>
-        <div className="mb-2 space-y-1">
-          <Label className="text-landing" htmlFor="password">
-            Senha
-          </Label>
-          <Input
-            id="password"
-            type="password"
-            className="border-2 border-border text-foreground placeholder:text-muted"
-            placeholder="Repita a senha"
+          <FormField
+            control={form.control}
+            name="password"
+            render={({ field }) => <PasswordFormItem field={field} />}
           />
-        </div>
-        <Button className="w-full" type="submit">
-          Criar conta
-        </Button>
-      </form>
-      <footer className="text-center">
-        <span className="text-muted">Já possui uma conta?</span>{" "}
-        <Link to="/sign-in">
-          <span className="font-semibold text-primary">Entrar</span>
-        </Link>
-      </footer>
+          <FormField
+            control={form.control}
+            name="confirmPassword"
+            render={({ field }) => <ConfirmPasswordFormItem field={field} />}
+          />
+          <Button className="w-full" type="submit">
+            Criar conta
+          </Button>
+        </form>
+      </Form>
+      <SignUpFooter />
     </div>
   );
 }
