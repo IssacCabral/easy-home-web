@@ -1,6 +1,11 @@
-import { FormControl, FormItem, FormLabel } from "@/components/ui/form";
+import {
+  FormControl,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { ControllerRenderProps } from "react-hook-form";
+import { ControllerFieldState, ControllerRenderProps } from "react-hook-form";
 
 interface EmailFormItemProps {
   field: ControllerRenderProps<
@@ -10,21 +15,23 @@ interface EmailFormItemProps {
     },
     "email"
   >;
+  fieldState: ControllerFieldState;
 }
 
-export function EmailFormItem({ field }: EmailFormItemProps) {
+export function EmailFormItem({ field, fieldState }: EmailFormItemProps) {
   return (
     <FormItem className="space-y-2">
       <FormLabel className="text-landing">Email</FormLabel>
       <FormControl>
         <Input
           id="email"
-          type="email"
+          type="text"
           placeholder="Insira seu email"
           className="border-2 border-border text-foreground placeholder:text-muted"
           {...field}
         />
       </FormControl>
+      <FormMessage>{fieldState.error?.message}</FormMessage>
     </FormItem>
   );
 }

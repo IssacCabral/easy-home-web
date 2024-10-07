@@ -9,8 +9,8 @@ import { EmailFormItem } from "./components/form-items/email-form-item";
 import { PasswordFormItem } from "./components/form-items/password-form.item";
 
 const signInForm = z.object({
-  email: z.string().email(),
-  password: z.string(),
+  email: z.string().email("Formato de email inválido"),
+  password: z.string().min(8, "A senha deve ter pelo menos 8 caracteres"),
 });
 
 type SignInForm = z.infer<typeof signInForm>;
@@ -39,12 +39,20 @@ export function SignIn() {
           <FormField
             control={form.control}
             name="email"
-            render={({ field }) => <EmailFormItem field={field} />}
+            render={({ field, fieldState }) => (
+              <>
+                <EmailFormItem field={field} fieldState={fieldState} />
+              </>
+            )}
           />
           <FormField
             control={form.control}
             name="password"
-            render={({ field }) => <PasswordFormItem field={field} />}
+            render={({ field, fieldState }) => (
+              <>
+                <PasswordFormItem field={field} fieldState={fieldState} />
+              </>
+            )}
           />
           <Button className="w-full" type="submit">
             Entrar
