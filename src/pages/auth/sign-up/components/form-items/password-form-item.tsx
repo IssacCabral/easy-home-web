@@ -1,22 +1,28 @@
-import { FormControl, FormItem, FormLabel } from "@/components/ui/form";
+import {
+  FormControl,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { ControllerRenderProps } from "react-hook-form";
+import { ControllerFieldState, ControllerRenderProps } from "react-hook-form";
 
 interface PasswordFormItemProps {
   field: ControllerRenderProps<
     {
       name: string;
       phone: string;
-      user: "landlord" | "tenant" | null;
+      user: "landlord" | "tenant";
       email: string;
       password: string;
       confirmPassword: string;
     },
     "password"
   >;
+  fieldState: ControllerFieldState;
 }
 
-export function PasswordFormItem({ field }: PasswordFormItemProps) {
+export function PasswordFormItem({ field, fieldState }: PasswordFormItemProps) {
   return (
     <FormItem className="space-y-1">
       <FormLabel className="text-landing">Senha*</FormLabel>
@@ -29,6 +35,7 @@ export function PasswordFormItem({ field }: PasswordFormItemProps) {
           {...field}
         />
       </FormControl>
+      <FormMessage>{fieldState.error?.message}</FormMessage>
     </FormItem>
   );
 }

@@ -1,22 +1,28 @@
-import { FormControl, FormItem, FormLabel } from "@/components/ui/form";
+import {
+  FormControl,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { ControllerRenderProps } from "react-hook-form";
+import { ControllerFieldState, ControllerRenderProps } from "react-hook-form";
 
 interface PhoneFormItemProps {
   field: ControllerRenderProps<
     {
       name: string;
       phone: string;
-      user: "landlord" | "tenant" | null;
+      user: "landlord" | "tenant";
       email: string;
       password: string;
       confirmPassword: string;
     },
     "phone"
   >;
+  fieldState: ControllerFieldState;
 }
 
-export function PhoneFormItem(props: PhoneFormItemProps) {
+export function PhoneFormItem({ field, fieldState }: PhoneFormItemProps) {
   return (
     <FormItem className="space-y-1">
       <FormLabel className="text-landing">Número para contato*</FormLabel>
@@ -26,9 +32,10 @@ export function PhoneFormItem(props: PhoneFormItemProps) {
           type="tel"
           className="border-2 border-border text-foreground placeholder:text-muted"
           placeholder="Digite seu telefone"
-          {...props.field}
+          {...field}
         />
       </FormControl>
+      <FormMessage>{fieldState.error?.message}</FormMessage>
     </FormItem>
   );
 }
