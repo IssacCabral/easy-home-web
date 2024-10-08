@@ -27,7 +27,7 @@ export function ConfirmPasswordFormItem({
   fieldState,
 }: ConfirmPasswordFormItemProps) {
   return (
-    <FormItem className="mb-2 space-y-1">
+    <FormItem className="mb-2 space-y-0">
       <FormLabel className="text-landing">Repetir a senha*</FormLabel>
       <FormControl>
         <Input

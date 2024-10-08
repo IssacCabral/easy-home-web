@@ -24,12 +24,12 @@ interface EmailFormItemProps {
 
 export function EmailFormItem({ field, fieldState }: EmailFormItemProps) {
   return (
-    <FormItem className="space-y-1">
+    <FormItem className="space-y-0">
       <FormLabel className="text-landing">Email*</FormLabel>
       <FormControl>
         <Input
           id="email"
-          type="email"
+          type="text"
           placeholder="Insira seu email"
           className="border-2 border-border text-foreground placeholder:text-muted"
           {...field}

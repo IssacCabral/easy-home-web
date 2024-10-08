@@ -37,7 +37,7 @@ export function PhoneFormItem({ field, fieldState }: PhoneFormItemProps) {
   }
 
   return (
-    <FormItem className="space-y-1">
+    <FormItem className="space-y-0">
       <FormLabel className="text-landing">Número para contato*</FormLabel>
       <FormControl onChange={phoneMask}>
         <Input

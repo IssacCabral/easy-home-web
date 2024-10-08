@@ -24,7 +24,7 @@ interface PasswordFormItemProps {
 
 export function PasswordFormItem({ field, fieldState }: PasswordFormItemProps) {
   return (
-    <FormItem className="space-y-1">
+    <FormItem className="space-y-0">
       <FormLabel className="text-landing">Senha*</FormLabel>
       <FormControl>
         <Input

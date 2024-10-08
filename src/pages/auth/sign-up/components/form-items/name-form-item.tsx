@@ -24,7 +24,7 @@ interface NameFormItemProps {
 
 export function NameFormItem({ field, fieldState }: NameFormItemProps) {
   return (
-    <FormItem className="space-y-1">
+    <FormItem className="space-y-0">
       <FormLabel className="text-landing">Nome*</FormLabel>
       <FormControl>
         <Input

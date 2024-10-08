@@ -27,7 +27,7 @@ export function SignUp() {
       <SignUpHeader />
       <Form {...form}>
         <form
-          className="mb-6 flex flex-col gap-2"
+          className="mb-4 flex flex-col gap-2"
           onSubmit={form.handleSubmit(handleSignUp)}
         >
           <FormField
