@@ -18,7 +18,7 @@ interface UserFormItemProps {
     {
       name: string;
       phone: string;
-      user: "landlord" | "tenant";
+      user: "landlord" | "tenant" | "";
       email: string;
       password: string;
       confirmPassword: string;
@@ -32,7 +32,11 @@ export function UserFormItem({ field, fieldState }: UserFormItemProps) {
   return (
     <FormItem className="space-y-1">
       <FormLabel className="text-landing">Tipo de usuário*</FormLabel>
-      <Select onValueChange={field.onChange} defaultValue={field.value ?? ""}>
+      <Select
+        onValueChange={field.onChange}
+        value={field.value}
+        defaultValue=""
+      >
         <FormControl>
           <SelectTrigger className="w-[360px] border-2 border-border text-foreground placeholder:text-muted">
             <SelectValue placeholder="Você está..." />

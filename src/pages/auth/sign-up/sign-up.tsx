@@ -24,7 +24,9 @@ const signUpForm = z
         /^\([1-9]{2}\) 9[0-9]{4}\-[0-9]{4}$/,
         "O número deve estar no formato (xx) 9xxxx-xxxx",
       ),
-    user: z.enum(["landlord", "tenant"]),
+    user: z.enum(["landlord", "tenant"], {
+      message: "Selecione o tipo de usuário",
+    }),
     email: z.string().email("Formato de email inválido"),
     password: z
       .string()
@@ -44,7 +46,12 @@ const signUpForm = z
     path: ["confirmPassword"],
   });
 
-type SignUpForm = z.infer<typeof signUpForm>;
+type SignUpForm = Pick<
+  z.infer<typeof signUpForm>,
+  "confirmPassword" | "email" | "name" | "phone" | "password"
+> & {
+  user: "tenant" | "landlord" | "";
+};
 
 export function SignUp() {
   const form = useForm<SignUpForm>({
@@ -52,7 +59,7 @@ export function SignUp() {
     defaultValues: {
       name: "",
       phone: "",
-      user: "tenant",
+      user: "",
       email: "",
       password: "",
       confirmPassword: "",

@@ -12,7 +12,7 @@ interface NameFormItemProps {
     {
       name: string;
       phone: string;
-      user: "landlord" | "tenant";
+      user: "landlord" | "tenant" | "";
       email: string;
       password: string;
       confirmPassword: string;
