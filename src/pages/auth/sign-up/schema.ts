@@ -40,3 +40,12 @@ export type SignUpForm = Pick<
 > & {
   user: "tenant" | "landlord" | "";
 };
+
+export const defaultValues: SignUpForm = {
+  name: "",
+  phone: "",
+  user: "",
+  email: "",
+  password: "",
+  confirmPassword: "",
+};

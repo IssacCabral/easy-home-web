@@ -6,15 +6,12 @@ import { SignInHeader } from "./components/sign-in-header";
 import { SignInFooter } from "./components/sign-in-footer";
 import { EmailFormItem } from "./components/form-items/email-form-item";
 import { PasswordFormItem } from "./components/form-items/password-form.item";
-import { signInForm, SignInForm } from "./schema";
+import { signInForm, SignInForm, defaultValues } from "./schema";
 
 export function SignIn() {
   const form = useForm<SignInForm>({
     resolver: zodResolver(signInForm),
-    defaultValues: {
-      email: "",
-      password: "",
-    },
+    defaultValues,
   });
 
   function handleSignIn(data: SignInForm) {

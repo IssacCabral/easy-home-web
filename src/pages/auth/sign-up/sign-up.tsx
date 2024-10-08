@@ -10,19 +10,12 @@ import { UserFormItem } from "./components/form-items/user-form-item";
 import { EmailFormItem } from "./components/form-items/email-form-item";
 import { PasswordFormItem } from "./components/form-items/password-form-item";
 import { ConfirmPasswordFormItem } from "./components/form-items/confirm-password-form-item";
-import { SignUpForm, signUpForm } from "./schema";
+import { SignUpForm, signUpForm, defaultValues } from "./schema";
 
 export function SignUp() {
   const form = useForm<SignUpForm>({
     resolver: zodResolver(signUpForm),
-    defaultValues: {
-      name: "",
-      phone: "",
-      user: "",
-      email: "",
-      password: "",
-      confirmPassword: "",
-    },
+    defaultValues,
   });
 
   function handleSignUp(data: SignUpForm) {

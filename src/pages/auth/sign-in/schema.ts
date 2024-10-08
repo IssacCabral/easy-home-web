@@ -6,3 +6,8 @@ export const signInForm = z.object({
 });
 
 export type SignInForm = z.infer<typeof signInForm>;
+
+export const defaultValues: SignInForm = {
+  email: "",
+  password: "",
+};
