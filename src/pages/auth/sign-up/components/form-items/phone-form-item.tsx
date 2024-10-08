@@ -5,7 +5,13 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { ControllerFieldState, ControllerRenderProps } from "react-hook-form";
+import { normalizePhoneNumber } from "@/utils/phone-mask";
+import { ChangeEvent } from "react";
+import {
+  ControllerFieldState,
+  ControllerRenderProps,
+  useFormContext,
+} from "react-hook-form";
 
 interface PhoneFormItemProps {
   field: ControllerRenderProps<
@@ -23,15 +29,23 @@ interface PhoneFormItemProps {
 }
 
 export function PhoneFormItem({ field, fieldState }: PhoneFormItemProps) {
+  const { setValue } = useFormContext();
+
+  function phoneMask(event: ChangeEvent<HTMLInputElement>) {
+    const newPhoneValue = normalizePhoneNumber(event.target.value);
+    setValue("phone", newPhoneValue);
+  }
+
   return (
     <FormItem className="space-y-1">
       <FormLabel className="text-landing">Número para contato*</FormLabel>
-      <FormControl>
+      <FormControl onChange={phoneMask}>
         <Input
           id="phone"
           type="tel"
           className="border-2 border-border text-foreground placeholder:text-muted"
           placeholder="Digite seu telefone"
+          autoComplete="off"
           {...field}
         />
       </FormControl>
