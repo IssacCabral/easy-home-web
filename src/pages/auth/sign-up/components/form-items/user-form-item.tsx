@@ -31,7 +31,7 @@ interface UserFormItemProps {
 export function UserFormItem({ field, fieldState }: UserFormItemProps) {
   return (
     <FormItem className="space-y-1">
-      <FormLabel className="text-landing">Tipo de usuário*</FormLabel>
+      <FormLabel className="text-landing">Tipo de Usuário*</FormLabel>
       <Select
         onValueChange={field.onChange}
         value={field.value}
