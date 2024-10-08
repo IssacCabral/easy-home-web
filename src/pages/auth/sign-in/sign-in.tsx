@@ -1,5 +1,4 @@
 import { Button } from "@/components/ui/button";
-import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Form, FormField } from "@/components/ui/form";
@@ -7,13 +6,7 @@ import { SignInHeader } from "./components/sign-in-header";
 import { SignInFooter } from "./components/sign-in-footer";
 import { EmailFormItem } from "./components/form-items/email-form-item";
 import { PasswordFormItem } from "./components/form-items/password-form.item";
-
-const signInForm = z.object({
-  email: z.string().email("Formato de email inválido"),
-  password: z.string().min(8, "A senha deve ter pelo menos 8 caracteres"),
-});
-
-type SignInForm = z.infer<typeof signInForm>;
+import { signInForm, SignInForm } from "./schema";
 
 export function SignIn() {
   const form = useForm<SignInForm>({
