@@ -5,7 +5,6 @@ export function AppLayout() {
   return (
     <div className="flex flex-col antialiased">
       <Header />
-
       <div>
         <Outlet />
       </div>

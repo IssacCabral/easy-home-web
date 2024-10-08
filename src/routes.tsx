@@ -6,11 +6,13 @@ import SignInImg from "@/assets/sign-in-image.jpg";
 import SignUpImg from "@/assets/sign-up-image.jpg";
 import { SignUpLayout } from "./pages/_layouts/sign-up";
 import { AppLayout } from "./pages/_layouts/app";
+import { LandingPage } from "./pages/app/landing-page/landing-page";
 
 export const router = createBrowserRouter([
   {
     path: "/",
     element: <AppLayout />,
+    children: [{ path: "/", element: <LandingPage /> }],
   },
   {
     path: "/sign-in",
