@@ -10,7 +10,7 @@ interface PropertyCardProps {
 
 export function PropertyCard(props: PropertyCardProps) {
   return (
-    <div className="max-w-[330px] rounded-sm">
+    <div className="max-w-[330px] rounded-sm shadow-lg">
       <img src={props.image} />
       <div className="flex flex-col gap-4 p-5">
         <h3 className="text-2xl font-semibold text-foreground">
