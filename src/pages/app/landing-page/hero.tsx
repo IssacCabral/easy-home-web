@@ -1,5 +1,7 @@
 import HeroImg from "@/assets/hero-image.jpg";
 
+import { Plus } from "lucide-react";
+
 export function Hero() {
   return (
     <div
@@ -22,9 +24,31 @@ export function Hero() {
         </p>
 
         <div className="flex max-w-[90%] justify-between">
-          <div className="text-4xl font-semibold text-foreground">4235+</div>
-          <div className="text-4xl font-semibold text-foreground">90+</div>
-          <div className="text-4xl font-semibold text-foreground">400+</div>
+          <div className="flex flex-col items-center gap-2">
+            <div className="flex items-center text-4xl font-semibold text-foreground">
+              <span>4235</span>
+              <Plus className="text-primary" strokeWidth={3} />
+            </div>
+            <span className="text-xl text-muted">Imóveis</span>
+          </div>
+
+          <div className="flex flex-col items-center gap-2">
+            <div className="flex items-center text-4xl font-semibold text-foreground">
+              <span>90</span>
+              <Plus className="text-primary" strokeWidth={3} />
+            </div>
+            <div className="flex flex-col text-xl text-muted">
+              <span>Locações/</span> <span>Semestre</span>
+            </div>
+          </div>
+
+          <div className="flex flex-col items-center gap-2">
+            <div className="flex items-center text-4xl font-semibold text-foreground">
+              <span>400</span>
+              <Plus className="text-primary" strokeWidth={3} />
+            </div>
+            <span className="text-xl text-muted">Estudantes</span>
+          </div>
         </div>
       </div>
       <img
