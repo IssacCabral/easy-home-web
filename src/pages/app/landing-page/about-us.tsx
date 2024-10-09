@@ -3,12 +3,12 @@ import AboutUsImg from "@/assets/about-us-image.jpg";
 export function AboutUs() {
   return (
     <div
-      className="grid grid-cols-2 border border-solid border-green-400"
+      className="grid grid-cols-2"
       style={{ height: "calc(100vh + 0.5rem)" }}
     >
       <div className="flex items-center justify-center pl-20 pr-16 pt-24">
         <img
-          className="object-cover"
+          className="w-full object-cover"
           src={AboutUsImg}
           alt="About Us"
           style={{ height: "calc(100vh - 10.5rem)" }}
