@@ -1,6 +1,7 @@
 import { AboutUs } from "./about-us";
 import { BestHouses } from "./best-houses";
 import { Hero } from "./hero";
+import { HowItWorks } from "./how-it-works";
 
 export function LandingPage() {
   return (
@@ -8,8 +9,7 @@ export function LandingPage() {
       <Hero />
       <AboutUs />
       <BestHouses />
-      {/* Rápido e Intuitivo */}
-      <div></div>
+      <HowItWorks />
     </div>
   );
 }
