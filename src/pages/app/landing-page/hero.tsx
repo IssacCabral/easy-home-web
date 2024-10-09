@@ -6,21 +6,30 @@ export function Hero() {
       className="grid grid-cols-2"
       style={{ height: "calc(100vh - 5.5rem)" }}
     >
-      <div className="flex items-center justify-center border border-solid border-rose-200 p-8">
-        <div>
-          <h1 className="text-4xl font-bold">Encontre seu lar perfeito</h1>
-          <p className="mt-4 text-lg">
-            Nós ajudamos você a encontrar os melhores imóveis de forma rápida e
-            fácil.
-          </p>
-          <button className="mt-6 rounded-lg bg-rose-500 px-6 py-2 text-white">
-            Alugar Agora
-          </button>
+      <div className="flex flex-col justify-center gap-10 pl-20 pr-14">
+        <div className="flex flex-col gap-4">
+          <h1 className="text-4xl font-semibold leading-tight tracking-tight text-ring">
+            Encontre O Seu Futuro
+          </h1>
+          <h1 className="text-4xl font-semibold leading-tight tracking-tight text-landing">
+            Acomodação Ideal
+          </h1>
+        </div>
+
+        <p className="text-2xl leading-relaxed text-muted">
+          Quer encontrar uma casa? Estamos prontos para ajudá-lo a encontrar
+          aquela que se adapta a você.
+        </p>
+
+        <div className="flex max-w-[90%] justify-between">
+          <div className="text-4xl font-semibold text-foreground">4235+</div>
+          <div className="text-4xl font-semibold text-foreground">90+</div>
+          <div className="text-4xl font-semibold text-foreground">400+</div>
         </div>
       </div>
       <img
         src={HeroImg}
-        className="w-full object-cover"
+        className="w-full rounded-br-xl rounded-tl-xl rounded-tr-xl object-cover"
         style={{ height: "calc(100vh - 5.5rem)" }}
         alt="Hero"
       />

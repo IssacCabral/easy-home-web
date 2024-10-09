@@ -10,7 +10,7 @@ export function LandingPage() {
       <div className="grid max-h-screen min-h-screen grid-cols-2">
         <img src={HeroImg} className="w-full object-cover" alt="Lar Perfeito" />
 
-        <div className="flex items-center justify-center border border-solid border-rose-200 p-8">
+        {/* <div className="flex items-center justify-center p-8">
           <div>
             <h1 className="text-4xl font-bold">O lar perfeito para você</h1>
             <p className="mt-4 text-lg">
@@ -20,8 +20,9 @@ export function LandingPage() {
               Ver Imóveis
             </button>
           </div>
-        </div>
+        </div> */}
       </div>
+
       {/* Melhores Casas */}
       <div></div>
       {/* Rápido e Intuitivo */}
