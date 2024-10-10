@@ -30,7 +30,7 @@ export function PropertyList() {
   return (
     <div className="flex">
       {/* Coluna dos filtros */}
-      <div className="w-1/3 max-w-[350px] rounded-sm bg-card pl-14 pr-2 pt-3">
+      <div className="w-1/3 max-w-[350px] rounded-xl bg-card pl-14 pr-2 pt-3">
         <Form {...form}>
           <form
             onSubmit={form.handleSubmit(handleFindProperties)}
@@ -84,22 +84,75 @@ export function PropertyList() {
               name="maxPrice"
               render={({ field: { value, onChange } }) => (
                 <FormItem className="space-y-2">
-                  <FormLabel className="flex items-center text-sm font-semibold text-landing">
-                    <span>Preço R$ </span>
-                    <span>{value}</span>
+                  <FormLabel className="text-sm font-semibold text-landing">
+                    <span>Mensalidade / Aluguel</span>
                   </FormLabel>
                   <FormControl>
-                    <Slider
-                      min={100}
-                      max={1000}
-                      step={50}
-                      defaultValue={[value]}
-                      onValueChange={onChange}
-                    />
+                    <>
+                      <Slider
+                        min={100}
+                        max={1000}
+                        step={50}
+                        defaultValue={[value]}
+                        onValueChange={onChange}
+                      />
+                      <span className="text-sm font-semibold text-landing">
+                        R$ {value}
+                      </span>
+                    </>
                   </FormControl>
                 </FormItem>
               )}
             />
+
+            <span className="mt-5 font-bold">Número de quartos</span>
+
+            <div className="grid grid-cols-2 items-center gap-4">
+              <FormField
+                control={form.control}
+                name="minBedrooms"
+                render={({ field, fieldState }) => (
+                  <FormItem className="space-y-2">
+                    <FormLabel className="text-sm font-semibold text-landing">
+                      Mínimo
+                    </FormLabel>
+                    <FormControl>
+                      <Input
+                        id="minBedrooms"
+                        type="number"
+                        placeholder="Min."
+                        className="border-2 border-border text-foreground placeholder:text-muted"
+                        min={1}
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage>{fieldState.error?.message}</FormMessage>
+                  </FormItem>
+                )}
+              />
+
+              <FormField
+                control={form.control}
+                name="maxBedrooms"
+                render={({ field, fieldState }) => (
+                  <FormItem className="space-y-2">
+                    <FormLabel className="text-sm font-semibold text-landing">
+                      Máximo
+                    </FormLabel>
+                    <FormControl>
+                      <Input
+                        id="maxBedrooms"
+                        type="number"
+                        placeholder="Max."
+                        className="border-2 border-border text-foreground placeholder:text-muted"
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage>{fieldState.error?.message}</FormMessage>
+                  </FormItem>
+                )}
+              />
+            </div>
 
             <Button className="w-1/3" type="submit">
               Pesquisar

@@ -14,6 +14,8 @@ export const findPropertiesForm = z.object({
     .max(100, {
       message: "Price must be at most 100.",
     }),
+  minBedrooms: z.number(),
+  maxBedrooms: z.number(),
 });
 
 export type FindPropertiesForm = z.infer<typeof findPropertiesForm>;
@@ -22,4 +24,6 @@ export const defaultValues: FindPropertiesForm = {
   location: "",
   radiusInMeters: 100,
   maxPrice: 400,
+  minBedrooms: 1,
+  maxBedrooms: 5,
 };
