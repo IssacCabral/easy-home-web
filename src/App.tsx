@@ -6,7 +6,7 @@ import { ThemeProvider } from "./components/theme-provider";
 export function App() {
   return (
     <ThemeProvider>
-      <RouterProvider router={router} />;
+      <RouterProvider router={router} />
     </ThemeProvider>
   );
 }
