@@ -7,12 +7,16 @@ import SignUpImg from "@/assets/sign-up-image.jpg";
 import { SignUpLayout } from "./pages/_layouts/sign-up";
 import { AppLayout } from "./pages/_layouts/app";
 import { LandingPage } from "./pages/app/landing-page/landing-page";
+import { PropertyList } from "./pages/app/property-list/property-list";
 
 export const router = createBrowserRouter([
   {
     path: "/",
     element: <AppLayout />,
-    children: [{ path: "/", element: <LandingPage /> }],
+    children: [
+      { path: "/", element: <LandingPage /> },
+      { path: "/properties", element: <PropertyList /> },
+    ],
   },
   {
     path: "/sign-in",

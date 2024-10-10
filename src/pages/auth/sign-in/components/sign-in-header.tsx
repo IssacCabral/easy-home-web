@@ -1,12 +1,15 @@
 import LogoImg from "@/assets/logo.png";
+import { Link } from "react-router-dom";
 
 export function SignInHeader() {
   return (
     <>
-      <img
-        src={LogoImg}
-        className="absolute left-1/2 top-0 -mt-36 -translate-x-1/2 transform"
-      />
+      <Link to="/">
+        <img
+          src={LogoImg}
+          className="absolute left-1/2 top-0 -mt-36 -translate-x-1/2 transform"
+        />
+      </Link>
 
       <header className="mb-8 flex flex-col items-center gap-3">
         <h1
