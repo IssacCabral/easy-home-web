@@ -47,6 +47,7 @@ export default {
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
         landing: "hsl(var(--landing))",
+        checked: "hsl(var(--checked))",
         chart: {
           1: "hsl(var(--chart-1))",
           2: "hsl(var(--chart-2))",
