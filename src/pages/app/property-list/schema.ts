@@ -1,11 +1,16 @@
 import { z } from "zod";
 
 export const findPropertiesForm = z.object({
-  location: z.string(),
+  location: z.string().min(3, "Forneça pelo menos 3 caracteres para pesquisar"),
   radiusInMeters: z
-    .number()
-    .min(50, "No Mínimo 50 metros")
-    .max(2000, "No máximo 2 mil metros"),
+    .union([z.string(), z.number()]) // Aceita string ou número
+    .refine((val) => !isNaN(Number(val)), {
+      message: "Insira um valor numérico válido",
+    })
+    .transform((val) => Number(val)) // Converte para número
+    .refine((val) => val >= 50 && val <= 2000, {
+      message: "O valor deve ser entre 50 e 2000 metros",
+    }),
   maxPrice: z
     .number()
     .min(100, {
@@ -27,11 +32,11 @@ export type FindPropertiesForm = z.infer<typeof findPropertiesForm>;
 
 export const defaultValues: FindPropertiesForm = {
   location: "",
-  radiusInMeters: 100,
+  radiusInMeters: 50,
   maxPrice: 400,
   minBedrooms: 1,
   maxBedrooms: 5,
   propertyStatus: "FREE",
   propertyTypes: "HOUSE",
-  amenities: ["recents", "home"],
+  amenities: [],
 };

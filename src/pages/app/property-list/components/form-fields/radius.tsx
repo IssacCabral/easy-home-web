@@ -38,8 +38,8 @@ export function RadiusFormField({ form }: RadiusFormFieldProps) {
           <FormControl>
             <Input
               id="radiusInMeters"
-              type="text"
-              className="w-1/4 border-2 border-border text-foreground placeholder:text-muted"
+              type="number"
+              className="w-1/3 border-2 border-border text-foreground placeholder:text-muted"
               {...field}
             />
           </FormControl>
