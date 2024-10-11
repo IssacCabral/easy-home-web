@@ -4,6 +4,7 @@ import {
   FormField,
   FormItem,
   FormLabel,
+  FormMessage,
 } from "@/components/ui/form";
 import { UseFormReturn } from "react-hook-form";
 
@@ -52,7 +53,7 @@ export function AmenitiesFormField({ form }: AmenitiesFormFieldProps) {
     <FormField
       control={form.control}
       name="amenities"
-      render={() => (
+      render={({ fieldState }) => (
         <FormItem className="mb-4 space-y-3">
           <FormLabel className="text-sm font-semibold text-landing">
             Comodidades (Selecione uma ou mais)
@@ -88,6 +89,7 @@ export function AmenitiesFormField({ form }: AmenitiesFormFieldProps) {
               }}
             />
           ))}
+          <FormMessage>{fieldState.error?.message}</FormMessage>
         </FormItem>
       )}
     />

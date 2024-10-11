@@ -52,5 +52,5 @@ export const defaultValues: FindPropertiesForm = {
   maxBedrooms: 5,
   propertyStatus: "FREE",
   propertyTypes: "HOUSE",
-  amenities: [],
+  amenities: ["TV", "Wifi"],
 };

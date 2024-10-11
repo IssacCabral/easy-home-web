@@ -3,6 +3,7 @@ import {
   FormField,
   FormItem,
   FormLabel,
+  FormMessage,
 } from "@/components/ui/form";
 import { Slider } from "@/components/ui/slider";
 import { UseFormReturn } from "react-hook-form";
@@ -29,7 +30,7 @@ export function MaxPriceFormField({ form }: MaxPriceFormFieldProps) {
     <FormField
       control={form.control}
       name="maxPrice"
-      render={({ field: { value, onChange } }) => (
+      render={({ field: { value, onChange }, fieldState }) => (
         <FormItem className="space-y-2">
           <FormLabel className="text-sm font-semibold text-landing">
             <span>Mensalidade / Aluguel - Máximos</span>
@@ -41,7 +42,7 @@ export function MaxPriceFormField({ form }: MaxPriceFormFieldProps) {
                 max={2000}
                 step={50}
                 defaultValue={[value]}
-                onValueChange={onChange}
+                onValueChange={(value) => onChange(value[0])}
                 className="w-[60%]"
               />
               <span className="text-sm font-semibold text-landing">
@@ -49,6 +50,7 @@ export function MaxPriceFormField({ form }: MaxPriceFormFieldProps) {
               </span>
             </>
           </FormControl>
+          <FormMessage>{fieldState.error?.message}</FormMessage>
         </FormItem>
       )}
     />
