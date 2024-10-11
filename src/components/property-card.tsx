@@ -10,19 +10,21 @@ interface PropertyCardProps {
 
 export function PropertyCard(props: PropertyCardProps) {
   return (
-    <div className="max-w-[330px] rounded-sm shadow-lg">
-      <img src={props.image} />
-      <div className="flex flex-col gap-4 p-5">
-        <h3 className="text-2xl font-semibold text-foreground">
-          {props.title}
-        </h3>
-        <p className="text-xl text-foreground">
-          {props.number} {props.street}
-        </p>
-        <div className="flex items-center text-primary">
-          <span className="text-xl">{props.price}</span>
-          <DollarSign />
+    <div className="max-h-[283px] max-w-[297px] rounded-sm shadow-lg">
+      <img src={props.image} className="max-h-[205px] w-full object-cover" />
+      <div className="flex flex-col gap-2 p-3">
+        <div className="flex items-center justify-between">
+          <p className="text-sm text-landing">{props.title}</p>
+          <div className="flex items-center text-primary">
+            <span className="text-sm font-bold text-landing">
+              {props.price}
+            </span>
+            <DollarSign className="text-landing" size={14} />
+          </div>
         </div>
+        <span className="text-sm text-[#A7A7A7]">
+          {props.street}, {props.number}
+        </span>
       </div>
     </div>
   );

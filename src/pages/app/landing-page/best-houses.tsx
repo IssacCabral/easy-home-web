@@ -1,4 +1,4 @@
-import { PropertyCard } from "@/components/property-card";
+import { LandingPropertyCard } from "@/components/landing-property-card";
 import House1Img from "@/assets/landing-houses/house-1.png";
 import House2Img from "@/assets/landing-houses/house-2.png";
 import House3Img from "@/assets/landing-houses/house-3.png";
@@ -13,42 +13,42 @@ export function BestHouses() {
         Encontre As Melhores Casas
       </h1>
       <div className="mb-20 flex flex-wrap gap-14 2xl:mx-auto 2xl:w-full 2xl:max-w-[1440px] 2xl:justify-center">
-        <PropertyCard
+        <LandingPropertyCard
           image={House1Img}
           number={123}
           street="Avenida da liberdade"
           title="Riverside Retreat"
           price={500}
         />
-        <PropertyCard
+        <LandingPropertyCard
           image={House2Img}
           number={456}
           street="Rua Augusta, Lisbon"
           title="Sunset Serenity Suite"
           price={700}
         />
-        <PropertyCard
+        <LandingPropertyCard
           image={House3Img}
           number={101}
           street="Praça do Comércio"
           title="Chiado Charm"
           price={430}
         />
-        <PropertyCard
+        <LandingPropertyCard
           image={House4Img}
           number={234}
           street="Castelo São Jorge"
           title="Panoramic Penthouse"
           price={800}
         />
-        <PropertyCard
+        <LandingPropertyCard
           image={House5Img}
           number={567}
           street="Av. Almirante Reis"
           title="Marquês Master"
           price={445}
         />
-        <PropertyCard
+        <LandingPropertyCard
           image={House6Img}
           number={789}
           street="Beco do Carneiro"
