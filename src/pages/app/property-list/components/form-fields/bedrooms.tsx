@@ -45,6 +45,7 @@ export function BedroomsFormField({ form }: BedroomsFormFieldProps) {
                   placeholder="Min."
                   className="border-2 border-border text-foreground placeholder:text-muted"
                   min={1}
+                  max={9}
                   {...field}
                 />
               </FormControl>
@@ -65,6 +66,8 @@ export function BedroomsFormField({ form }: BedroomsFormFieldProps) {
                   id="maxBedrooms"
                   type="number"
                   placeholder="Max."
+                  min={2}
+                  max={10}
                   className="border-2 border-border text-foreground placeholder:text-muted"
                   {...field}
                 />
