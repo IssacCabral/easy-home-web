@@ -6,13 +6,16 @@ import House4Img from "@/assets/landing-houses/house-4.png";
 import House5Img from "@/assets/landing-houses/house-5.png";
 import House6Img from "@/assets/landing-houses/house-6.png";
 
+// 1920 x 1080
+// 2560 x 1080
+
 export function BestHouses() {
   return (
-    <div className="flex min-w-full flex-col gap-12 pb-20 pl-20 pr-20 pt-24">
-      <h1 className="text-3xl font-bold leading-tight tracking-tight text-landing 2xl:text-center">
+    <div className="flex min-w-full flex-col gap-6 pb-20 pl-20 pr-20 pt-24">
+      <h1 className="text-2xl font-bold leading-tight tracking-tight text-landing 2xl:text-center">
         Encontre As Melhores Casas
       </h1>
-      <div className="mb-20 flex flex-wrap gap-14 2xl:mx-auto 2xl:w-full 2xl:max-w-[1440px] 2xl:justify-center">
+      <div className="flex flex-wrap gap-14 2xl:mx-auto 2xl:w-full 2xl:max-w-[1440px] 2xl:justify-center">
         <LandingPropertyCard
           image={House1Img}
           number={123}

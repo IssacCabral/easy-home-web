@@ -10,8 +10,8 @@ interface PropertyCardProps {
 
 export function PropertyCard(props: PropertyCardProps) {
   return (
-    <div className="max-h-[283px] max-w-[297px] rounded-sm shadow-lg">
-      <img src={props.image} className="max-h-[205px] w-full object-cover" />
+    <div className="rounded-sm shadow-lg">
+      <img src={props.image} className="h-52 w-72" />
       <div className="flex flex-col gap-2 p-3">
         <div className="flex items-center justify-between">
           <p className="text-sm text-landing">{props.title}</p>

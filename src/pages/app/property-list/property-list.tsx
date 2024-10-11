@@ -56,11 +56,11 @@ export function PropertyList() {
       </div>
 
       {/* Mapa e listagem das casas */}
-      <div className="flex w-full flex-col gap-3 border border-solid border-green-400 pl-5 pr-14 pt-6">
+      <div className="flex w-full flex-col gap-3 pl-5 pr-14 pt-6">
         {/* div do mapa */}
-        <div className="h-80 w-full rounded-xl bg-zinc-600"></div>
+        <div className="h-80 w-full rounded-xl bg-zinc-100"></div>
         <span className="text-sm">344 Imóveis</span>
-        <div className="mb-20 flex flex-wrap gap-14 px-10">
+        <div className="mb-3 flex flex-wrap gap-6 px-10">
           <PropertyCard
             image={House1Img}
             number={123}

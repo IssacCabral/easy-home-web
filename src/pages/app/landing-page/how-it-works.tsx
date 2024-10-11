@@ -1,6 +1,9 @@
 export function HowItWorks() {
   return (
-    <footer className="flex flex-col items-center gap-24 pb-12 pl-20 pr-20 pt-12">
+    <footer
+      className="flex flex-col items-center justify-center gap-24 pb-12 pl-20 pr-20"
+      style={{ height: "100vh" }}
+    >
       <h1 className="text-3xl font-bold text-landing">Rápido E Intuitivo!</h1>
       <div className="grid grid-cols-4 gap-10">
         <div className="flex max-w-[290px] flex-col gap-7">
