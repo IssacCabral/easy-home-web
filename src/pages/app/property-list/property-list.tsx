@@ -35,7 +35,7 @@ export function PropertyList() {
   return (
     <div className="flex">
       {/* Coluna dos filtros */}
-      <div className="bg w-1/3 max-w-[350px] rounded-xl pl-12 pr-2 pt-3">
+      <div className="bg h-[calc(100vh-5.5rem)] w-1/3 max-w-[350px] overflow-y-auto rounded-xl pl-12 pr-2 pt-3">
         <Form {...form}>
           <form
             onSubmit={form.handleSubmit(handleFindProperties)}
