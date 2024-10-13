@@ -29,7 +29,7 @@ export function PropertyList() {
   });
 
   function handleFindProperties(data: FindPropertiesForm) {
-    console.log("Datas: ", data);
+    console.log("Data: ", data);
   }
 
   return (
