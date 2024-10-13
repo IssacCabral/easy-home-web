@@ -21,6 +21,7 @@ import House4Img from "@/assets/landing-houses/house-4.png";
 import House5Img from "@/assets/landing-houses/house-5.png";
 import House6Img from "@/assets/landing-houses/house-6.png";
 import { PropertyCard } from "@/components/property-card";
+import { Map } from "@/components/map";
 
 export function PropertyList() {
   const form = useForm<FindPropertiesForm>({
@@ -58,7 +59,7 @@ export function PropertyList() {
       {/* Mapa e listagem das casas */}
       <div className="flex w-full flex-col gap-3 pl-5 pr-14 pt-6">
         {/* div do mapa */}
-        <div className="h-80 w-full rounded-xl bg-zinc-100"></div>
+        <Map />
         <span className="text-sm">344 Imóveis</span>
         <div className="mb-3 flex flex-wrap gap-6 px-10">
           <PropertyCard
