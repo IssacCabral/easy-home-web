@@ -11,15 +11,46 @@ import { EmailFormField } from "./components/form-fields/email";
 import { PasswordFormField } from "./components/form-fields/password";
 import { ConfirmPasswordFormItem } from "./components/form-fields/confirm-password";
 import { SignUpForm, signUpForm, defaultValues } from "./schema";
+import { useToast } from "@/hooks/use-toast";
+import { ToastAction } from "@/components/ui/toast";
+import { useNavigate } from "react-router-dom";
+import { CheckCircle } from "lucide-react";
 
 export function SignUp() {
+  const { toast } = useToast();
+  const navigate = useNavigate();
   const form = useForm<SignUpForm>({
     resolver: zodResolver(signUpForm),
     defaultValues,
   });
 
-  function handleSignUp(data: SignUpForm) {
-    console.log("data in sign up:", data);
+  async function handleSignUp(data: SignUpForm) {
+    try {
+      console.log("data:", data);
+
+      toast({
+        description: (
+          <div className="flex items-center gap-2">
+            <CheckCircle /> Usuário cadastrado com sucesso.
+          </div>
+        ),
+        action: (
+          <ToastAction
+            altText="Log In"
+            className="hover:bg-primary"
+            onClick={() => navigate(`/sign-in?email=${data.email}`)}
+          >
+            Login
+          </ToastAction>
+        ),
+        className: "bg-green-500 text-muted-foreground border-0",
+      });
+    } catch (err) {
+      toast({
+        variant: "destructive",
+        description: "Erro ao cadastrar usuário",
+      });
+    }
   }
 
   return (

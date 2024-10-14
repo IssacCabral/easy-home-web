@@ -7,11 +7,16 @@ import { SignInFooter } from "./components/sign-in-footer";
 import { EmailFormField } from "./components/form-fields/email";
 import { signInForm, SignInForm, defaultValues } from "./schema";
 import { PasswordFormField } from "./components/form-fields/password";
+import { useSearchParams } from "react-router-dom";
 
 export function SignIn() {
+  const [searchParams] = useSearchParams();
   const form = useForm<SignInForm>({
     resolver: zodResolver(signInForm),
-    defaultValues,
+    defaultValues: {
+      ...defaultValues,
+      email: searchParams.get("email") ?? "",
+    },
   });
 
   function handleSignIn(data: SignInForm) {
