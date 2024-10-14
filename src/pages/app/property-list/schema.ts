@@ -9,7 +9,7 @@ export const findPropertiesForm = z
       .union([z.string(), z.number()]) // Aceita string ou número
       .transform((val) => Number(val)) // Converte para número
       .refine((val) => val >= 50 && val <= 2000, {
-        message: "O valor deve ser entre 50 e 2000 metros",
+        message: "O raio deve estar entre 50 e 2000 metros",
       }),
     maxPrice: z
       .number()
