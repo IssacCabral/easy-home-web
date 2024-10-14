@@ -75,15 +75,14 @@ export function PropertyList() {
     console.log("Data: ", data);
 
     const { lat, lon } = await fetchCoordinatesFromAddress(data.location);
+
     setCoords({ lat, lon });
   }
 
   return (
     <div className="flex">
       <SearchForm form={form} onFindProperties={handleFindProperties} />
-      {/* Mapa e listagem das casas */}
       <div className="flex w-full flex-col gap-3 pl-5 pr-14 pt-6">
-        {/* div do mapa */}
         <Map coords={coords} />
         <span className="text-sm">344 Imóveis</span>
         <div className="mb-3 flex flex-wrap gap-6 px-10">
