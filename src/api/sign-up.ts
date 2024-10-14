@@ -12,7 +12,7 @@ export interface RegisterUserBody {
 export interface RegisterUserResponse {
   id: string;
   name: string;
-  number: string;
+  phone: string;
   email: string;
   password: string;
   profilePicUrl?: string;
@@ -23,7 +23,7 @@ export interface RegisterUserResponse {
 function setRegisterUserPayload(request: RegisterUserBody) {
   return {
     name: request.name,
-    number: request.phone,
+    phone: request.phone,
     email: request.email,
     password: request.password,
   };
