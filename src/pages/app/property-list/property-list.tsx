@@ -22,15 +22,28 @@ import House5Img from "@/assets/landing-houses/house-5.png";
 import House6Img from "@/assets/landing-houses/house-6.png";
 import { PropertyCard } from "@/components/property-card";
 import { Map } from "@/components/map";
+import { useState } from "react";
+import { fetchCoordinatesFromAddress } from "@/utils/geocoding";
+
+// Quixadá - CE, coordinates
+const INITIAL_COORDS = {
+  lat: -4.97084,
+  lon: -39.015,
+};
 
 export function PropertyList() {
+  const [coords, setCoords] = useState(INITIAL_COORDS);
+
   const form = useForm<FindPropertiesForm>({
     resolver: zodResolver(findPropertiesForm),
     defaultValues,
   });
 
-  function handleFindProperties(data: FindPropertiesForm) {
+  async function handleFindProperties(data: FindPropertiesForm) {
     console.log("Data: ", data);
+
+    const { lat, lon } = await fetchCoordinatesFromAddress(data.location);
+    setCoords({ lat, lon });
   }
 
   return (
@@ -59,7 +72,7 @@ export function PropertyList() {
       {/* Mapa e listagem das casas */}
       <div className="flex w-full flex-col gap-3 pl-5 pr-14 pt-6">
         {/* div do mapa */}
-        <Map />
+        <Map coords={coords} />
         <span className="text-sm">344 Imóveis</span>
         <div className="mb-3 flex flex-wrap gap-6 px-10">
           <PropertyCard

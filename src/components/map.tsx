@@ -1,26 +1,37 @@
-import { useRef } from "react";
-import { MapContainer, TileLayer } from "react-leaflet";
+import { useEffect } from "react";
+import { MapContainer, TileLayer, useMap } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 
-const QUIXADA_COORDS = {
-  latitude: -4.97084,
-  longitude: -39.015,
-} as const;
+interface MapProps {
+  coords: {
+    lat: number;
+    lon: number;
+  };
+}
 
-export function Map() {
-  const mapRef = useRef(null);
+// Componente para atualizar o centro do mapa
+function ChangeMapView({ coords }: MapProps) {
+  const map = useMap();
 
+  useEffect(() => {
+    map.setView([coords.lat, coords.lon], 16);
+  }, [coords, map]);
+
+  return null;
+}
+
+export function Map({ coords }: MapProps) {
   return (
     <MapContainer
-      center={[QUIXADA_COORDS.latitude, QUIXADA_COORDS.longitude]}
+      center={[coords.lat, coords.lon]}
       zoom={15}
-      ref={mapRef} // aqui a referência ao mapa é salva em mapRef
       className="h-80 w-full rounded-xl"
     >
       <TileLayer
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
+      <ChangeMapView coords={coords} />
     </MapContainer>
   );
 }
