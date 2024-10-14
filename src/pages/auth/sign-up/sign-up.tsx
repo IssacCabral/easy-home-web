@@ -15,18 +15,32 @@ import { useToast } from "@/hooks/use-toast";
 import { ToastAction } from "@/components/ui/toast";
 import { useNavigate } from "react-router-dom";
 import { CheckCircle } from "lucide-react";
+import { useMutation } from "@tanstack/react-query";
+import { registerUser } from "@/api/sign-up";
 
 export function SignUp() {
   const { toast } = useToast();
   const navigate = useNavigate();
+
   const form = useForm<SignUpForm>({
     resolver: zodResolver(signUpForm),
     defaultValues,
   });
+  const isSubmitting = form.formState.isSubmitting;
+
+  const { mutateAsync: registerUserFn } = useMutation({
+    mutationFn: registerUser,
+  });
 
   async function handleSignUp(data: SignUpForm) {
     try {
-      console.log("data:", data);
+      await registerUserFn({
+        email: data.email,
+        name: data.name,
+        password: data.password,
+        phone: data.phone,
+        user: data.user === "" ? "tenant" : data.user,
+      });
 
       toast({
         description: (
@@ -46,6 +60,7 @@ export function SignUp() {
         className: "bg-green-500 text-muted-foreground border-0",
       });
     } catch (err) {
+      console.log("err:", err);
       toast({
         variant: "destructive",
         description: "Erro ao cadastrar usuário",
@@ -67,12 +82,12 @@ export function SignUp() {
           <EmailFormField form={form} />
           <PasswordFormField form={form} />
           <ConfirmPasswordFormItem form={form} />
-          <Button className="w-full" type="submit">
+          <Button className="w-full" type="submit" disabled={isSubmitting}>
             Criar conta
           </Button>
         </form>
       </Form>
-      <SignUpFooter />
+      <SignUpFooter isSubmitting={isSubmitting} />
     </div>
   );
 }
