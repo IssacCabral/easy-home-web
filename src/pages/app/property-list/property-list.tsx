@@ -17,6 +17,7 @@ import { useState } from "react";
 import { fetchCoordinatesFromAddress } from "@/utils/geocoding";
 import { SearchForm } from "./components/search-form";
 import { INITIAL_COORDS } from "@/utils/initial-coords";
+import { Helmet } from "react-helmet-async";
 
 const items = [
   {
@@ -80,24 +81,27 @@ export function PropertyList() {
   }
 
   return (
-    <div className="flex">
-      <SearchForm form={form} onFindProperties={handleFindProperties} />
-      <div className="flex w-full flex-col gap-3 pl-5 pr-14 pt-6">
-        <Map coords={coords} />
-        <span className="text-sm">344 Imóveis</span>
-        <div className="mb-3 flex flex-wrap gap-6 px-10">
-          {items.map((item, index) => (
-            <PropertyCard
-              image={item.image}
-              number={item.number}
-              price={item.price}
-              street={item.street}
-              title={item.title}
-              key={index}
-            />
-          ))}
+    <>
+      <Helmet title="Imóveis" />
+      <div className="flex">
+        <SearchForm form={form} onFindProperties={handleFindProperties} />
+        <div className="flex w-full flex-col gap-3 pl-5 pr-14 pt-6">
+          <Map coords={coords} />
+          <span className="text-sm">344 Imóveis</span>
+          <div className="mb-3 flex flex-wrap gap-6 px-10">
+            {items.map((item, index) => (
+              <PropertyCard
+                image={item.image}
+                number={item.number}
+                price={item.price}
+                street={item.street}
+                title={item.title}
+                key={index}
+              />
+            ))}
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }

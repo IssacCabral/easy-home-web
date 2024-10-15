@@ -17,6 +17,7 @@ import { useNavigate } from "react-router-dom";
 import { CheckCircle } from "lucide-react";
 import { useMutation } from "@tanstack/react-query";
 import { registerUser } from "@/api/sign-up";
+import { Helmet } from "react-helmet-async";
 
 export function SignUp() {
   const { toast } = useToast();
@@ -69,25 +70,28 @@ export function SignUp() {
   }
 
   return (
-    <div className="w-[360px] tracking-[-0.02em]">
-      <SignUpHeader />
-      <Form {...form}>
-        <form
-          className="mb-4 flex flex-col gap-2"
-          onSubmit={form.handleSubmit(handleSignUp)}
-        >
-          <NameFormField form={form} />
-          <PhoneFormField form={form} />
-          <UserFormField form={form} />
-          <EmailFormField form={form} />
-          <PasswordFormField form={form} />
-          <ConfirmPasswordFormItem form={form} />
-          <Button className="w-full" type="submit" disabled={isSubmitting}>
-            Criar conta
-          </Button>
-        </form>
-      </Form>
-      <SignUpFooter isSubmitting={isSubmitting} />
-    </div>
+    <>
+      <Helmet title="Sign Up" />
+      <div className="w-[360px] tracking-[-0.02em]">
+        <SignUpHeader />
+        <Form {...form}>
+          <form
+            className="mb-4 flex flex-col gap-2"
+            onSubmit={form.handleSubmit(handleSignUp)}
+          >
+            <NameFormField form={form} />
+            <PhoneFormField form={form} />
+            <UserFormField form={form} />
+            <EmailFormField form={form} />
+            <PasswordFormField form={form} />
+            <ConfirmPasswordFormItem form={form} />
+            <Button className="w-full" type="submit" disabled={isSubmitting}>
+              Criar conta
+            </Button>
+          </form>
+        </Form>
+        <SignUpFooter isSubmitting={isSubmitting} />
+      </div>
+    </>
   );
 }
