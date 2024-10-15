@@ -5,12 +5,7 @@ import {
   FindPropertiesForm,
 } from "./schema";
 import { zodResolver } from "@hookform/resolvers/zod";
-import House1Img from "@/assets/landing-houses/house-1.png";
 import House2Img from "@/assets/landing-houses/house-2.png";
-import House3Img from "@/assets/landing-houses/house-3.png";
-import House4Img from "@/assets/landing-houses/house-4.png";
-import House5Img from "@/assets/landing-houses/house-5.png";
-import House6Img from "@/assets/landing-houses/house-6.png";
 import { PropertyCard } from "@/components/property-card";
 import { Map } from "@/components/map";
 import { fetchCoordinatesFromAddress } from "@/utils/geocoding";
@@ -22,51 +17,6 @@ import { findProperties } from "@/api/find-properties";
 import { PropertyStatus, PropertyTypes } from "@/shared/property";
 import { toast } from "@/hooks/use-toast";
 import { useSearchParams } from "react-router-dom";
-
-const items = [
-  {
-    image: House1Img,
-    number: 123,
-    street: "Avenida da liberdade",
-    title: "Riverside Retreat",
-    price: 1200,
-  },
-  {
-    image: House2Img,
-    number: 456,
-    street: "Rua Augusta, Lisbon",
-    title: "Sunset Serenity Suite",
-    price: 500,
-  },
-  {
-    image: House3Img,
-    number: 789,
-    street: "Praça do Comércio",
-    title: "Riverside Retreat",
-    price: 400,
-  },
-  {
-    image: House4Img,
-    number: 234,
-    street: "Castelo São Jorge",
-    title: "River Palace",
-    price: 890,
-  },
-  {
-    image: House5Img,
-    number: 321,
-    street: "Av. Almirante Reis",
-    title: "Fernando Dutra",
-    price: 445,
-  },
-  {
-    image: House6Img,
-    number: 789,
-    street: "Beco do Carneiro",
-    title: "Carrascal 2",
-    price: 500,
-  },
-] as const;
 
 export function PropertyList() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -165,14 +115,14 @@ export function PropertyList() {
           />
           <span className="text-sm">344 Imóveis</span>
           <div className="mb-3 flex flex-wrap gap-6 px-10">
-            {items.map((item, index) => (
+            {result?.data.map((item) => (
               <PropertyCard
-                image={item.image}
-                number={item.number}
+                image={House2Img}
+                number={item.address.addressNumber}
                 price={item.price}
-                street={item.street}
+                street={item.address.street}
                 title={item.title}
-                key={index}
+                key={item.id}
               />
             ))}
           </div>
