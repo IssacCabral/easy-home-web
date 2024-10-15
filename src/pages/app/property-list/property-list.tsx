@@ -24,7 +24,7 @@ export function PropertyList() {
   const centralLat = searchParams.get("centralLat");
   const centralLon = searchParams.get("centralLon");
   const page = searchParams.get("page");
-  const radiusInMeters = searchParams.get("radiuInMeters");
+  const radiusInMeters = searchParams.get("radiusInMeters");
   const minBedrooms = searchParams.get("minBedrooms");
   const maxBedrooms = searchParams.get("maxBedrooms");
   const status = searchParams.get("status");
@@ -47,6 +47,7 @@ export function PropertyList() {
       maxBedrooms,
       status,
       maxPrice,
+      type,
     ],
     queryFn: () =>
       findProperties({
@@ -113,7 +114,7 @@ export function PropertyList() {
               lon: centralLon ? Number(centralLon) : INITIAL_COORDS.lon,
             }}
           />
-          <span className="text-sm">344 Imóveis</span>
+          <span className="text-sm">{result?.meta.total} Imóveis</span>
           <div className="mb-3 flex flex-wrap gap-6 px-10">
             {result?.data.map((item) => (
               <PropertyCard
