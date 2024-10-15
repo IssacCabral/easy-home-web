@@ -1,6 +1,6 @@
 export type PaginationParams = {
 	page: number;
-	limit: number;
+	limit?: number;
 };
 
 export interface PaginationData<T> {
