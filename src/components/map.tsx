@@ -7,6 +7,8 @@ import L from "leaflet";
 import GreenIconImg from "@/assets/icons/green-icon.png";
 import RedIconImg from "@/assets/icons/red-icon.png";
 import OrangeIconImg from "@/assets/icons/orange-icon.png";
+import { PropertyCard } from "./property-card";
+import House2Img from "@/assets/landing-houses/house-2.png";
 
 interface MapProps {
   coords: {
@@ -18,6 +20,9 @@ interface MapProps {
     lon: number;
     status: PropertyStatus;
     title: string;
+    street: string;
+    addressNumber: number;
+    price: number;
   }[];
   foundStreet: string;
 }
@@ -75,7 +80,6 @@ export function Map({ coords, foundProperties, foundStreet }: MapProps) {
       </Marker>
 
       {foundProperties.map((property, index) => {
-        // Select icon based on the property status
         let icon;
         if (property.status === PropertyStatus.FREE) {
           icon = freeIcon;
@@ -91,7 +95,16 @@ export function Map({ coords, foundProperties, foundStreet }: MapProps) {
             position={[property.lat, property.lon]}
             icon={icon}
           >
-            <Popup>{property.title}</Popup>
+            <Popup className="custom-popup">
+              <PropertyCard
+                title={property.title}
+                street={property.street}
+                addressNumber={property.addressNumber}
+                price={property.price}
+                image={House2Img}
+                isPopup
+              />
+            </Popup>
           </Marker>
         );
       })}

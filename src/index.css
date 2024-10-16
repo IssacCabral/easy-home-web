@@ -73,3 +73,35 @@
     scroll-behavior: smooth;
   }
 }
+
+.custom-popup .leaflet-popup-content-wrapper {
+  padding: 0; /* Remove o padding do conteúdo do popup */
+  margin: 0;
+}
+
+.custom-popup .leaflet-popup-content {
+  margin: 0; /* Remove a margem do conteúdo */
+  width: auto; /* Ajusta a largura para se adequar ao conteúdo */
+  min-width: 0; /* Remove o mínimo de largura padrão */
+}
+
+.custom-popup .leaflet-popup-tip {
+  display: none; /* Remove o triângulo (ponteiro) do popup (opcional) */
+}
+
+/* Ajustes de espaçamento vertical */
+.custom-popup .leaflet-popup-content p,
+.custom-popup .leaflet-popup-content span {
+  margin: 0; /* Remove margens entre parágrafos e spans */
+  line-height: 1.2; /* Ajuste o line-height se necessário, mas não o remova */
+}
+
+.custom-popup img {
+  margin-bottom: 0; /* Remove margem inferior da imagem */
+}
+
+/* Para remover apenas o espaçamento vertical entre os elementos no popup */
+.custom-popup .leaflet-popup-content > * {
+  margin-top: 0; /* Remove a margem superior */
+  margin-bottom: 0; /* Remove a margem inferior */
+}

@@ -50,8 +50,8 @@ export default tseslint.config({
 ```
 
 - adicionar paginação
+- adicionar componente de card, quando clicar no marcador
 - talvez dar um reset nos filtros
 - colocar as sugestões de localização no momento em que o usuário estiver digitando
-- adicionar os marcadores no mapa com os imóveis encontrados
 - definir filtragem inicial dos imóveis sem status, e permitir que o usuário desmarque o status
   para poder filtrar com mais resultados

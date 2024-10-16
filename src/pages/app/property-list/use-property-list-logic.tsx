@@ -67,6 +67,20 @@ export function usePropertyList() {
       }),
   });
 
+  const foundProperties = result?.data
+    ? result?.data.map((item) => {
+        return {
+          lat: item.address.lat,
+          lon: item.address.lon,
+          status: item.status,
+          title: item.title,
+          street: item.address.street,
+          addressNumber: item.address.addressNumber,
+          price: item.price,
+        };
+      })
+    : [];
+
   useEffect(() => {
     if (result?.meta.total === 0 && !isFetching) {
       toast({
@@ -116,5 +130,6 @@ export function usePropertyList() {
     checkedLon,
     isFetching,
     street,
+    foundProperties,
   };
 }

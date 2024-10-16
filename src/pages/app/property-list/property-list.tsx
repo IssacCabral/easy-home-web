@@ -15,6 +15,7 @@ export function PropertyList() {
     checkedLon,
     isFetching,
     street,
+    foundProperties,
   } = usePropertyList();
 
   return (
@@ -33,18 +34,7 @@ export function PropertyList() {
                 lat: checkedLat,
                 lon: checkedLon,
               }}
-              foundProperties={
-                result?.data
-                  ? result?.data.map((item) => {
-                      return {
-                        lat: item.address.lat,
-                        lon: item.address.lon,
-                        status: item.status,
-                        title: item.title,
-                      };
-                    })
-                  : []
-              }
+              foundProperties={foundProperties}
               foundStreet={street}
             />
           )}
@@ -53,7 +43,7 @@ export function PropertyList() {
             {result?.data.map((item) => (
               <PropertyCard
                 image={House2Img}
-                number={item.address.addressNumber}
+                addressNumber={item.address.addressNumber}
                 price={item.price}
                 street={item.address.street}
                 title={item.title}
