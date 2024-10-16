@@ -49,8 +49,6 @@ export default tseslint.config({
 });
 ```
 
-- refatorar separando a lógica
-- cadastrar imóveis mais variados
 - adicionar paginação
 - talvez dar um reset nos filtros
 - colocar as sugestões de localização no momento em que o usuário estiver digitando

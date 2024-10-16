@@ -12,6 +12,7 @@ import { INITIAL_COORDS } from "@/utils/initial-coords";
 import { PropertyStatus, PropertyTypes } from "@/shared/property";
 import { fetchCoordinatesFromAddress } from "@/utils/geocoding";
 import { toast } from "@/hooks/use-toast";
+import { useEffect } from "react";
 
 export function usePropertyList() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -26,12 +27,15 @@ export function usePropertyList() {
   const maxPrice = searchParams.get("maxPrice");
   const type = searchParams.get("type");
 
+  const checkedLat = Number(centralLat) || INITIAL_COORDS.lat;
+  const checkedLon = Number(centralLon) || INITIAL_COORDS.lon;
+
   const form = useForm<FindPropertiesForm>({
     resolver: zodResolver(findPropertiesForm),
     defaultValues,
   });
 
-  const { data: result, refetch } = useQuery({
+  const { data: result, isFetching } = useQuery({
     queryKey: [
       "property-list",
       centralLat,
@@ -42,37 +46,40 @@ export function usePropertyList() {
       maxBedrooms,
       status,
       maxPrice,
+      type,
     ],
     queryFn: () =>
       findProperties({
-        centralLat: centralLat ? Number(centralLat) : INITIAL_COORDS.lat,
-        centralLon: centralLon ? Number(centralLon) : INITIAL_COORDS.lon,
-        page: page ? Number(page) : 1,
-        radiusInMeters: radiusInMeters
-          ? Number(radiusInMeters)
-          : defaultValues.radiusInMeters,
-        minBedrooms: minBedrooms
-          ? Number(minBedrooms)
-          : defaultValues.minBedrooms,
-        maxBedrooms: maxBedrooms
-          ? Number(maxBedrooms)
-          : defaultValues.maxBedrooms,
-        maxPrice: maxPrice ? Number(maxPrice) : defaultValues.maxPrice,
-        status: status
-          ? PropertyStatus[status as PropertyStatus]
-          : PropertyStatus[defaultValues.propertyStatus],
-        type: type
-          ? PropertyTypes[type as PropertyTypes]
-          : PropertyTypes[defaultValues.propertyTypes],
+        centralLat: checkedLat,
+        centralLon: checkedLon,
+        page: Number(page) || 1,
+        radiusInMeters: Number(radiusInMeters) || defaultValues.radiusInMeters,
+        minBedrooms: Number(minBedrooms) || defaultValues.minBedrooms,
+        maxBedrooms: Number(maxBedrooms) || defaultValues.maxBedrooms,
+        maxPrice: Number(maxPrice) || defaultValues.maxPrice,
+        status:
+          PropertyStatus[status as PropertyStatus] ||
+          PropertyStatus[defaultValues.propertyStatus],
+        type:
+          PropertyTypes[type as PropertyTypes] ||
+          PropertyTypes[defaultValues.propertyTypes],
       }),
-    enabled: false, // Desativa a busca automática
   });
+
+  useEffect(() => {
+    if (result?.meta.total === 0 && !isFetching) {
+      toast({
+        variant: "destructive",
+        description: "Não foram encontrados imóveis.",
+      });
+    }
+  }, [result, isFetching]);
 
   function handleFilter(data: FindPropertiesForm, lat: number, lon: number) {
     setSearchParams((state) => {
       state.set("centralLat", lat.toString());
       state.set("centralLon", lon.toString());
-      state.set("page", "1");
+      state.set("page", (1).toString());
       state.set("radiusInMeters", data.radiusInMeters.toString());
       state.set("minBedrooms", data.minBedrooms.toString());
       state.set("maxBedrooms", data.maxBedrooms.toString());
@@ -88,7 +95,6 @@ export function usePropertyList() {
     try {
       const { lat, lon } = await fetchCoordinatesFromAddress(data.location);
       handleFilter(data, lat, lon);
-      refetch(); // Dispara a nova busca após o envio do formulário
     } catch (err) {
       console.log("err:", err);
       toast({
@@ -97,12 +103,12 @@ export function usePropertyList() {
       });
     }
   }
-
   return {
     form,
     result,
     handleFindProperties,
-    centralLat: centralLat ? Number(centralLat) : INITIAL_COORDS.lat,
-    centralLon: centralLon ? Number(centralLon) : INITIAL_COORDS.lon,
+    checkedLat,
+    checkedLon,
+    isFetching,
   };
 }
