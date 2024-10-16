@@ -47,9 +47,9 @@ export type FindPropertiesForm = z.infer<typeof findPropertiesForm>;
 export const defaultValues: FindPropertiesForm = {
   location: "",
   radiusInMeters: 2000,
-  maxPrice: 2000,
-  minBedrooms: 9,
-  maxBedrooms: 10,
+  maxPrice: 1000,
+  minBedrooms: 1,
+  maxBedrooms: 5,
   propertyStatus: "FREE",
   propertyTypes: "APARTMENT",
   amenities: ["TV", "Wifi"],

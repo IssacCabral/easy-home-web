@@ -39,8 +39,6 @@ export function PropertyList() {
   const form = useForm<FindPropertiesForm>({
     resolver: zodResolver(findPropertiesForm),
     defaultValues,
-    mode: "onSubmit",
-    reValidateMode: "onSubmit",
   });
 
   const { data: result, isFetching } = useQuery({
