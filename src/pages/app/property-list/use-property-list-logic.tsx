@@ -12,10 +12,11 @@ import { INITIAL_COORDS } from "@/utils/initial-coords";
 import { PropertyStatus, PropertyTypes } from "@/shared/property";
 import { fetchCoordinatesFromAddress } from "@/utils/geocoding";
 import { toast } from "@/hooks/use-toast";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 export function usePropertyList() {
   const [searchParams, setSearchParams] = useSearchParams();
+  const [street, setStreet] = useState("");
 
   const centralLat = searchParams.get("centralLat");
   const centralLon = searchParams.get("centralLon");
@@ -93,7 +94,11 @@ export function usePropertyList() {
 
   async function handleFindProperties(data: FindPropertiesForm) {
     try {
-      const { lat, lon } = await fetchCoordinatesFromAddress(data.location);
+      const { lat, lon, street } = await fetchCoordinatesFromAddress(
+        data.location,
+      );
+
+      setStreet(street);
       handleFilter(data, lat, lon);
     } catch (err) {
       console.log("err:", err);
@@ -110,5 +115,6 @@ export function usePropertyList() {
     checkedLat,
     checkedLon,
     isFetching,
+    street,
   };
 }
