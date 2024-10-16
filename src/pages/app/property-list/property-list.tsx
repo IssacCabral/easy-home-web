@@ -14,6 +14,7 @@ export function PropertyList() {
     checkedLat,
     checkedLon,
     isFetching,
+    street,
   } = usePropertyList();
 
   return (
@@ -32,6 +33,19 @@ export function PropertyList() {
                 lat: checkedLat,
                 lon: checkedLon,
               }}
+              foundProperties={
+                result?.data
+                  ? result?.data.map((item) => {
+                      return {
+                        lat: item.address.lat,
+                        lon: item.address.lon,
+                        status: item.status,
+                        title: item.title,
+                      };
+                    })
+                  : []
+              }
+              foundStreet={street}
             />
           )}
           <span className="text-sm">{result?.meta.total} Imóveis</span>
