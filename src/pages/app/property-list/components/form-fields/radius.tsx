@@ -39,6 +39,7 @@ export function RadiusFormField({ form }: RadiusFormFieldProps) {
             <Input
               id="radiusInMeters"
               type="number"
+              step={50}
               className="w-1/3 border-2 border-border text-foreground placeholder:text-muted"
               {...field}
             />
