@@ -33,7 +33,7 @@ export function MaxPriceFormField({ form }: MaxPriceFormFieldProps) {
       render={({ field: { value, onChange }, fieldState }) => (
         <FormItem className="space-y-2">
           <FormLabel className="text-sm font-semibold text-landing">
-            <span>Mensalidade / Aluguel - Máximos</span>
+            <span>Aluguel - Máximo</span>
           </FormLabel>
           <FormControl>
             <>
