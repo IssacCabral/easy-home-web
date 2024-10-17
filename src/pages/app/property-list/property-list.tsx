@@ -6,17 +6,19 @@ import { Helmet } from "react-helmet-async";
 import { Spinner } from "@/components/ui/spinner";
 import { usePropertyList } from "./use-property-list-logic";
 import { Pagination } from "@/components/pagination";
+import { perPageLimit } from "@/api/find-properties";
 
 export function PropertyList() {
   const {
     form,
-    handleFindProperties,
     result,
     checkedLat,
     checkedLon,
     isFetching,
     street,
     foundProperties,
+    handlePaginate,
+    handleFindProperties,
   } = usePropertyList();
 
   return (
@@ -41,11 +43,10 @@ export function PropertyList() {
           )}
           {!isFetching && (
             <Pagination
-              onPageChange={() => console.log(123)}
-              pageIndex={1}
-              perPage={10}
-              totalCount={100}
-              key={123}
+              onPageChange={handlePaginate}
+              pageIndex={result!.meta.page}
+              perPage={perPageLimit}
+              totalCount={result!.meta.total}
             />
           )}
           <div className="mb-3 flex flex-wrap gap-6 px-10">

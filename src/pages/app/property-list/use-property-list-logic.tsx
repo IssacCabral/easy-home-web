@@ -67,6 +67,14 @@ export function usePropertyList() {
       }),
   });
 
+  function handlePaginate(pageIndex: number) {
+    setSearchParams((state) => {
+      state.set("page", (pageIndex + 1).toString());
+
+      return state;
+    });
+  }
+
   const foundProperties = result?.data
     ? result?.data.map((item) => {
         return {
@@ -125,11 +133,12 @@ export function usePropertyList() {
   return {
     form,
     result,
-    handleFindProperties,
     checkedLat,
     checkedLon,
     isFetching,
     street,
     foundProperties,
+    handleFindProperties,
+    handlePaginate,
   };
 }

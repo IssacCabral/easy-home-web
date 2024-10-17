@@ -17,10 +17,12 @@ type FindPropertiesRequest = {
 
 type FindPropertiesResponse = PaginationData<IPropertyEntity>
 
+export const perPageLimit = 2
+
 function setFindPropertiesPayload(request: FindPropertiesRequest) {
   return {
     page: request.page,
-    limit: 10,
+    limit: perPageLimit,
     centralLat: request.centralLat,
     centralLon: request.centralLon,
     radiusInMeters: request.radiusInMeters,
