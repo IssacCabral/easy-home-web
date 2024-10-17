@@ -5,7 +5,7 @@ import { SearchForm } from "./components/search-form";
 import { Helmet } from "react-helmet-async";
 import { Spinner } from "@/components/ui/spinner";
 import { usePropertyList } from "./use-property-list-logic";
-import { PropertiesPagination } from "./components/properties-pagination";
+import { Pagination } from "@/components/pagination";
 
 export function PropertyList() {
   const {
@@ -24,7 +24,7 @@ export function PropertyList() {
       <Helmet title="Imóveis" />
       <div className="flex">
         <SearchForm form={form} onFindProperties={handleFindProperties} />
-        <div className="flex w-full flex-col gap-3 pl-5 pr-14 pt-6">
+        <div className="flex w-full flex-col gap-5 pl-5 pr-14 pt-6">
           {isFetching ? (
             <div className="flex h-full w-full items-center justify-center">
               <Spinner />
@@ -39,7 +39,15 @@ export function PropertyList() {
               foundStreet={street}
             />
           )}
-          {!isFetching && <PropertiesPagination />}
+          {!isFetching && (
+            <Pagination
+              onPageChange={() => console.log(123)}
+              pageIndex={1}
+              perPage={10}
+              totalCount={100}
+              key={123}
+            />
+          )}
           <div className="mb-3 flex flex-wrap gap-6 px-10">
             {result?.data.map((item) => (
               <PropertyCard
