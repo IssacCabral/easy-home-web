@@ -10,7 +10,7 @@ import { INITIAL_COORDS } from "@/utils/initial-coords";
 import axios from "axios";
 import { UseFormReturn } from "react-hook-form";
 import { debounce } from "lodash";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { SuggestionBox } from "@/components/suggestion-box";
 
 interface LocationFormFieldProps {
@@ -32,6 +32,7 @@ interface LocationFormFieldProps {
 
 export function LocationFormField({ form }: LocationFormFieldProps) {
   const [suggestions, setSuggestions] = useState<string[]>([]);
+  const suggestionBoxRef = useRef<HTMLDivElement>(null); // Ref para o SuggestionBox
 
   async function fetchData(input: string) {
     const encodedInput = encodeURIComponent(input);
@@ -65,7 +66,7 @@ export function LocationFormField({ form }: LocationFormFieldProps) {
 
   function handleSuggestionClick(suggestion: string) {
     form.setValue("location", suggestion);
-    setSuggestions([]);
+    setSuggestions([]); // Esvaziar as sugestões ao selecionar uma
   }
 
   return (
@@ -94,8 +95,10 @@ export function LocationFormField({ form }: LocationFormFieldProps) {
           <FormMessage>{fieldState.error?.message}</FormMessage>
           {suggestions.length > 0 && (
             <SuggestionBox
+              ref={suggestionBoxRef}
               items={suggestions}
               onSuggestionClick={handleSuggestionClick}
+              onClose={() => setSuggestions([])}
             />
           )}
         </FormItem>
