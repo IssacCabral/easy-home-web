@@ -5,6 +5,7 @@ import { SearchForm } from "./components/search-form";
 import { Helmet } from "react-helmet-async";
 import { Spinner } from "@/components/ui/spinner";
 import { usePropertyList } from "./use-property-list-logic";
+import { PropertiesPagination } from "./components/properties-pagination";
 
 export function PropertyList() {
   const {
@@ -38,7 +39,7 @@ export function PropertyList() {
               foundStreet={street}
             />
           )}
-          <span className="text-sm">{result?.meta.total} Imóveis</span>
+          {!isFetching && <PropertiesPagination />}
           <div className="mb-3 flex flex-wrap gap-6 px-10">
             {result?.data.map((item) => (
               <PropertyCard
