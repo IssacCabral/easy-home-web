@@ -11,6 +11,7 @@ import axios from "axios";
 import { UseFormReturn } from "react-hook-form";
 import { debounce } from "lodash";
 import { useState } from "react";
+import { SuggestionBox } from "@/components/suggestion-box";
 
 interface LocationFormFieldProps {
   form: UseFormReturn<
@@ -83,6 +84,7 @@ export function LocationFormField({ form }: LocationFormFieldProps) {
               placeholder="Pesquisar"
               className="border-2 border-border text-foreground placeholder:text-muted"
               {...field}
+              autoComplete="off"
               onChange={(e) => {
                 field.onChange(e);
                 handleTypeLocation(e.target.value);
@@ -91,17 +93,10 @@ export function LocationFormField({ form }: LocationFormFieldProps) {
           </FormControl>
           <FormMessage>{fieldState.error?.message}</FormMessage>
           {suggestions.length > 0 && (
-            <div className="absolute z-10 mt-2 max-w-72 rounded-md border border-gray-300 bg-white shadow-lg">
-              {suggestions.map((suggestion, index) => (
-                <div
-                  key={index}
-                  className="cursor-pointer p-2 text-sm hover:bg-gray-200"
-                  onClick={() => handleSuggestionClick(suggestion)}
-                >
-                  {suggestion}
-                </div>
-              ))}
-            </div>
+            <SuggestionBox
+              items={suggestions}
+              onSuggestionClick={handleSuggestionClick}
+            />
           )}
         </FormItem>
       )}

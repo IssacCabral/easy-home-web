@@ -17,7 +17,7 @@ type FindPropertiesRequest = {
 
 type FindPropertiesResponse = PaginationData<IPropertyEntity>
 
-export const perPageLimit = 2
+export const perPageLimit = 3
 
 function setFindPropertiesPayload(request: FindPropertiesRequest) {
   return {

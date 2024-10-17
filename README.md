@@ -54,7 +54,7 @@ export default tseslint.config({
 # Página de listagem
 
 - talvez dar um reset nos filtros
-- colocar as sugestões de localização no momento em que o usuário estiver digitando
+- usar o componente do shadcn
 - definir filtragem inicial dos imóveis sem status, e permitir que o usuário desmarque o status
   para poder filtrar com mais resultados
 - incluir amenities nas filtragens
