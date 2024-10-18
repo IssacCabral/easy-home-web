@@ -9,6 +9,8 @@ import { PropertyStatusFormField } from "./form-fields/property-status";
 import { PropertyTypesFormField } from "./form-fields/property-types";
 import { RadiusFormField } from "./form-fields/radius";
 import { UseFormReturn } from "react-hook-form";
+import { FetchingAmenitiesContext } from "@/contexts/fetching-amenities-context";
+import { useContext } from "react";
 
 interface SearchFormProps {
   form: UseFormReturn<
@@ -29,6 +31,8 @@ interface SearchFormProps {
 }
 
 export function SearchForm({ form, onFindProperties }: SearchFormProps) {
+  const { isFetching } = useContext(FetchingAmenitiesContext);
+
   return (
     <div className="bg h-[calc(100vh-5.5rem)] w-1/3 max-w-[350px] overflow-y-auto rounded-xl pl-12 pr-2 pt-3">
       <Form {...form}>
@@ -43,7 +47,7 @@ export function SearchForm({ form, onFindProperties }: SearchFormProps) {
           <PropertyStatusFormField form={form} />
           <PropertyTypesFormField form={form} />
           <AmenitiesFormField form={form} />
-          <Button className="w-1/3" type="submit">
+          <Button className="w-1/3" type="submit" disabled={isFetching}>
             Pesquisar
           </Button>
         </form>

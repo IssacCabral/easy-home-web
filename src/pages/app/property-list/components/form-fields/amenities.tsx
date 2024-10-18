@@ -8,7 +8,9 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Spinner } from "@/components/ui/spinner";
+import { FetchingAmenitiesContext } from "@/contexts/fetching-amenities-context";
 import { useQuery } from "@tanstack/react-query";
+import { useContext, useEffect } from "react";
 import { UseFormReturn } from "react-hook-form";
 
 interface AmenitiesFormFieldProps {
@@ -33,6 +35,12 @@ export function AmenitiesFormField({ form }: AmenitiesFormFieldProps) {
     queryKey: ["amenities"],
     queryFn: getAllAmenities,
   });
+
+  const { setIsFetching } = useContext(FetchingAmenitiesContext);
+
+  useEffect(() => {
+    setIsFetching(isFetching);
+  }, [isFetching]);
 
   return (
     <FormField

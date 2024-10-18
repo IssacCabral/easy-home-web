@@ -7,6 +7,7 @@ import { Spinner } from "@/components/ui/spinner";
 import { usePropertyList } from "./use-property-list-logic";
 import { Pagination } from "@/components/pagination";
 import { perPageLimit } from "@/api/find-properties";
+import { FetchingAmenitiesProvider } from "@/contexts/fetching-amenities-context";
 
 export function PropertyList() {
   const {
@@ -25,7 +26,9 @@ export function PropertyList() {
     <>
       <Helmet title="Imóveis" />
       <div className="flex">
-        <SearchForm form={form} onFindProperties={handleFindProperties} />
+        <FetchingAmenitiesProvider>
+          <SearchForm form={form} onFindProperties={handleFindProperties} />
+        </FetchingAmenitiesProvider>
         <div className="flex w-full flex-col gap-5 pl-5 pr-14 pt-6">
           {isFetching ? (
             <div className="flex h-full w-full items-center justify-center">
