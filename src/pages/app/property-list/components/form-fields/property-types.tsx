@@ -7,23 +7,10 @@ import {
 } from "@/components/ui/form";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { cn } from "@/lib/utils";
-import { UseFormReturn } from "react-hook-form";
+import { SearchFormValues } from "../../schema";
 
 interface PropertyTypesFormFieldProps {
-  form: UseFormReturn<
-    {
-      location: string;
-      radiusInMeters: number;
-      maxPrice: number;
-      minBedrooms: number;
-      maxBedrooms: number;
-      propertyStatus?: "FREE" | "BUSY" | "SPLIT";
-      propertyTypes: "HOUSE" | "DUPLEX" | "APARTMENT";
-      amenities?: string[];
-    },
-    any,
-    undefined
-  >;
+  form: SearchFormValues;
 }
 
 export function PropertyTypesFormField({ form }: PropertyTypesFormFieldProps) {

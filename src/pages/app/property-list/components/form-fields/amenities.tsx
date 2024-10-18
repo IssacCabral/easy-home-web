@@ -11,24 +11,10 @@ import { Spinner } from "@/components/ui/spinner";
 import { FetchingAmenitiesContext } from "@/contexts/fetching-amenities-context";
 import { useQuery } from "@tanstack/react-query";
 import { useContext, useEffect } from "react";
-import { UseFormReturn } from "react-hook-form";
+import { SearchFormValues } from "../../schema";
 
-// todo: CRIAR ESSA TIPAGEM
 interface AmenitiesFormFieldProps {
-  form: UseFormReturn<
-    {
-      location: string;
-      radiusInMeters: number;
-      maxPrice: number;
-      minBedrooms: number;
-      maxBedrooms: number;
-      propertyStatus?: "FREE" | "BUSY" | "SPLIT";
-      propertyTypes: "HOUSE" | "DUPLEX" | "APARTMENT";
-      amenities?: string[];
-    },
-    any,
-    undefined
-  >;
+  form: SearchFormValues;
 }
 
 export function AmenitiesFormField({ form }: AmenitiesFormFieldProps) {

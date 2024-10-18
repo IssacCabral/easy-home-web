@@ -1,5 +1,5 @@
 import { Form } from "@/components/ui/form";
-import { FindPropertiesForm } from "../schema";
+import { FindPropertiesForm, SearchFormValues } from "../schema";
 import { Button } from "@/components/ui/button";
 import { AmenitiesFormField } from "./form-fields/amenities";
 import { BedroomsFormField } from "./form-fields/bedrooms";
@@ -8,25 +8,11 @@ import { MaxPriceFormField } from "./form-fields/max-price";
 import { PropertyStatusFormField } from "./form-fields/property-status";
 import { PropertyTypesFormField } from "./form-fields/property-types";
 import { RadiusFormField } from "./form-fields/radius";
-import { UseFormReturn } from "react-hook-form";
 import { FetchingAmenitiesContext } from "@/contexts/fetching-amenities-context";
 import { useContext } from "react";
 
 interface SearchFormProps {
-  form: UseFormReturn<
-    {
-      location: string;
-      radiusInMeters: number;
-      maxPrice: number;
-      minBedrooms: number;
-      maxBedrooms: number;
-      propertyStatus?: "FREE" | "BUSY" | "SPLIT";
-      propertyTypes: "HOUSE" | "DUPLEX" | "APARTMENT";
-      amenities?: string[];
-    },
-    any,
-    undefined
-  >;
+  form: SearchFormValues;
   onFindProperties: (data: FindPropertiesForm) => void;
 }
 

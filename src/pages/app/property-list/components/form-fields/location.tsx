@@ -8,26 +8,13 @@ import {
 import { Input } from "@/components/ui/input";
 import { INITIAL_COORDS } from "@/utils/initial-coords";
 import axios from "axios";
-import { UseFormReturn } from "react-hook-form";
 import { debounce } from "lodash";
 import { useState, useRef } from "react";
 import { SuggestionBox } from "@/components/suggestion-box";
+import { SearchFormValues } from "../../schema";
 
 interface LocationFormFieldProps {
-  form: UseFormReturn<
-    {
-      location: string;
-      radiusInMeters: number;
-      maxPrice: number;
-      minBedrooms: number;
-      maxBedrooms: number;
-      propertyStatus?: "FREE" | "BUSY" | "SPLIT";
-      propertyTypes: "HOUSE" | "DUPLEX" | "APARTMENT";
-      amenities?: string[];
-    },
-    any,
-    undefined
-  >;
+  form: SearchFormValues
 }
 
 export function LocationFormField({ form }: LocationFormFieldProps) {

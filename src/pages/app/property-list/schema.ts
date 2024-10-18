@@ -1,3 +1,4 @@
+import { UseFormReturn } from "react-hook-form";
 import { z } from "zod";
 
 export const findPropertiesForm = z
@@ -40,6 +41,8 @@ export const findPropertiesForm = z
   });
 
 export type FindPropertiesForm = z.infer<typeof findPropertiesForm>;
+
+export type SearchFormValues = UseFormReturn<FindPropertiesForm, any, undefined>
 
 export const defaultValues: FindPropertiesForm = {
   location: "",

@@ -6,23 +6,10 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { UseFormReturn } from "react-hook-form";
+import { SearchFormValues } from "../../schema";
 
 interface BedroomsFormFieldProps {
-  form: UseFormReturn<
-    {
-      location: string;
-      radiusInMeters: number;
-      maxPrice: number;
-      minBedrooms: number;
-      maxBedrooms: number;
-      propertyStatus?: "FREE" | "BUSY" | "SPLIT";
-      propertyTypes: "HOUSE" | "DUPLEX" | "APARTMENT";
-      amenities?: string[];
-    },
-    any,
-    undefined
-  >;
+  form: SearchFormValues;
 }
 
 export function BedroomsFormField({ form }: BedroomsFormFieldProps) {

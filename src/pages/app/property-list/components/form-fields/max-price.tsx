@@ -6,23 +6,10 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Slider } from "@/components/ui/slider";
-import { UseFormReturn } from "react-hook-form";
+import { SearchFormValues } from "../../schema";
 
 interface MaxPriceFormFieldProps {
-  form: UseFormReturn<
-    {
-      location: string;
-      radiusInMeters: number;
-      maxPrice: number;
-      minBedrooms: number;
-      maxBedrooms: number;
-      propertyStatus?: "FREE" | "BUSY" | "SPLIT";
-      propertyTypes: "HOUSE" | "DUPLEX" | "APARTMENT";
-      amenities?: string[];
-    },
-    any,
-    undefined
-  >;
+  form: SearchFormValues;
 }
 
 export function MaxPriceFormField({ form }: MaxPriceFormFieldProps) {
