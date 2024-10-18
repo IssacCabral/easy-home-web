@@ -48,12 +48,3 @@ export default tseslint.config({
   },
 });
 ```
-
-## Todos
-
-# Página de listagem
-
-- talvez dar um reset nos filtros
-- definir filtragem inicial dos imóveis sem status, e permitir que o usuário desmarque o status
-  para poder filtrar com mais resultados
-- incluir amenities nas filtragens
