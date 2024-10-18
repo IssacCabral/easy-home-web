@@ -27,6 +27,7 @@ export function usePropertyList() {
   const status = searchParams.get("status");
   const maxPrice = searchParams.get("maxPrice");
   const type = searchParams.get("type");
+  const amenities = searchParams.get("amenities");
 
   const checkedLat = Number(centralLat) || INITIAL_COORDS.lat;
   const checkedLon = Number(centralLon) || INITIAL_COORDS.lon;
@@ -48,6 +49,7 @@ export function usePropertyList() {
       status,
       maxPrice,
       type,
+      amenities
     ],
     queryFn: () =>
       findProperties({
@@ -64,6 +66,7 @@ export function usePropertyList() {
         type:
           PropertyTypes[type as PropertyTypes] ||
           PropertyTypes[defaultValues.propertyTypes],
+        amenities: amenities ? amenities.split(",") : defaultValues.amenities,
       }),
   });
 
@@ -109,6 +112,7 @@ export function usePropertyList() {
       state.set("status", data.propertyStatus);
       state.set("maxPrice", data.maxPrice.toString());
       state.set("type", data.propertyTypes);
+      state.set("amenities", data.amenities.toString());
 
       return state;
     });
