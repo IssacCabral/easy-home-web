@@ -1,3 +1,4 @@
+import { getAllAmenities } from "@/api/get-all-amenities";
 import { Checkbox } from "@/components/ui/checkbox";
 import {
   FormControl,
@@ -6,6 +7,8 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
+import { Spinner } from "@/components/ui/spinner";
+import { useQuery } from "@tanstack/react-query";
 import { UseFormReturn } from "react-hook-form";
 
 interface AmenitiesFormFieldProps {
@@ -25,30 +28,12 @@ interface AmenitiesFormFieldProps {
   >;
 }
 
-const items = [
-  {
-    id: "Ar Condicionado",
-    label: "Ar Condicionado",
-  },
-  {
-    id: "TV",
-    label: "TV",
-  },
-  {
-    id: "Wifi",
-    label: "Wifi",
-  },
-  {
-    id: "Elevador",
-    label: "Elevador",
-  },
-  {
-    id: "Estacionamento",
-    label: "Estacionamento",
-  },
-] as const;
-
 export function AmenitiesFormField({ form }: AmenitiesFormFieldProps) {
+  const { data: result, isFetching } = useQuery({
+    queryKey: ["amenities"],
+    queryFn: getAllAmenities,
+  });
+
   return (
     <FormField
       control={form.control}
@@ -58,37 +43,41 @@ export function AmenitiesFormField({ form }: AmenitiesFormFieldProps) {
           <FormLabel className="text-sm font-semibold text-landing">
             Comodidades (Selecione uma ou mais)
           </FormLabel>
-          {items.map((item) => (
-            <FormField
-              key={item.id}
-              control={form.control}
-              name="amenities"
-              render={({ field }) => {
-                return (
-                  <FormItem
-                    key={item.id}
-                    className="flex flex-row items-start space-x-3 space-y-0"
-                  >
-                    <FormControl>
-                      <Checkbox
-                        checked={field.value?.includes(item.id)}
-                        onCheckedChange={(checked) => {
-                          return checked
-                            ? field.onChange([...field.value, item.id])
-                            : field.onChange(
-                                field.value?.filter(
-                                  (value) => value !== item.id,
-                                ),
-                              );
-                        }}
-                      />
-                    </FormControl>
-                    <FormLabel>{item.label}</FormLabel>
-                  </FormItem>
-                );
-              }}
-            />
-          ))}
+          {isFetching ? (
+            <Spinner />
+          ) : (
+            result!.map((item) => (
+              <FormField
+                key={item.id}
+                control={form.control}
+                name="amenities"
+                render={({ field }) => {
+                  return (
+                    <FormItem
+                      key={item.id}
+                      className="flex flex-row items-start space-x-3 space-y-0"
+                    >
+                      <FormControl>
+                        <Checkbox
+                          checked={field.value?.includes(item.label)}
+                          onCheckedChange={(checked) => {
+                            return checked
+                              ? field.onChange([...field.value, item.label])
+                              : field.onChange(
+                                  field.value?.filter(
+                                    (value) => value !== item.label,
+                                  ),
+                                );
+                          }}
+                        />
+                      </FormControl>
+                      <FormLabel>{item.label}</FormLabel>
+                    </FormItem>
+                  );
+                }}
+              />
+            ))
+          )}
           <FormMessage>{fieldState.error?.message}</FormMessage>
         </FormItem>
       )}

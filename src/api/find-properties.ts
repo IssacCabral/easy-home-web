@@ -37,7 +37,6 @@ function setFindPropertiesPayload(request: FindPropertiesRequest) {
 }
 
 export async function findProperties(request: FindPropertiesRequest): Promise<FindPropertiesResponse> {
-  console.log({amenities: request.amenities})
   const response = await api.get<FindPropertiesResponse>("/properties", {
     params: setFindPropertiesPayload(request)
   })
