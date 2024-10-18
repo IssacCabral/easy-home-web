@@ -64,7 +64,7 @@ export function usePropertyList() {
         type:
           PropertyTypes[type as PropertyTypes] ||
           PropertyTypes[defaultValues.propertyTypes],
-        amenities: amenities ? amenities.split(",") : defaultValues.amenities,
+        amenities: amenities ? amenities.split(",") : undefined,
       }),
   });
 
@@ -112,7 +112,11 @@ export function usePropertyList() {
       }
       state.set("maxPrice", data.maxPrice.toString());
       state.set("type", data.propertyTypes);
-      state.set("amenities", data.amenities.toString());
+      if (data.amenities && data.amenities.length > 0) {
+        state.set("amenities", data.amenities.toString());
+      } else {
+        state.delete("amenities");
+      }
 
       return state;
     });

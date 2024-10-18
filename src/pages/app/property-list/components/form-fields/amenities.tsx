@@ -24,7 +24,7 @@ interface AmenitiesFormFieldProps {
       maxBedrooms: number;
       propertyStatus?: "FREE" | "BUSY" | "SPLIT";
       propertyTypes: "HOUSE" | "DUPLEX" | "APARTMENT";
-      amenities: string[];
+      amenities?: string[];
     },
     any,
     undefined
@@ -68,12 +68,13 @@ export function AmenitiesFormField({ form }: AmenitiesFormFieldProps) {
                     >
                       <FormControl>
                         <Checkbox
-                          checked={field.value?.includes(item.label)}
+                          checked={field.value?.includes(item.label) ?? false}
                           onCheckedChange={(checked) => {
+                            const currentValue = field.value ?? [];
                             return checked
-                              ? field.onChange([...field.value, item.label])
+                              ? field.onChange([...currentValue, item.label])
                               : field.onChange(
-                                  field.value?.filter(
+                                  currentValue.filter(
                                     (value) => value !== item.label,
                                   ),
                                 );

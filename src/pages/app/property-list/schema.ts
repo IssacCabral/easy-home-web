@@ -28,10 +28,7 @@ export const findPropertiesForm = z
     propertyStatus: z.enum(["FREE", "BUSY", "SPLIT"]).optional(),
     propertyTypes: z.enum(["HOUSE", "DUPLEX", "APARTMENT"]),
     amenities: z
-      .array(z.string())
-      .refine((value) => value.some((item) => item), {
-        message: "Selecione pelo menos um item",
-      }),
+      .array(z.string()).optional(),
   })
   .refine((data) => data.minBedrooms < data.maxBedrooms, {
     message: "O mínimo deve ser menor que o máximo",
@@ -51,5 +48,4 @@ export const defaultValues: FindPropertiesForm = {
   minBedrooms: 1,
   maxBedrooms: 5,
   propertyTypes: "APARTMENT",
-  amenities: ["TV", "Wifi"],
 };

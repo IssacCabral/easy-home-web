@@ -19,7 +19,7 @@ interface PropertyStatusFormFieldProps {
       maxBedrooms: number;
       propertyStatus?: "FREE" | "BUSY" | "SPLIT";
       propertyTypes: "HOUSE" | "DUPLEX" | "APARTMENT";
-      amenities: string[];
+      amenities?: string[];
     },
     any,
     undefined
