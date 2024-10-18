@@ -25,7 +25,7 @@ export const findPropertiesForm = z
     maxBedrooms: z
       .union([z.string(), z.number()])
       .transform((val) => Number(val)),
-    propertyStatus: z.enum(["FREE", "BUSY", "SPLIT"]),
+    propertyStatus: z.enum(["FREE", "BUSY", "SPLIT"]).optional(),
     propertyTypes: z.enum(["HOUSE", "DUPLEX", "APARTMENT"]),
     amenities: z
       .array(z.string())
@@ -50,7 +50,6 @@ export const defaultValues: FindPropertiesForm = {
   maxPrice: 800,
   minBedrooms: 1,
   maxBedrooms: 5,
-  propertyStatus: "FREE",
   propertyTypes: "APARTMENT",
   amenities: ["TV", "Wifi"],
 };

@@ -13,6 +13,7 @@ import { useQuery } from "@tanstack/react-query";
 import { useContext, useEffect } from "react";
 import { UseFormReturn } from "react-hook-form";
 
+// todo: CRIAR ESSA TIPAGEM
 interface AmenitiesFormFieldProps {
   form: UseFormReturn<
     {
@@ -21,7 +22,7 @@ interface AmenitiesFormFieldProps {
       maxPrice: number;
       minBedrooms: number;
       maxBedrooms: number;
-      propertyStatus: "FREE" | "BUSY" | "SPLIT";
+      propertyStatus?: "FREE" | "BUSY" | "SPLIT";
       propertyTypes: "HOUSE" | "DUPLEX" | "APARTMENT";
       amenities: string[];
     },

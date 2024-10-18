@@ -17,7 +17,7 @@ interface PropertyStatusFormFieldProps {
       maxPrice: number;
       minBedrooms: number;
       maxBedrooms: number;
-      propertyStatus: "FREE" | "BUSY" | "SPLIT";
+      propertyStatus?: "FREE" | "BUSY" | "SPLIT";
       propertyTypes: "HOUSE" | "DUPLEX" | "APARTMENT";
       amenities: string[];
     },
@@ -41,7 +41,7 @@ export function PropertyStatusFormField({
           <FormControl>
             <RadioGroup
               onValueChange={field.onChange}
-              defaultValue={field.value}
+              defaultValue={field.value || undefined}
               className="flex flex-col space-y-1"
             >
               <FormItem className="flex items-center space-x-3 space-y-0">

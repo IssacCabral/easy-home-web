@@ -49,7 +49,7 @@ export function usePropertyList() {
       status,
       maxPrice,
       type,
-      amenities
+      amenities,
     ],
     queryFn: () =>
       findProperties({
@@ -60,9 +60,7 @@ export function usePropertyList() {
         minBedrooms: Number(minBedrooms) || defaultValues.minBedrooms,
         maxBedrooms: Number(maxBedrooms) || defaultValues.maxBedrooms,
         maxPrice: Number(maxPrice) || defaultValues.maxPrice,
-        status:
-          PropertyStatus[status as PropertyStatus] ||
-          PropertyStatus[defaultValues.propertyStatus],
+        status: PropertyStatus[status as PropertyStatus] || undefined,
         type:
           PropertyTypes[type as PropertyTypes] ||
           PropertyTypes[defaultValues.propertyTypes],
@@ -109,7 +107,9 @@ export function usePropertyList() {
       state.set("radiusInMeters", data.radiusInMeters.toString());
       state.set("minBedrooms", data.minBedrooms.toString());
       state.set("maxBedrooms", data.maxBedrooms.toString());
-      state.set("status", data.propertyStatus);
+      if (data.propertyStatus) {
+        state.set("status", data.propertyStatus);
+      }
       state.set("maxPrice", data.maxPrice.toString());
       state.set("type", data.propertyTypes);
       state.set("amenities", data.amenities.toString());
