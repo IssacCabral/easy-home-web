@@ -8,6 +8,7 @@ import { SignUpLayout } from "./pages/_layouts/sign-up";
 import { AppLayout } from "./pages/_layouts/app";
 import { LandingPage } from "./pages/app/landing-page/landing-page";
 import { PropertyList } from "./pages/app/property-list/property-list";
+import { PropertyDetails } from "./pages/app/property-details/property-details";
 
 export const router = createBrowserRouter([
   {
@@ -16,6 +17,7 @@ export const router = createBrowserRouter([
     children: [
       { path: "/", element: <LandingPage /> },
       { path: "/properties", element: <PropertyList /> },
+      { path: "/properties/:id", element: <PropertyDetails /> },
     ],
   },
   {
