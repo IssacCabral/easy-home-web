@@ -1,7 +1,7 @@
 import { api } from "@/lib/axios";
 import { AxiosResponse } from "axios";
 
-export interface RegisterUserBody {
+export interface RegisterUserRequest {
   name: string;
   phone: string;
   user: "landlord" | "tenant";
@@ -20,7 +20,7 @@ export interface RegisterUserResponse {
   updatedAt?: Date;
 }
 
-function setRegisterUserPayload(request: RegisterUserBody) {
+function setRegisterUserPayload(request: RegisterUserRequest) {
   return {
     name: request.name,
     phone: request.phone,
@@ -30,7 +30,7 @@ function setRegisterUserPayload(request: RegisterUserBody) {
 }
 
 export async function registerUser(
-  request: RegisterUserBody,
+  request: RegisterUserRequest,
 ): Promise<RegisterUserResponse> {
   let result: AxiosResponse<RegisterUserResponse>;
 
