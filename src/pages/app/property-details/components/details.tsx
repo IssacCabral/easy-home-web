@@ -2,45 +2,49 @@ import PropertyDetailsImg from "@/assets/property-details.png";
 import { Badge } from "@/components/badge";
 import { LocationInfo } from "@/components/location-info";
 import { PropertyInfoSummary } from "@/components/property-info-summary";
+import { IPropertyEntity } from "@/shared/property";
 import { DollarSign } from "lucide-react";
 
-export function Details() {
+interface DetailsProps {
+  property: IPropertyEntity;
+}
+
+export function Details(props: DetailsProps) {
   return (
     <section className="flex w-[745px] flex-col gap-3">
       <img src={PropertyDetailsImg} alt="Property Details" className="w-full" />
-      <div className="flex gap-6">
+      <div className="flex justify-between">
         <h1 className="text-3xl font-bold text-landing">
-          Room 3 in Casa Monteiro II
+          {props.property.title}
         </h1>
-        <PropertyInfoSummary />
-        <div className="flex items-center">
-          <DollarSign size={32} className="text-landing" />
-          <span className="text-3xl font-semibold text-landing">450</span>
-          <span className="text-xl font-normal">/ mês</span>
+        <div className="flex gap-5">
+          <PropertyInfoSummary status={props.property.status} type={props.property.type} />
+          <div className="flex items-center">
+            <DollarSign size={32} className="text-landing" />
+            <span className="text-3xl font-semibold text-landing">
+              {props.property.price}
+            </span>
+            <span className="text-xl font-normal">/ mês</span>
+          </div>
         </div>
       </div>
       <LocationInfo
-        street="R. Damasceno Monteiro"
-        addressNumber="1170"
-        district="Lisboa"
+        street={props.property.address.street}
+        addressNumber={props.property.address.addressNumber.toString()}
+        district="Lisboa" // todo: pegar dinamicamente
       />
       <div className="rounded-xl border border-solid border-border px-5 py-4">
         <h2 className="mb-3 text-lg font-semibold text-landing">Descrição</h2>
         <p className="text-sm leading-6 text-landing">
-          Lorem ipsum dolor sit amet consectetur. Sit dui fermentum vitae in dui
-          gravida lectus molestie. Dui a netus interdum enim. Vitae id ornare
-          amet curabitur cursus arcu ante sed. Orci ipsum libero sed in eget
-          vitae. Nulla fringilla integer viverra aenean massa. Metus consequat
-          purus enim tortor malesuada morbi. Eget mattis risus mauris egestas.
-          Aenean quis amet habitant tortor facilisis viverra erat viverra velit.
-          Velit mattis magna cursus purus vitae mauris senectus maed,
+          {props.property.description}
         </p>
       </div>
       <div className="mb-9 rounded-xl border border-solid border-border px-5 py-4">
         <h2 className="mb-3 text-lg font-semibold text-landing">Comodidades</h2>
         <div className="flex gap-2">
-          <Badge badge="Wifi" variant="amenity" />
-          <Badge badge="Ar Condicionado" variant="amenity" />
+          {props.property.amenities.map((amenity) => (
+            <Badge badge={amenity.label} variant="amenity" />
+          ))}
         </div>
       </div>
     </section>

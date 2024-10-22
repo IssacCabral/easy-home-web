@@ -25,6 +25,7 @@ interface MapProps {
     price: number;
   }[];
   foundStreet: string;
+  foo?: boolean; // todo: alterar
 }
 
 const INITIAL_ZOOM = 15;
@@ -64,12 +65,14 @@ function UpdateMapCenter({ coords }: MapProps) {
   return null;
 }
 
-export function Map({ coords, foundProperties, foundStreet }: MapProps) {
+export function Map({ coords, foundProperties, foundStreet, foo }: MapProps) {
+  const classes = `${foo ? "h-56" : "h-80"} w-full rounded-xl`;
+
   return (
     <MapContainer
       center={[coords.lat, coords.lon]}
       zoom={INITIAL_ZOOM}
-      className="h-80 w-full rounded-xl"
+      className={classes}
     >
       <TileLayer
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'

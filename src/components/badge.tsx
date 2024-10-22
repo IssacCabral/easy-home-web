@@ -1,4 +1,4 @@
-interface BadgeProps {
+export interface BadgeProps {
   badge: string;
   variant: keyof typeof styles.variants;
 }
