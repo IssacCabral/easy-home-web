@@ -1,21 +1,27 @@
 import { LocationInfo } from "@/components/location-info";
 import { Map } from "@/components/map";
 import { Button } from "@/components/ui/button";
-import { INITIAL_COORDS } from "@/utils/initial-coords";
+import { IPropertyEntity } from "@/shared/property";
 
-export function Location() {
+interface LocationProps {
+  property: IPropertyEntity;
+}
+
+export function Location({ property }: LocationProps) {
+  const street = property.address.street;
+
   return (
     <section className="flex flex-col gap-4 rounded-xl border border-solid border-border px-5 py-4">
       <h2 className="text-lg font-semibold text-landing">Localização</h2>
       <LocationInfo
-        street="R. Damasceno Monteiro"
-        addressNumber="1170"
+        street={street}
+        addressNumber={property.address.addressNumber.toString()}
         district="Lisboa"
       />
       <Map
-        coords={INITIAL_COORDS}
+        coords={{ lat: property.address.lat, lon: property.address.lon }}
         foundProperties={[]}
-        foundStreet="R. Damasceno Monteiro"
+        foundStreet={street}
       />
       <Button className="w-24">Contatar</Button>
     </section>

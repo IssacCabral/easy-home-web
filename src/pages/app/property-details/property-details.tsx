@@ -11,7 +11,7 @@ export function PropertyDetails() {
         <>
           <Details property={result!} />
           <div className="flex w-[477px] flex-col gap-4">
-            <Location />
+            <Location property={result!} />
             {/* <Comments /> */}
           </div>
         </>
