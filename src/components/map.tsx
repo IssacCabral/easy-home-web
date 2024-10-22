@@ -26,7 +26,7 @@ interface MapProps {
     price: number;
   }[];
   foundStreet: string;
-  foo?: boolean; // todo: alterar
+  isCompact?: boolean;
 }
 
 const INITIAL_ZOOM = 15;
@@ -66,8 +66,13 @@ function UpdateMapCenter({ coords }: MapProps) {
   return null;
 }
 
-export function Map({ coords, foundProperties, foundStreet, foo }: MapProps) {
-  const classes = `${foo ? "h-56" : "h-80"} w-full rounded-xl`;
+export function Map({
+  coords,
+  foundProperties,
+  foundStreet,
+  isCompact,
+}: MapProps) {
+  const classes = `${isCompact ? "h-56" : "h-80"} w-full rounded-xl`;
 
   return (
     <MapContainer
