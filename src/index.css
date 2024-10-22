@@ -26,6 +26,7 @@
     --radius: 0.5rem;
     --landing: 0 0% 28.24%; /* #484848 */
     --checked: 227 38% 88%; /* #d6dbec  */
+    --type: 8 70% 62%;
     --chart-1: 12 76% 61%;
     --chart-2: 173 58% 39%;
     --chart-3: 197 37% 24%;
@@ -53,6 +54,7 @@
     --input: 215 11% 25%; /* Campos de input escuros */
     --ring: 226 61% 38%; /* Azul */
     --checked: 227 38% 88%;
+    --type: 8 70% 62%;
     --landing: 215 11% 25%;
     --chart-1: 220 70% 50%;
     --chart-2: 160 60% 45%;

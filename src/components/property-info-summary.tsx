@@ -12,9 +12,7 @@ export function PropertyInfoSummary() {
         <Star color="#FCDE40" size={16} />
       </div>
       <div className="flex items-center gap-2">
-        <span className="text-base font-semibold text-[#E26D5A]">
-          Apartamento
-        </span>
+        <span className="text-type text-base font-semibold">Apartamento</span>
         <Badge badge="Livre" variant="available" />
       </div>
     </div>
