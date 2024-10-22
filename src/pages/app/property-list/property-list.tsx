@@ -55,6 +55,7 @@ export function PropertyList() {
           <div className="mb-3 flex flex-wrap gap-6 px-10">
             {result?.data.map((item) => (
               <PropertyCard
+                id={item.id}
                 image={House2Img}
                 addressNumber={item.address.addressNumber}
                 price={item.price}

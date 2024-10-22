@@ -16,12 +16,12 @@ export function Location({ property }: LocationProps) {
       <LocationInfo
         street={street}
         addressNumber={property.address.addressNumber.toString()}
-        district="Lisboa"
+        district="Lisboa" // todo: pegar dinamicamente
       />
       <Map
         coords={{ lat: property.address.lat, lon: property.address.lon }}
         foundProperties={[]}
-        foundStreet={street}
+        foundStreet={`${street}, ${property.address.addressNumber}`}
       />
       <Button className="w-24">Contatar</Button>
     </section>

@@ -79,6 +79,7 @@ export function usePropertyList() {
   const foundProperties = result?.data
     ? result?.data.map((item) => {
         return {
+          id: item.id,
           lat: item.address.lat,
           lon: item.address.lon,
           status: item.status,

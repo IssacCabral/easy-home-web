@@ -16,6 +16,7 @@ interface MapProps {
     lon: number;
   };
   foundProperties: {
+    id: string;
     lat: number;
     lon: number;
     status: PropertyStatus;
@@ -82,7 +83,7 @@ export function Map({ coords, foundProperties, foundStreet, foo }: MapProps) {
         <Popup>{foundStreet || "Quixadá, CE"}</Popup>
       </Marker>
 
-      {foundProperties.map((property, index) => {
+      {foundProperties.map((property) => {
         let icon;
         if (property.status === PropertyStatus.FREE) {
           icon = freeIcon;
@@ -94,12 +95,13 @@ export function Map({ coords, foundProperties, foundStreet, foo }: MapProps) {
 
         return (
           <Marker
-            key={index}
+            key={property.id}
             position={[property.lat, property.lon]}
             icon={icon}
           >
             <Popup className="custom-popup">
               <PropertyCard
+                id={property.id}
                 title={property.title}
                 street={property.street}
                 addressNumber={property.addressNumber}

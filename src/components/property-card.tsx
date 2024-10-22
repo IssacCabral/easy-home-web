@@ -2,6 +2,7 @@ import { DollarSign } from "lucide-react";
 import { Link } from "react-router-dom";
 
 interface PropertyCardProps {
+  id: string;
   title: string;
   street: string;
   addressNumber: number;
@@ -17,8 +18,9 @@ export function PropertyCard({
   street,
   addressNumber,
   isPopup,
+  id,
 }: PropertyCardProps) {
-  return (
+  const cardContent = (
     <div
       className={`rounded-sm shadow-lg ${isPopup ? "min-w-48 max-w-48" : ""}`}
     >
@@ -44,7 +46,7 @@ export function PropertyCard({
           {street}, {addressNumber}
         </span>
         {isPopup && (
-          <Link to="/">
+          <Link to={`/properties/${id}`}>
             <p className="text-center text-xs font-medium text-foreground">
               Clique para ver detalhes
             </p>
@@ -52,5 +54,11 @@ export function PropertyCard({
         )}
       </div>
     </div>
+  );
+
+  return isPopup ? (
+    cardContent
+  ) : (
+    <Link to={`/properties/${id}`}>{cardContent}</Link>
   );
 }
