@@ -1,4 +1,5 @@
 import PropertyDetailsImg from "@/assets/property-details.png";
+import { Badge } from "@/components/badge";
 import { PropertyInfoSummary } from "@/components/property-info-summary";
 import { DollarSign, MapPin } from "lucide-react";
 
@@ -38,13 +39,8 @@ export function Details() {
       <div className="mb-9 rounded-xl border border-solid border-border px-5 py-4">
         <h2 className="mb-3 text-lg font-semibold text-landing">Comodidades</h2>
         <div className="flex gap-2">
-          {/* todo: transformar em um componente */}
-          <span className="rounded-xl bg-[#F2F4F7] px-3 py-1 text-sm font-medium text-foreground">
-            WiFi
-          </span>
-          <span className="rounded-xl bg-[#F2F4F7] px-3 py-1 text-sm font-medium text-foreground">
-            Ar Condicionado
-          </span>
+          <Badge badge="Wifi" variant="amenity" />
+          <Badge badge="Ar Condicionado" variant="amenity" />
         </div>
       </div>
     </section>

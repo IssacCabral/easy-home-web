@@ -7,7 +7,7 @@ import {
 import { Button } from "./ui/button";
 
 export interface PaginationProps {
-  pageIndex: number; // página atual, começa em 0
+  pageIndex: number; // página atual
   totalCount: number; // número total de registros
   perPage: number; // numero de registros por página
   onPageChange: (pageIndex: number) => Promise<void> | void;

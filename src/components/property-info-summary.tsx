@@ -1,4 +1,5 @@
 import { Star } from "lucide-react";
+import { Badge } from "./badge";
 
 export function PropertyInfoSummary() {
   return (
@@ -14,10 +15,7 @@ export function PropertyInfoSummary() {
         <span className="text-base font-semibold text-[#E26D5A]">
           Apartamento
         </span>
-        {/* todo: transformar em um componente */}
-        <span className="rounded-xl bg-[#D7F5E3] px-3 py-1 text-sm font-medium text-accent">
-          Livre
-        </span>
+        <Badge badge="Livre" variant="available" />
       </div>
     </div>
   );
