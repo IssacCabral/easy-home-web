@@ -9,11 +9,13 @@ import { AppLayout } from "./pages/_layouts/app";
 import { LandingPage } from "./pages/app/landing-page/landing-page";
 import { PropertyList } from "./pages/app/property-list/property-list";
 import { PropertyDetails } from "./pages/app/property-details/property-details";
+import { NotFound } from "./pages/not-found";
 
 export const router = createBrowserRouter([
   {
     path: "/",
     element: <AppLayout />,
+    errorElement: <NotFound />,
     children: [
       { path: "/", element: <LandingPage /> },
       { path: "/properties", element: <PropertyList /> },
