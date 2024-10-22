@@ -1,7 +1,8 @@
 import PropertyDetailsImg from "@/assets/property-details.png";
 import { Badge } from "@/components/badge";
+import { LocationInfo } from "@/components/location-info";
 import { PropertyInfoSummary } from "@/components/property-info-summary";
-import { DollarSign, MapPin } from "lucide-react";
+import { DollarSign } from "lucide-react";
 
 export function Details() {
   return (
@@ -18,12 +19,11 @@ export function Details() {
           <span className="text-xl font-normal">/ mês</span>
         </div>
       </div>
-      <div className="flex items-center gap-2">
-        <MapPin enableBackground={"#6C6B6B"} size={16} />
-        <span className="text-sm font-normal text-landing">
-          R. Damasceno Monteiro, 1170 Lisboa
-        </span>
-      </div>
+      <LocationInfo
+        street="R. Damasceno Monteiro"
+        addressNumber="1170"
+        district="Lisboa"
+      />
       <div className="rounded-xl border border-solid border-border px-5 py-4">
         <h2 className="mb-3 text-lg font-semibold text-landing">Descrição</h2>
         <p className="text-sm leading-6 text-landing">

@@ -13,7 +13,7 @@ export function PropertyDetails() {
   return (
     <div className="mt-6 flex justify-center gap-14">
       <Details />
-      <div className="flex flex-col gap-4">
+      <div className="flex w-[477px] flex-col gap-4 border border-solid border-red-500">
         <Location />
         <Comments />
       </div>
