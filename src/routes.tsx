@@ -10,6 +10,9 @@ import { LandingPage } from "./pages/app/landing-page/landing-page";
 import { PropertyList } from "./pages/app/property-list/property-list";
 import { PropertyDetails } from "./pages/app/property-details/property-details";
 import { NotFound } from "./pages/not-found";
+import { Dashboard } from "./pages/landlord/dashboard/dashboard";
+import { PropertyManagement } from "./pages/landlord/property-management/property-management";
+import { ContactRequests } from "./pages/landlord/contact-requests/contact-requests";
 
 export const router = createBrowserRouter([
   {
@@ -31,5 +34,16 @@ export const router = createBrowserRouter([
     path: "/sign-up",
     element: <SignUpLayout image={SignUpImg} />,
     children: [{ path: "/sign-up", element: <SignUp /> }],
+  },
+  {
+    path: "/dashboard",
+    children: [
+      { path: "", element: <Dashboard /> },
+      {
+        path: "property-management",
+        element: <PropertyManagement />,
+      },
+      { path: "contact-requests", element: <ContactRequests /> },
+    ],
   },
 ]);
