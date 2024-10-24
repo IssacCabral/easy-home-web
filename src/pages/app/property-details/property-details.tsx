@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet-async";
 import { Details } from "./components/details";
 import { Location } from "./components/location";
 import { usePropertyDetails } from "./use-property-details-logic";
@@ -7,6 +8,7 @@ export function PropertyDetails() {
 
   return (
     <div className="mt-6 flex justify-center gap-14">
+      <Helmet title="Detalhes" />
       {fetchingOrError || (
         <>
           <Details property={result!} />

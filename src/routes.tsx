@@ -13,6 +13,7 @@ import { NotFound } from "./pages/not-found";
 import { Dashboard } from "./pages/landlord/dashboard/dashboard";
 import { PropertyManagement } from "./pages/landlord/property-management/property-management";
 import { ContactRequests } from "./pages/landlord/contact-requests/contact-requests";
+import { DashboardLayout } from "./pages/_layouts/dashboard";
 
 export const router = createBrowserRouter([
   {
@@ -37,6 +38,7 @@ export const router = createBrowserRouter([
   },
   {
     path: "/dashboard",
+    element: <DashboardLayout />,
     children: [
       { path: "", element: <Dashboard /> },
       {
