@@ -1,4 +1,3 @@
-// dashboard.tsx
 import { Header } from "@/components/header";
 import { BookUser, House, Sofa } from "lucide-react";
 import { Helmet } from "react-helmet-async";
@@ -20,22 +19,11 @@ export function DashboardLayout() {
               className={`flex w-full items-center gap-2 rounded-lg py-2 pl-3 transition-all duration-300 ${
                 isActive("/dashboard")
                   ? "bg-primary text-background hover:bg-primary/90"
-                  : "hover:bg-muted/20"
+                  : "text-foreground hover:bg-muted/20"
               }`}
             >
-              <House
-                size={20}
-                className={`transition-all duration-300 ${
-                  isActive("/dashboard") ? "text-background" : "text-foreground"
-                }`}
-              />
-              <span
-                className={`text-sm font-semibold transition-all duration-300 ${
-                  isActive("/dashboard") ? "text-background" : "text-foreground"
-                }`}
-              >
-                Dashboard
-              </span>
+              <House size={20} />
+              <span className={`text-sm font-semibold`}>Dashboard</span>
             </div>
           </Link>
 
@@ -44,26 +32,11 @@ export function DashboardLayout() {
               className={`flex w-full items-center gap-2 rounded-lg py-2 pl-3 transition-all duration-300 ${
                 isActive("/dashboard/property-management")
                   ? "bg-primary text-background hover:bg-primary/90"
-                  : "hover:bg-muted/20"
+                  : "text-foreground hover:bg-muted/20"
               }`}
             >
-              <Sofa
-                size={20}
-                className={`transition-all duration-300 ${
-                  isActive("/dashboard/property-management")
-                    ? "text-background"
-                    : "text-foreground"
-                }`}
-              />
-              <span
-                className={`text-sm font-semibold transition-all duration-300 ${
-                  isActive("/dashboard/property-management")
-                    ? "text-background"
-                    : "text-foreground"
-                }`}
-              >
-                Gestão de Imóveis
-              </span>
+              <Sofa size={20} />
+              <span className={`text-sm font-semibold`}>Gestão de Imóveis</span>
             </div>
           </Link>
 
@@ -72,24 +45,11 @@ export function DashboardLayout() {
               className={`flex w-full items-center gap-2 rounded-lg py-2 pl-3 transition-all duration-300 ${
                 isActive("/dashboard/contact-requests")
                   ? "bg-primary text-background hover:bg-primary/90"
-                  : "hover:bg-muted/20"
+                  : "text-foreground hover:bg-muted/20"
               }`}
             >
-              <BookUser
-                size={20}
-                className={`transition-all duration-300 ${
-                  isActive("/dashboard/contact-requests")
-                    ? "text-background"
-                    : "text-foreground"
-                }`}
-              />
-              <span
-                className={`text-sm font-semibold transition-all duration-300 ${
-                  isActive("/dashboard/contact-requests")
-                    ? "text-background"
-                    : "text-foreground"
-                }`}
-              >
+              <BookUser size={20} />
+              <span className={`text-sm font-semibold`}>
                 Pedidos de Contato
               </span>
             </div>
