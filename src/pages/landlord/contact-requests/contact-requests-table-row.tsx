@@ -21,14 +21,14 @@ export function ContactRequestsTableRow() {
       </TableCell>
       <TableCell className="text-sm text-landing">Matheus Pereira</TableCell>
 
-      <TableCell colSpan={2} className="flex gap-1">
-        <button className="flex items-center gap-2 rounded border border-transparent bg-accent p-2 text-background transition hover:border-accent hover:bg-accent/80 focus:outline-none focus:ring-2 focus:ring-accent">
+      <TableCell colSpan={2} className="flex gap-2">
+        <button className="flex items-center gap-2 rounded border border-transparent bg-cyan-600 p-1 text-xs text-background transition hover:border-cyan-600 hover:bg-cyan-600/80 focus:outline-none focus:ring-2 focus:ring-cyan-600">
           <UserRoundCheck size={14} />
-          <span className="text-sm">Alugar</span>
+          <span>Alugar</span>
         </button>
-        <button className="flex items-center gap-2 rounded border border-transparent bg-destructive p-2 text-background transition hover:border-destructive hover:bg-destructive/80 focus:outline-none focus:ring-2 focus:ring-destructive">
+        <button className="flex items-center gap-2 rounded border border-transparent bg-rose-500 p-1 text-xs text-background transition hover:border-rose-500 hover:bg-rose-500/80 focus:outline-none focus:ring-2 focus:ring-rose-500">
           <MessageSquareOff size={14} />
-          <span className="text-sm">Encerrar</span>
+          <span>Encerrar</span>
         </button>
       </TableCell>
     </TableRow>
