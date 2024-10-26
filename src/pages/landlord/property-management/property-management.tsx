@@ -8,11 +8,15 @@ import {
 import { PropertyManagementTableRow } from "./property-management-table-row";
 import { Pagination } from "@/components/pagination";
 import { PropertyManagementTableFilters } from "./property-management-table-filters";
+import { Button } from "@/components/ui/button";
 
 export function PropertyManagement() {
   return (
     <main className="flex flex-1 flex-col gap-3 rounded-xl border border-solid border-border p-5">
-      <PropertyManagementTableFilters />
+      <div className="flex items-center justify-between">
+        <PropertyManagementTableFilters />
+        <Button>Adicionar Imóvel</Button>
+      </div>
       <Table className="border border-solid border-border">
         <TableHeader>
           <TableRow>
@@ -31,6 +35,9 @@ export function PropertyManagement() {
           </TableRow>
         </TableHeader>
         <TableBody>
+          <PropertyManagementTableRow />
+          <PropertyManagementTableRow />
+          <PropertyManagementTableRow />
           <PropertyManagementTableRow />
           <PropertyManagementTableRow />
           <PropertyManagementTableRow />
