@@ -4,7 +4,7 @@ import { Map } from "@/components/map";
 import { SearchForm } from "./components/search-form";
 import { Helmet } from "react-helmet-async";
 import { Spinner } from "@/components/ui/spinner";
-import { usePropertyList } from "./use-property-list-logic";
+import { usePropertyList } from "./use-property-list";
 import { Pagination } from "@/components/pagination";
 import { perPageLimit } from "@/api/find-properties";
 import { FetchingAmenitiesProvider } from "@/contexts/fetching-amenities-context";
