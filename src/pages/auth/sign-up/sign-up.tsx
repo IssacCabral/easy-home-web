@@ -75,10 +75,7 @@ export function SignUp() {
       <div className="w-[360px] tracking-[-0.02em]">
         <SignUpHeader />
         <Form {...form}>
-          <form
-            className="mb-4 flex flex-col gap-2"
-            onSubmit={form.handleSubmit(handleSignUp)}
-          >
+          <form className="mb-4 flex flex-col gap-2" onSubmit={form.handleSubmit(handleSignUp)}>
             <NameFormField form={form} />
             <PhoneFormField form={form} />
             <UserFormField form={form} />

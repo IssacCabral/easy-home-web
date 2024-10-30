@@ -66,20 +66,11 @@ function UpdateMapCenter({ coords }: MapProps) {
   return null;
 }
 
-export function Map({
-  coords,
-  foundProperties,
-  foundStreet,
-  isCompact,
-}: MapProps) {
+export function Map({ coords, foundProperties, foundStreet, isCompact }: MapProps) {
   const classes = `${isCompact ? "h-56" : "h-80"} w-full rounded-xl`;
 
   return (
-    <MapContainer
-      center={[coords.lat, coords.lon]}
-      zoom={INITIAL_ZOOM}
-      className={classes}
-    >
+    <MapContainer center={[coords.lat, coords.lon]} zoom={INITIAL_ZOOM} className={classes}>
       <TileLayer
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -99,11 +90,7 @@ export function Map({
         }
 
         return (
-          <Marker
-            key={property.id}
-            position={[property.lat, property.lon]}
-            icon={icon}
-          >
+          <Marker key={property.id} position={[property.lat, property.lon]} icon={icon}>
             <Popup className="custom-popup">
               <PropertyCard
                 id={property.id}
@@ -120,11 +107,7 @@ export function Map({
       })}
 
       {coords.lat !== INITIAL_COORDS.lat && (
-        <UpdateMapCenter
-          coords={coords}
-          foundProperties={foundProperties}
-          foundStreet={foundStreet}
-        />
+        <UpdateMapCenter coords={coords} foundProperties={foundProperties} foundStreet={foundStreet} />
       )}
     </MapContainer>
   );

@@ -1,10 +1,6 @@
 import { useForm } from "react-hook-form";
 import { useSearchParams } from "react-router-dom";
-import {
-  defaultValues,
-  findPropertiesForm,
-  FindPropertiesForm,
-} from "./schema";
+import { defaultValues, findPropertiesForm, FindPropertiesForm } from "./schema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useQuery } from "@tanstack/react-query";
 import { findProperties } from "@/api/find-properties";
@@ -61,9 +57,7 @@ export function usePropertyList() {
         maxBedrooms: Number(maxBedrooms) || defaultValues.maxBedrooms,
         maxPrice: Number(maxPrice) || defaultValues.maxPrice,
         status: PropertyStatus[status as PropertyStatus] || undefined,
-        type:
-          PropertyTypes[type as PropertyTypes] ||
-          PropertyTypes[defaultValues.propertyTypes],
+        type: PropertyTypes[type as PropertyTypes] || PropertyTypes[defaultValues.propertyTypes],
         amenities: amenities ? amenities.split(",") : undefined,
       }),
   });
@@ -125,9 +119,7 @@ export function usePropertyList() {
 
   async function handleFindProperties(data: FindPropertiesForm) {
     try {
-      const { lat, lon, street } = await fetchCoordinatesFromAddress(
-        data.location,
-      );
+      const { lat, lon, street } = await fetchCoordinatesFromAddress(data.location);
 
       setStreet(street);
       handleFilter(data, lat, lon);

@@ -6,7 +6,7 @@ interface TitleFormFieldProps {
   form: PropertyManagementFormReturn;
 }
 
-export function TitleFormField({form}: TitleFormFieldProps) {
+export function TitleFormField({ form }: TitleFormFieldProps) {
   return (
     <FormField
       control={form.control}

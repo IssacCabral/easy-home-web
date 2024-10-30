@@ -30,10 +30,7 @@ export function SignIn() {
       <div className="relative w-[360px] tracking-[-0.02em]">
         <SignInHeader />
         <Form {...form}>
-          <form
-            onSubmit={form.handleSubmit(handleSignIn)}
-            className="mb-8 flex flex-col gap-5"
-          >
+          <form onSubmit={form.handleSubmit(handleSignIn)} className="mb-8 flex flex-col gap-5">
             <EmailFormField form={form} />
             <PasswordFormField form={form} />
             <Button className="w-full" type="submit">

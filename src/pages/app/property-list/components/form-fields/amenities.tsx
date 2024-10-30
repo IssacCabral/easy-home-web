@@ -1,12 +1,6 @@
 import { getAllAmenities } from "@/api/get-all-amenities";
 import { Checkbox } from "@/components/ui/checkbox";
-import {
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
+import { FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Spinner } from "@/components/ui/spinner";
 import { FetchingAmenitiesContext } from "@/contexts/fetching-amenities-context";
 import { useQuery } from "@tanstack/react-query";
@@ -35,9 +29,7 @@ export function AmenitiesFormField({ form }: AmenitiesFormFieldProps) {
       name="amenities"
       render={({ fieldState }) => (
         <FormItem className="mb-4 space-y-3">
-          <FormLabel className="text-sm font-semibold text-landing">
-            Comodidades (Selecione uma ou mais)
-          </FormLabel>
+          <FormLabel className="text-sm font-semibold text-landing">Comodidades (Selecione uma ou mais)</FormLabel>
           {isFetching ? (
             <Spinner />
           ) : (
@@ -48,10 +40,7 @@ export function AmenitiesFormField({ form }: AmenitiesFormFieldProps) {
                 name="amenities"
                 render={({ field }) => {
                   return (
-                    <FormItem
-                      key={item.id}
-                      className="flex flex-row items-start space-x-3 space-y-0"
-                    >
+                    <FormItem key={item.id} className="flex flex-row items-start space-x-3 space-y-0">
                       <FormControl>
                         <Checkbox
                           checked={field.value?.includes(item.label) ?? false}
@@ -59,11 +48,7 @@ export function AmenitiesFormField({ form }: AmenitiesFormFieldProps) {
                             const currentValue = field.value ?? [];
                             return checked
                               ? field.onChange([...currentValue, item.label])
-                              : field.onChange(
-                                  currentValue.filter(
-                                    (value) => value !== item.label,
-                                  ),
-                                );
+                              : field.onChange(currentValue.filter((value) => value !== item.label));
                           }}
                         />
                       </FormControl>

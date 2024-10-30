@@ -9,10 +9,7 @@ export function Header() {
         <img src={LogoImg} />
       </Link>
       <div className="flex items-center gap-7">
-        <Link
-          to="/sign-in"
-          className="text-sm font-semibold text-muted hover:underline"
-        >
+        <Link to="/sign-in" className="text-sm font-semibold text-muted hover:underline">
           Entrar
         </Link>
         <Link to="/properties">

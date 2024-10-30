@@ -1,10 +1,4 @@
-import {
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
+import { FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { SearchFormValues } from "../../schema";
 
@@ -19,9 +13,7 @@ export function RadiusFormField({ form }: RadiusFormFieldProps) {
       name="radiusInMeters"
       render={({ field, fieldState }) => (
         <FormItem className="space-y-2">
-          <FormLabel className="text-sm font-semibold text-landing">
-            Raio De Pesquisa (em metros)
-          </FormLabel>
+          <FormLabel className="text-sm font-semibold text-landing">Raio De Pesquisa (em metros)</FormLabel>
           <FormControl>
             <Input
               id="radiusInMeters"

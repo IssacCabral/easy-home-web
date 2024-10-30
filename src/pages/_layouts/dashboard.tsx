@@ -9,10 +9,7 @@ export function DashboardLayout() {
     <div>
       <Helmet title="Dashboard" />
       <Header />
-      <div
-        className="m-auto flex max-w-[1528px] justify-start"
-        style={{ minHeight: "calc(100vh - 5.5rem)" }}
-      >
+      <div className="m-auto flex max-w-[1528px] justify-start" style={{ minHeight: "calc(100vh - 5.5rem)" }}>
         <DashSidebar />
         <Outlet />
       </div>

@@ -1,10 +1,4 @@
-import {
-  FormField,
-  FormItem,
-  FormLabel,
-  FormControl,
-  FormMessage,
-} from "@/components/ui/form";
+import { FormField, FormItem, FormLabel, FormControl, FormMessage } from "@/components/ui/form";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { cn } from "@/lib/utils";
 import { SearchFormValues } from "../../schema";
@@ -13,18 +7,14 @@ interface PropertyStatusFormFieldProps {
   form: SearchFormValues;
 }
 
-export function PropertyStatusFormField({
-  form,
-}: PropertyStatusFormFieldProps) {
+export function PropertyStatusFormField({ form }: PropertyStatusFormFieldProps) {
   return (
     <FormField
       control={form.control}
       name="propertyStatus"
       render={({ field }) => (
         <FormItem className="space-y-3">
-          <FormLabel className="text-sm font-semibold text-landing">
-            Status Do Imóvel
-          </FormLabel>
+          <FormLabel className="text-sm font-semibold text-landing">Status Do Imóvel</FormLabel>
           <FormControl>
             <RadioGroup
               onValueChange={field.onChange}

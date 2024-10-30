@@ -40,10 +40,7 @@ const TypeAndStatusMapper: PropertyInfoMap = {
   },
 } as const;
 
-export function PropertyInfoSummary({
-  type,
-  status,
-}: PropertyInfoSummaryProps) {
+export function PropertyInfoSummary({ type, status }: PropertyInfoSummaryProps) {
   return (
     <div className="flex flex-col gap-1">
       <div className="flex gap-1">
@@ -54,13 +51,8 @@ export function PropertyInfoSummary({
         <Star color="#FCDE40" size={16} />
       </div>
       <div className="flex items-center gap-2">
-        <span className="text-base font-semibold text-type">
-          {TypeAndStatusMapper.types[type]}
-        </span>
-        <Badge
-          badge={TypeAndStatusMapper.status[status].badge}
-          variant={TypeAndStatusMapper.status[status].variant}
-        />
+        <span className="text-base font-semibold text-type">{TypeAndStatusMapper.types[type]}</span>
+        <Badge badge={TypeAndStatusMapper.status[status].badge} variant={TypeAndStatusMapper.status[status].variant} />
       </div>
     </div>
   );

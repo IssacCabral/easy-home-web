@@ -6,9 +6,7 @@ export function ContactRequestsTableRow() {
   return (
     <TableRow>
       <TableCell className="text-sm text-landing">Casa da alegria</TableCell>
-      <TableCell className="text-sm text-landing">
-        Avenida Francisco Pinheiro de Almeida, 42
-      </TableCell>
+      <TableCell className="text-sm text-landing">Avenida Francisco Pinheiro de Almeida, 42</TableCell>
       <TableCell>
         <Badge badge="Em contato" variant="inProgress" />
       </TableCell>

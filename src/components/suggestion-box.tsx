@@ -25,10 +25,7 @@ export const SuggestionBox = forwardRef<HTMLDivElement, SuggestionBoxProps>(
     }, [ref, onClose]);
 
     return (
-      <div
-        ref={ref}
-        className="absolute z-10 mt-2 max-w-72 rounded-md border border-gray-300 bg-white shadow-lg"
-      >
+      <div ref={ref} className="absolute z-10 mt-2 max-w-72 rounded-md border border-gray-300 bg-white shadow-lg">
         {items.map((suggestion, index) => (
           <div
             key={index}

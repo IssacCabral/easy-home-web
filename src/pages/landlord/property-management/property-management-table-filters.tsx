@@ -32,10 +32,7 @@ export function PropertyManagementTableFilters() {
 
   return (
     <Form {...form}>
-      <form
-        className="flex items-center gap-2"
-        onSubmit={form.handleSubmit(handleFilter)}
-      >
+      <form className="flex items-center gap-2" onSubmit={form.handleSubmit(handleFilter)}>
         <span className="text-sm font-semibold">Filtros:</span>
         <TitleFormField form={form} />
         <TenantFormField form={form} />
@@ -44,12 +41,7 @@ export function PropertyManagementTableFilters() {
           <Search className="mr-2 h-4 w-4" />
           Filtrar resultados
         </Button>
-        <Button
-          onClick={handleClearFilters}
-          type="button"
-          variant="removeFilters"
-          size="xs"
-        >
+        <Button onClick={handleClearFilters} type="button" variant="removeFilters" size="xs">
           <X className="mr-2 h-4 w-4" />
           Remover filtros
         </Button>

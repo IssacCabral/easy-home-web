@@ -22,10 +22,7 @@ export function SearchForm({ form, onFindProperties }: SearchFormProps) {
   return (
     <div className="bg h-[calc(100vh-5.5rem)] w-1/3 max-w-[350px] overflow-y-auto rounded-xl pl-12 pr-2 pt-3">
       <Form {...form}>
-        <form
-          onSubmit={form.handleSubmit(onFindProperties)}
-          className="mb-5 flex flex-col gap-3"
-        >
+        <form onSubmit={form.handleSubmit(onFindProperties)} className="mb-5 flex flex-col gap-3">
           <LocationFormField form={form} />
           <RadiusFormField form={form} />
           <MaxPriceFormField form={form} />

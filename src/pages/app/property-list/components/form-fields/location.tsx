@@ -1,10 +1,4 @@
-import {
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
+import { FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { INITIAL_COORDS } from "@/utils/initial-coords";
 import axios from "axios";
@@ -14,7 +8,7 @@ import { SuggestionBox } from "@/components/suggestion-box";
 import { SearchFormValues } from "../../schema";
 
 interface LocationFormFieldProps {
-  form: SearchFormValues
+  form: SearchFormValues;
 }
 
 export function LocationFormField({ form }: LocationFormFieldProps) {
@@ -29,21 +23,18 @@ export function LocationFormField({ form }: LocationFormFieldProps) {
     return response.data;
   }
 
-  const debouncedFetch = debounce(
-    async (input: string, setSuggestions: (data: any) => void) => {
-      try {
-        const data = await fetchData(input);
-        setSuggestions(
-          data.features.map(({ properties }: any) => {
-            return `${properties.name}, ${properties.district || ""}`;
-          }),
-        );
-      } catch (error) {
-        console.error("Erro ao buscar localizações:", error);
-      }
-    },
-    300,
-  );
+  const debouncedFetch = debounce(async (input: string, setSuggestions: (data: any) => void) => {
+    try {
+      const data = await fetchData(input);
+      setSuggestions(
+        data.features.map(({ properties }: any) => {
+          return `${properties.name}, ${properties.district || ""}`;
+        }),
+      );
+    } catch (error) {
+      console.error("Erro ao buscar localizações:", error);
+    }
+  }, 300);
 
   async function handleTypeLocation(input: string) {
     if (input !== "") {
@@ -62,9 +53,7 @@ export function LocationFormField({ form }: LocationFormFieldProps) {
       name="location"
       render={({ field, fieldState }) => (
         <FormItem className="space-y-2">
-          <FormLabel className="text-sm font-semibold text-landing">
-            Localização
-          </FormLabel>
+          <FormLabel className="text-sm font-semibold text-landing">Localização</FormLabel>
           <FormControl>
             <Input
               id="location"

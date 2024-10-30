@@ -1,10 +1,4 @@
-import {
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
+import { FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Slider } from "@/components/ui/slider";
 import { SearchFormValues } from "../../schema";
 
@@ -32,9 +26,7 @@ export function MaxPriceFormField({ form }: MaxPriceFormFieldProps) {
                 onValueChange={(value) => onChange(value[0])}
                 className="w-[60%]"
               />
-              <span className="text-sm font-semibold text-landing">
-                R$ {value}
-              </span>
+              <span className="text-sm font-semibold text-landing">R$ {value}</span>
             </>
           </FormControl>
           <FormMessage>{fieldState.error?.message}</FormMessage>

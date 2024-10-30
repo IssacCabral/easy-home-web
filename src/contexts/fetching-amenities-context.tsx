@@ -9,13 +9,9 @@ interface FetchingAmenitiesContextProvider {
   children: ReactNode;
 }
 
-export const FetchingAmenitiesContext = createContext(
-  {} as FetchingAmenitiesContextProps,
-);
+export const FetchingAmenitiesContext = createContext({} as FetchingAmenitiesContextProps);
 
-export function FetchingAmenitiesProvider({
-  children,
-}: FetchingAmenitiesContextProvider) {
+export function FetchingAmenitiesProvider({ children }: FetchingAmenitiesContextProvider) {
   const [isFetching, setIsFetching] = useState(false);
 
   return (

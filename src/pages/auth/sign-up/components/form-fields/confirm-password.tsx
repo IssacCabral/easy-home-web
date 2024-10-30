@@ -1,10 +1,4 @@
-import {
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
+import { FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { UseFormReturn } from "react-hook-form";
 import { SignUpForm } from "@/pages/auth/sign-up/schema";
@@ -13,9 +7,7 @@ interface ConfirmPasswordFormItemProps {
   form: UseFormReturn<SignUpForm, any, undefined>;
 }
 
-export function ConfirmPasswordFormItem({
-  form,
-}: ConfirmPasswordFormItemProps) {
+export function ConfirmPasswordFormItem({ form }: ConfirmPasswordFormItemProps) {
   return (
     <FormField
       control={form.control}

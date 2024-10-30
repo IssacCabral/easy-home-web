@@ -1,10 +1,4 @@
-import {
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
+import { FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { SearchFormValues } from "../../schema";
 
@@ -22,9 +16,7 @@ export function BedroomsFormField({ form }: BedroomsFormFieldProps) {
           name="minBedrooms"
           render={({ field, fieldState }) => (
             <FormItem className="space-y-2">
-              <FormLabel className="text-sm font-semibold text-landing">
-                Mínimo
-              </FormLabel>
+              <FormLabel className="text-sm font-semibold text-landing">Mínimo</FormLabel>
               <FormControl>
                 <Input
                   id="minBedrooms"
@@ -45,9 +37,7 @@ export function BedroomsFormField({ form }: BedroomsFormFieldProps) {
           name="maxBedrooms"
           render={({ field, fieldState }) => (
             <FormItem className="space-y-2">
-              <FormLabel className="text-sm font-semibold text-landing">
-                Máximo
-              </FormLabel>
+              <FormLabel className="text-sm font-semibold text-landing">Máximo</FormLabel>
               <FormControl>
                 <Input
                   id="maxBedrooms"

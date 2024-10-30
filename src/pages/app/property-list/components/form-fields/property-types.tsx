@@ -1,10 +1,4 @@
-import {
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
+import { FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { cn } from "@/lib/utils";
 import { SearchFormValues } from "../../schema";
@@ -20,15 +14,9 @@ export function PropertyTypesFormField({ form }: PropertyTypesFormFieldProps) {
       name="propertyTypes"
       render={({ field }) => (
         <FormItem className="space-y-3">
-          <FormLabel className="text-sm font-semibold text-landing">
-            Tipo De Imóvel
-          </FormLabel>
+          <FormLabel className="text-sm font-semibold text-landing">Tipo De Imóvel</FormLabel>
           <FormControl>
-            <RadioGroup
-              onValueChange={field.onChange}
-              defaultValue={field.value}
-              className="flex flex-col space-y-1"
-            >
+            <RadioGroup onValueChange={field.onChange} defaultValue={field.value} className="flex flex-col space-y-1">
               <FormItem className="flex items-center space-x-3 space-y-0">
                 <FormControl>
                   <RadioGroupItem
@@ -47,9 +35,7 @@ export function PropertyTypesFormField({ form }: PropertyTypesFormFieldProps) {
                     value="APARTMENT"
                     className={cn(
                       "border border-solid border-muted",
-                      field.value === "APARTMENT"
-                        ? "bg-checked"
-                        : "bg-transparent",
+                      field.value === "APARTMENT" ? "bg-checked" : "bg-transparent",
                     )}
                   />
                 </FormControl>
@@ -61,9 +47,7 @@ export function PropertyTypesFormField({ form }: PropertyTypesFormFieldProps) {
                     value="DUPLEX"
                     className={cn(
                       "border border-solid border-muted",
-                      field.value === "DUPLEX"
-                        ? "bg-checked"
-                        : "bg-transparent",
+                      field.value === "DUPLEX" ? "bg-checked" : "bg-transparent",
                     )}
                   />
                 </FormControl>

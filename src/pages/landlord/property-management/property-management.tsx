@@ -1,10 +1,4 @@
-import {
-  Table,
-  TableBody,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table";
+import { Table, TableBody, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { PropertyManagementTableRow } from "./property-management-table-row";
 import { Pagination } from "@/components/pagination";
 import { PropertyManagementTableFilters } from "./property-management-table-filters";
@@ -21,15 +15,9 @@ export function PropertyManagement() {
         <TableHeader>
           <TableRow>
             <TableHead className="text-xs text-foreground">Imóvel</TableHead>
-            <TableHead className="text-xs text-foreground">
-              Localização
-            </TableHead>
-            <TableHead className="w-[140px] text-xs text-foreground">
-              Status
-            </TableHead>
-            <TableHead className="w-[180px] text-xs text-foreground">
-              Publicado em
-            </TableHead>
+            <TableHead className="text-xs text-foreground">Localização</TableHead>
+            <TableHead className="w-[140px] text-xs text-foreground">Status</TableHead>
+            <TableHead className="w-[180px] text-xs text-foreground">Publicado em</TableHead>
             <TableHead className="text-xs text-foreground">Preço</TableHead>
             <TableHead className="text-xs text-foreground">Inquilino</TableHead>
           </TableRow>
@@ -48,12 +36,7 @@ export function PropertyManagement() {
         </TableBody>
       </Table>
       <div>
-        <Pagination
-          onPageChange={(page) => console.log(page)}
-          pageIndex={1}
-          perPage={10}
-          totalCount={30}
-        />
+        <Pagination onPageChange={(page) => console.log(page)} pageIndex={1} perPage={10} totalCount={30} />
       </div>
     </main>
   );
