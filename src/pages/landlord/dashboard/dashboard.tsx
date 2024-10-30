@@ -10,9 +10,7 @@ export function Dashboard() {
       </header>
       <section className="flex gap-6">
         <DashCard description="Renda Mensal Em Imóveis Ocupados" detail="3,000" icon={CircleDollarSign} />
-
         <DashCard description="Imóveis Ocupados" detail="5" icon={HomeIcon} />
-
         <DashCard description="Pedidos De Contato" detail="3 Pendentes" icon={BellRing} />
       </section>
     </main>
