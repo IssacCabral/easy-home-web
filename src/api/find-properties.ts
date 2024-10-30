@@ -1,25 +1,24 @@
-
 import { api } from "@/lib/axios";
 import { PaginationData, PaginationParams } from "@/shared/pagination";
 import { IPropertyEntity, PropertyStatus, PropertyTypes } from "@/shared/property";
 
 type FindPropertiesRequest = {
   centralLat: number;
-	centralLon: number;
-	radiusInMeters: number
-	maxPrice?: number;
-	minBedrooms?: number;
-	maxBedrooms?: number;
-	status?: PropertyStatus;
-	type?: PropertyTypes;
-	amenities?: string[];
-} & PaginationParams
+  centralLon: number;
+  radiusInMeters: number;
+  maxPrice?: number;
+  minBedrooms?: number;
+  maxBedrooms?: number;
+  status?: PropertyStatus;
+  type?: PropertyTypes;
+  amenities?: string[];
+} & PaginationParams;
 
-type FindPropertiesResponse = PaginationData<IPropertyEntity>
+type FindPropertiesResponse = PaginationData<IPropertyEntity>;
 
-export const perPageLimit = 3
+export const perPageLimit = 3;
 
-function setFindPropertiesPayload(request: FindPropertiesRequest) {
+function setPayload(request: FindPropertiesRequest) {
   return {
     page: request.page,
     limit: perPageLimit,
@@ -32,14 +31,14 @@ function setFindPropertiesPayload(request: FindPropertiesRequest) {
     maxBedrooms: request.maxBedrooms,
     status: request.status,
     type: request.type,
-    amenities: request.amenities
-  }
+    amenities: request.amenities,
+  };
 }
 
 export async function findProperties(request: FindPropertiesRequest): Promise<FindPropertiesResponse> {
   const response = await api.get<FindPropertiesResponse>("/properties", {
-    params: setFindPropertiesPayload(request)
-  })
-  
-  return response.data
+    params: setPayload(request),
+  });
+
+  return response.data;
 }

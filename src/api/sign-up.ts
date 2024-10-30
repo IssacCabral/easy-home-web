@@ -29,24 +29,16 @@ function setRegisterUserPayload(request: RegisterUserRequest) {
   };
 }
 
-export async function registerUser(
-  request: RegisterUserRequest,
-): Promise<RegisterUserResponse> {
+export async function registerUser(request: RegisterUserRequest): Promise<RegisterUserResponse> {
   let result: AxiosResponse<RegisterUserResponse>;
 
   switch (request.user) {
     case "tenant": {
-      result = await api.post<RegisterUserResponse>(
-        "/tenants",
-        setRegisterUserPayload(request),
-      );
+      result = await api.post<RegisterUserResponse>("/tenants", setRegisterUserPayload(request));
       return result.data;
     }
     case "landlord":
-      result = await api.post<RegisterUserResponse>(
-        "/landlords",
-        setRegisterUserPayload(request),
-      );
+      result = await api.post<RegisterUserResponse>("/landlords", setRegisterUserPayload(request));
       return result.data;
   }
 }

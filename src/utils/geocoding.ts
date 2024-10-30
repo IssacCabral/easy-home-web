@@ -5,7 +5,7 @@ export const fetchCoordinatesFromAddress = async (
 ): Promise<{
   lat: number;
   lon: number;
-  street: string
+  street: string;
 }> => {
   const encodedAddress = encodeURIComponent(location);
   const url = `https://nominatim.openstreetmap.org/search?q=${encodedAddress}&format=json&addressdetails=1&extratags=1&polygon_geojson=1`;

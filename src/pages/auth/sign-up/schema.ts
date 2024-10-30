@@ -6,12 +6,7 @@ export const signUpForm = z
       .string()
       .min(3, "O nome deve ter pelo menos 3 caracteres")
       .max(65, "O nome deve ter no máximo 65 caracteres"),
-    phone: z
-      .string()
-      .regex(
-        /^\([1-9]{2}\) 9[0-9]{4}\-[0-9]{4}$/,
-        "O número deve estar no formato (xx) 9xxxx-xxxx",
-      ),
+    phone: z.string().regex(/^\([1-9]{2}\) 9[0-9]{4}\-[0-9]{4}$/, "O número deve estar no formato (xx) 9xxxx-xxxx"),
     user: z.enum(["landlord", "tenant"], {
       message: "Selecione o tipo de usuário",
     }),

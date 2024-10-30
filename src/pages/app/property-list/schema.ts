@@ -3,9 +3,7 @@ import { z } from "zod";
 
 export const findPropertiesForm = z
   .object({
-    location: z
-      .string()
-      .min(3, "Forneça pelo menos 3 caracteres para pesquisar"),
+    location: z.string().min(3, "Forneça pelo menos 3 caracteres para pesquisar"),
     radiusInMeters: z
       .union([z.string(), z.number()]) // Aceita string ou número
       .transform((val) => Number(val)) // Converte para número
@@ -20,16 +18,11 @@ export const findPropertiesForm = z
       .max(2000, {
         message: "Price must be at most 2000.",
       }),
-    minBedrooms: z
-      .union([z.string(), z.number()])
-      .transform((val) => Number(val)),
-    maxBedrooms: z
-      .union([z.string(), z.number()])
-      .transform((val) => Number(val)),
+    minBedrooms: z.union([z.string(), z.number()]).transform((val) => Number(val)),
+    maxBedrooms: z.union([z.string(), z.number()]).transform((val) => Number(val)),
     propertyStatus: z.enum(["FREE", "BUSY", "SPLIT"]).optional(),
     propertyTypes: z.enum(["HOUSE", "DUPLEX", "APARTMENT"]),
-    amenities: z
-      .array(z.string()).optional(),
+    amenities: z.array(z.string()).optional(),
   })
   .refine((data) => data.minBedrooms < data.maxBedrooms, {
     message: "O mínimo deve ser menor que o máximo",
@@ -42,7 +35,7 @@ export const findPropertiesForm = z
 
 export type FindPropertiesForm = z.infer<typeof findPropertiesForm>;
 
-export type SearchFormValues = UseFormReturn<FindPropertiesForm, any, undefined>
+export type SearchFormValues = UseFormReturn<FindPropertiesForm, any, undefined>;
 
 export const defaultValues: FindPropertiesForm = {
   location: "",
