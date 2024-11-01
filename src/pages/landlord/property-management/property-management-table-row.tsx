@@ -29,7 +29,7 @@ export function PropertyManagementTableRow(props: PropertyManegementTableRowProp
           <DollarSign size={14} />
         </div>
       </TableCell>
-      <TableCell className="text-sm text-landing">{props.tenantName}</TableCell>
+      <TableCell className="text-sm text-landing">{props.tenantName ?? "-"}</TableCell>
 
       <TableCell colSpan={2} className="flex gap-1">
         <button className="rounded border border-transparent p-2 transition hover:border-foreground hover:bg-foreground hover:text-background focus:outline-none focus:ring-2 focus:ring-foreground">
