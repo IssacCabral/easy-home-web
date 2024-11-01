@@ -26,7 +26,7 @@ function setPayload(request: FindLandlordPropertiesRequest) {
 export async function findLandlordProperties(
   request: FindLandlordPropertiesRequest,
 ): Promise<FindLandlordPropertiesResponse> {
-  const response = await api.get<FindLandlordPropertiesResponse>(`/properties/landlord/`, {
+  const response = await api.get<FindLandlordPropertiesResponse>(`/properties/landlord/${request.landlordId}`, {
     params: setPayload(request),
   });
 

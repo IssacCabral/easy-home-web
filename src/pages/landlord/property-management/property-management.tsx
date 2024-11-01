@@ -1,14 +1,24 @@
-import { Table, TableBody, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { PropertyManagementTableRow } from "./property-management-table-row";
 import { Pagination } from "@/components/pagination";
 import { PropertyManagementTableFilters } from "./property-management-table-filters";
 import { Button } from "@/components/ui/button";
+import { usePropertyManagement } from "./use-property-management";
+import { perPageLimit } from "@/api/find-landlord-properties";
+import { Skeleton } from "@/components/ui/skeleton";
 
 export function PropertyManagement() {
+  const { form, handleFindLandlordProperties, handleClearFilters, foundProperties, handlePaginate, result, isLoading } =
+    usePropertyManagement();
+
   return (
     <main className="flex flex-1 flex-col gap-3 rounded-xl border border-solid border-border p-5">
       <div className="flex items-center justify-between">
-        <PropertyManagementTableFilters />
+        <PropertyManagementTableFilters
+          form={form}
+          onFindLandlordProperties={handleFindLandlordProperties}
+          onClearFilters={handleClearFilters}
+        />
         <Button>Adicionar Imóvel</Button>
       </div>
       <Table className="border border-solid border-border">
@@ -23,20 +33,51 @@ export function PropertyManagement() {
           </TableRow>
         </TableHeader>
         <TableBody>
-          <PropertyManagementTableRow />
-          <PropertyManagementTableRow />
-          <PropertyManagementTableRow />
-          <PropertyManagementTableRow />
-          <PropertyManagementTableRow />
-          <PropertyManagementTableRow />
-          <PropertyManagementTableRow />
-          <PropertyManagementTableRow />
-          <PropertyManagementTableRow />
-          <PropertyManagementTableRow />
+          {isLoading
+            ? Array.from({ length: 5 }).map((_, index) => (
+                <TableRow key={index}>
+                  <TableCell>
+                    <Skeleton className="h-4 w-full" />
+                  </TableCell>
+                  <TableCell>
+                    <Skeleton className="h-4 w-full" />
+                  </TableCell>
+                  <TableCell>
+                    <Skeleton className="h-4 w-full" />
+                  </TableCell>
+                  <TableCell>
+                    <Skeleton className="h-4 w-full" />
+                  </TableCell>
+                  <TableCell>
+                    <Skeleton className="h-4 w-full" />
+                  </TableCell>
+                  <TableCell>
+                    <Skeleton className="h-4 w-full" />
+                  </TableCell>
+                </TableRow>
+              ))
+            : foundProperties.map((item) => (
+                <PropertyManagementTableRow
+                  key={item.id}
+                  addressNumber={item.addressNumber}
+                  price={item.price}
+                  publishedAt={item.publishedAt!}
+                  street={item.street}
+                  tenantName={item.tenantName}
+                  title={item.title}
+                />
+              ))}
         </TableBody>
       </Table>
       <div>
-        <Pagination onPageChange={(page) => console.log(page)} pageIndex={1} perPage={10} totalCount={30} />
+        {!isLoading && (
+          <Pagination
+            onPageChange={handlePaginate}
+            pageIndex={result!.meta.page}
+            perPage={perPageLimit}
+            totalCount={result!.meta.total}
+          />
+        )}
       </div>
     </main>
   );

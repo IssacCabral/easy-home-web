@@ -9,12 +9,10 @@ export const propertyManagementForm = z.object({
 
 export type PropertyManagementForm = z.infer<typeof propertyManagementForm>;
 
-export type PropertyManagementFormReturn = UseFormReturn<
-  {
-    title?: string | undefined;
-    tenant?: string | undefined;
-    status?: string | undefined;
-  },
-  any,
-  undefined
->;
+export type PropertyManagementFormReturn = UseFormReturn<PropertyManagementForm, any, undefined>;
+
+export const defaultValues: PropertyManagementForm = {
+  status: "all",
+  tenant: "",
+  title: "",
+};
