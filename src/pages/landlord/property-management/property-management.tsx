@@ -1,7 +1,7 @@
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { PropertyManagementTableRow } from "./property-management-table-row";
+import { PropertyManagementTableRow } from "./components/property-management-table-row";
 import { Pagination } from "@/components/pagination";
-import { PropertyManagementTableFilters } from "./property-management-table-filters";
+import { PropertyManagementTableFilters } from "./components/property-management-table-filters";
 import { Button } from "@/components/ui/button";
 import { usePropertyManagement } from "./use-property-management";
 import { perPageLimit } from "@/api/find-landlord-properties";

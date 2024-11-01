@@ -1,9 +1,9 @@
 import { Controller } from "react-hook-form";
+import { PropertyManagementFormReturn } from "../../schema";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { ContactRequestsFormReturn } from "../schema";
 
 interface StatusFormFieldProps {
-  form: ContactRequestsFormReturn;
+  form: PropertyManagementFormReturn;
 }
 
 export function StatusFormField({ form }: StatusFormFieldProps) {
@@ -19,9 +19,9 @@ export function StatusFormField({ form }: StatusFormFieldProps) {
             </SelectTrigger>
             <SelectContent>
               <SelectItem value="all">Todos status</SelectItem>
-              <SelectItem value="RENTED">Alugado</SelectItem>
-              <SelectItem value="FINISHED">Finalizado</SelectItem>
-              <SelectItem value="IN_CONTACT">Em contato</SelectItem>
+              <SelectItem value="FREE">Livre</SelectItem>
+              <SelectItem value="BUSY">Ocupado</SelectItem>
+              <SelectItem value="SPLIT">Dividir</SelectItem>
             </SelectContent>
           </Select>
         );

@@ -1,7 +1,7 @@
 import { Table, TableBody, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Pagination } from "@/components/pagination";
-import { ContactRequestsTableFilters } from "./contact-requests-table-filters";
-import { ContactRequestsTableRow } from "./contact-requests-table-row";
+import { ContactRequestsTableRow } from "./components/contact-requests-table-row";
+import { ContactRequestsTableFilters } from "./components/contact-requests-table-filters";
 
 export function ContactRequests() {
   return (

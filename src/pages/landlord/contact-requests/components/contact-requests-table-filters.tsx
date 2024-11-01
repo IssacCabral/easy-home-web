@@ -6,7 +6,7 @@ import { Search, X } from "lucide-react";
 import { TitleFormField } from "./form-fields/title";
 import { TenantFormField } from "./form-fields/tenant";
 import { StatusFormField } from "./form-fields/status";
-import { contactRequestsForm, ContactRequestsForm } from "./schema";
+import { contactRequestsForm, ContactRequestsForm } from "../schema";
 
 export function ContactRequestsTableFilters() {
   const form = useForm<ContactRequestsForm>({

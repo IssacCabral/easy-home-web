@@ -1,23 +1,23 @@
 import { FormControl, FormField, FormItem } from "@/components/ui/form";
+import { PropertyManagementFormReturn } from "../../schema";
 import { Input } from "@/components/ui/input";
-import { ContactRequestsFormReturn } from "../schema";
 
-interface TitleFormFieldProps {
-  form: ContactRequestsFormReturn;
+interface TenantFormFieldProps {
+  form: PropertyManagementFormReturn;
 }
 
-export function TitleFormField({ form }: TitleFormFieldProps) {
+export function TenantFormField({ form }: TenantFormFieldProps) {
   return (
     <FormField
       control={form.control}
-      name="title"
+      name="tenant"
       render={({ field }) => (
         <FormItem>
           <FormControl>
             <Input
-              id="title"
+              id="tenant"
               type="text"
-              placeholder="Título do Imóvel"
+              placeholder="Nome do Inquilino"
               className="h-8 w-auto placeholder:text-xs placeholder:text-muted"
               {...field}
             />

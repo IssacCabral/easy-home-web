@@ -5,7 +5,7 @@ import { Search, X } from "lucide-react";
 import { TitleFormField } from "./form-fields/title";
 import { TenantFormField } from "./form-fields/tenant";
 import { StatusFormField } from "./form-fields/status";
-import { PropertyManagementForm, PropertyManagementFormReturn } from "./schema";
+import { PropertyManagementForm, PropertyManagementFormReturn } from "../schema";
 
 interface PropertyManagementTableFiltersProps {
   form: PropertyManagementFormReturn;
