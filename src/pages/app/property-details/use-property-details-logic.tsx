@@ -9,7 +9,7 @@ export function usePropertyDetails() {
 
   const {
     data: result,
-    isFetching,
+    isLoading,
     error,
   } = useQuery({
     queryKey: ["property-details", id],
@@ -30,10 +30,10 @@ export function usePropertyDetails() {
     retry: false,
   });
 
-  let fetchingOrError = null;
+  let loadingOrError = null;
 
-  if (isFetching) {
-    fetchingOrError = (
+  if (isLoading) {
+    loadingOrError = (
       <div className="flex min-h-[calc(100vh-12.5rem)] items-center justify-center">
         <Spinner />
       </div>
@@ -41,7 +41,7 @@ export function usePropertyDetails() {
   }
 
   if (error) {
-    fetchingOrError = (
+    loadingOrError = (
       <div className="flex min-h-[calc(100vh-12.5rem)] items-center justify-center">
         <p className="font-semibold text-destructive">Imóvel não encontrado.</p>
       </div>
@@ -49,7 +49,7 @@ export function usePropertyDetails() {
   }
 
   return {
-    fetchingOrError,
+    loadingOrError,
     result,
   };
 }

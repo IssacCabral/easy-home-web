@@ -33,7 +33,7 @@ export function usePropertyList() {
     defaultValues,
   });
 
-  const { data: result, isFetching } = useQuery({
+  const { data: result, isLoading } = useQuery({
     queryKey: [
       "property-list",
       centralLat,
@@ -86,13 +86,13 @@ export function usePropertyList() {
     : [];
 
   useEffect(() => {
-    if (result?.meta.total === 0 && !isFetching) {
+    if (result?.meta.total === 0 && !isLoading) {
       toast({
         variant: "destructive",
         description: "Não foram encontrados imóveis.",
       });
     }
-  }, [result, isFetching]);
+  }, [result, isLoading]);
 
   function handleFilter(data: FindPropertiesForm, lat: number, lon: number) {
     setSearchParams((state) => {
@@ -137,7 +137,7 @@ export function usePropertyList() {
     result,
     checkedLat,
     checkedLon,
-    isFetching,
+    isLoading,
     street,
     foundProperties,
     handleFindProperties,

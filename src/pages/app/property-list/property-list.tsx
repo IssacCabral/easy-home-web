@@ -15,7 +15,7 @@ export function PropertyList() {
     result,
     checkedLat,
     checkedLon,
-    isFetching,
+    isLoading,
     street,
     foundProperties,
     handlePaginate,
@@ -30,7 +30,7 @@ export function PropertyList() {
           <SearchForm form={form} onFindProperties={handleFindProperties} />
         </FetchingAmenitiesProvider>
         <div className="flex w-full flex-col gap-5 pl-5 pr-14 pt-6">
-          {isFetching ? (
+          {isLoading ? (
             <div className="flex h-full w-full items-center justify-center">
               <Spinner />
             </div>
@@ -44,7 +44,7 @@ export function PropertyList() {
               foundStreet={street}
             />
           )}
-          {!isFetching && (
+          {!isLoading && (
             <Pagination
               onPageChange={handlePaginate}
               pageIndex={result!.meta.page}
