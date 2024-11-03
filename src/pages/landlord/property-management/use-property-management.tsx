@@ -23,7 +23,7 @@ export function usePropertyManagement() {
     queryKey: ["landlord-properties", page, tenantName, title],
     queryFn: () =>
       findLandlordProperties({
-        landlordId: "8464b3f6-5551-4633-ba4e-9d26389b69c9",
+        landlordId: "d530cb79-8aaa-412e-ae25-18b279e32f96",
         page: Number(page) || 1,
         // status: PropertyStatus[status as PropertyStatus] || undefined,
         tenantName: tenantName || undefined,

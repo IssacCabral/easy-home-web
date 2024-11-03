@@ -39,7 +39,7 @@ export type SearchFormValues = UseFormReturn<FindPropertiesForm, any, undefined>
 
 export const defaultValues: FindPropertiesForm = {
   location: "",
-  radiusInMeters: 2000,
+  radiusInMeters: 500,
   maxPrice: 800,
   minBedrooms: 1,
   maxBedrooms: 5,
