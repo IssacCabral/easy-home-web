@@ -7,7 +7,7 @@ import { SignInFooter } from "./components/sign-in-footer";
 import { EmailFormField } from "./components/form-fields/email";
 import { signInForm, SignInForm, defaultValues } from "./schema";
 import { PasswordFormField } from "./components/form-fields/password";
-import { useSearchParams } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import { useMutation } from "@tanstack/react-query";
 import { signIn } from "@/api/sign-in";
@@ -16,6 +16,8 @@ import { AuthContext } from "@/contexts/auth-context";
 import { toast } from "@/hooks/use-toast";
 
 export function SignIn() {
+  const navigate = useNavigate();
+
   const [searchParams] = useSearchParams();
   const form = useForm<SignInForm>({
     resolver: zodResolver(signInForm),
@@ -39,6 +41,7 @@ export function SignIn() {
         password: data.password,
       });
       login(result.accessToken);
+      navigate(`/properties`);
     } catch (err) {
       console.log("err:", err);
       toast({
