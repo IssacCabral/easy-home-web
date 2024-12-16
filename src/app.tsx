@@ -6,6 +6,7 @@ import { Toaster } from "./components/ui/toaster";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { queryClient } from "./lib/react-query";
 import { Helmet, HelmetProvider } from "react-helmet-async";
+import { AuthProvider } from "./contexts/auth-context";
 
 export function App() {
   return (
@@ -14,7 +15,9 @@ export function App() {
         <Helmet titleTemplate="%s | easy.home" />
         <Toaster />
         <QueryClientProvider client={queryClient}>
-          <RouterProvider router={router} />
+          <AuthProvider>
+            <RouterProvider router={router} />
+          </AuthProvider>
         </QueryClientProvider>
       </ThemeProvider>
     </HelmetProvider>

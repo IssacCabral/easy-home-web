@@ -9,6 +9,11 @@ import { signInForm, SignInForm, defaultValues } from "./schema";
 import { PasswordFormField } from "./components/form-fields/password";
 import { useSearchParams } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
+import { useMutation } from "@tanstack/react-query";
+import { signIn } from "@/api/sign-in";
+import { useContext } from "react";
+import { AuthContext } from "@/contexts/auth-context";
+import { toast } from "@/hooks/use-toast";
 
 export function SignIn() {
   const [searchParams] = useSearchParams();
@@ -19,9 +24,28 @@ export function SignIn() {
       email: searchParams.get("email") ?? "",
     },
   });
+  const isSubmitting = form.formState.isSubmitting;
 
-  function handleSignIn(data: SignInForm) {
-    console.log("Data: ", data);
+  const { login } = useContext(AuthContext);
+
+  const { mutateAsync: signInFn } = useMutation({
+    mutationFn: signIn,
+  });
+
+  async function handleSignIn(data: SignInForm) {
+    try {
+      const result = await signInFn({
+        email: data.email,
+        password: data.password,
+      });
+      login(result.accessToken);
+    } catch (err) {
+      console.log("err:", err);
+      toast({
+        variant: "destructive",
+        description: "Credenciais Inválidas",
+      });
+    }
   }
 
   return (
@@ -33,12 +57,12 @@ export function SignIn() {
           <form onSubmit={form.handleSubmit(handleSignIn)} className="mb-8 flex flex-col gap-5">
             <EmailFormField form={form} />
             <PasswordFormField form={form} />
-            <Button className="w-full" type="submit">
+            <Button className="w-full" type="submit" disabled={isSubmitting}>
               Entrar
             </Button>
           </form>
         </Form>
-        <SignInFooter />
+        <SignInFooter isSubmitting={isSubmitting} />
       </div>
     </>
   );
