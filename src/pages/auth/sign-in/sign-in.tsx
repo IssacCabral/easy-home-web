@@ -41,7 +41,16 @@ export function SignIn() {
         password: data.password,
       });
       login(result.accessToken);
-      navigate(`/properties`);
+
+      let pagePath = "";
+
+      if (result.isLandlord) {
+        pagePath = "/dashboard";
+      } else {
+        pagePath = "/properties";
+      }
+
+      navigate(pagePath);
     } catch (err) {
       console.log("err:", err);
       toast({
