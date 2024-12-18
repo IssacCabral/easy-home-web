@@ -1,4 +1,5 @@
 import { env } from "@/env";
+import { AuthErrors } from "@/shared/authErrors";
 import axios from "axios";
 
 export const api = axios.create({
@@ -15,7 +16,6 @@ if (env.VITE_API_ENABLE_DELAY) {
   });
 }
 
-// Add a request interceptor
 api.interceptors.request.use((config) => {
   const token = localStorage.getItem("accessToken");
   if (token) {
@@ -24,13 +24,23 @@ api.interceptors.request.use((config) => {
   return config;
 });
 
-// // Add a response interceptor
-// axios.interceptors.response.use(function (response) {
-//   // Any status code that lie within the range of 2xx cause this function to trigger
-//   // Do something with response data
-//   return response;
-// }, function (error) {
-//   // Any status codes that falls outside the range of 2xx cause this function to trigger
-//   // Do something with response error
-//   return Promise.reject(error);
-// });
+api.interceptors.response.use(
+  (response) => {
+    console.log("response:", response);
+    return response;
+  },
+  (error) => {
+    const errorCode = error.response?.data?.code;
+    const authErrorCodes = Object.values(AuthErrors);
+
+    if (authErrorCodes.includes(errorCode)) {
+      window.location.href = "/sign-in";
+    }
+
+    // if (errorCode === "AUTH-004") {
+    //   console.error("Sem permissão para acessar este recurso.");
+    // }
+
+    // return Promise.reject(error);
+  },
+);
