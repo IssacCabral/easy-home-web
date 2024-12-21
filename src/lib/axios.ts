@@ -1,3 +1,4 @@
+import { LoginResponse } from "@/api/sign-in";
 import { env } from "@/env";
 import { AuthErrors } from "@/shared/authErrors";
 import axios from "axios";
@@ -17,16 +18,16 @@ if (env.VITE_API_ENABLE_DELAY) {
 }
 
 api.interceptors.request.use((config) => {
-  const token = localStorage.getItem("accessToken");
-  if (token) {
-    config.headers.Authorization = `Bearer ${token}`;
+  const userSession = localStorage.getItem("userSession");
+  if (userSession) {
+    const parsedUserSession = JSON.parse(userSession) as LoginResponse;
+    config.headers.Authorization = `Bearer ${parsedUserSession.accessToken}`;
   }
   return config;
 });
 
 api.interceptors.response.use(
   (response) => {
-    console.log("response:", response);
     return response;
   },
   (error) => {
@@ -36,11 +37,5 @@ api.interceptors.response.use(
     if (authErrorCodes.includes(errorCode)) {
       window.location.href = "/sign-in";
     }
-
-    // if (errorCode === "AUTH-004") {
-    //   console.error("Sem permissão para acessar este recurso.");
-    // }
-
-    // return Promise.reject(error);
   },
 );

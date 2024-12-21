@@ -40,7 +40,7 @@ export function SignIn() {
         email: data.email,
         password: data.password,
       });
-      login(result.accessToken);
+      login(result);
 
       let pagePath = "";
 

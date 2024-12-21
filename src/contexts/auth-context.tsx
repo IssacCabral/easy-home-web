@@ -1,9 +1,10 @@
+import { LoginResponse } from "@/api/sign-in";
 import { createContext, ReactNode, useState } from "react";
 
 interface AuthContextProps {
-  token: string;
-  login: (token: string) => void;
-  logout: () => void;
+  userSession: LoginResponse;
+  login: (user: LoginResponse) => void;
+  // logout: () => void;
 }
 
 export const AuthContext = createContext({} as AuthContextProps);
@@ -13,17 +14,19 @@ interface AuthContextProvider {
 }
 
 export function AuthProvider({ children }: AuthContextProvider) {
-  const [token, setToken] = useState<string>(localStorage.getItem("accessToken") || "");
+  const [userSession, setUserSession] = useState<LoginResponse>(
+    JSON.parse(localStorage.getItem("userSession") || "{}"),
+  );
 
-  function login(token: string) {
-    localStorage.setItem("accessToken", token);
-    setToken(token);
+  function login(user: LoginResponse) {
+    localStorage.setItem("userSession", JSON.stringify(user));
+    setUserSession(user);
   }
 
-  function logout() {
-    localStorage.removeItem("accessToken");
-    setToken("");
-  }
+  // function logout() {
+  //   localStorage.removeItem("accessToken");
+  //   setToken("");
+  // }
 
-  return <AuthContext.Provider value={{ token, login, logout }}>{children}</AuthContext.Provider>;
+  return <AuthContext.Provider value={{ userSession, login }}>{children}</AuthContext.Provider>;
 }
