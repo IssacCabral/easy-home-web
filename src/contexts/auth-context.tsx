@@ -2,7 +2,7 @@ import { LoginResponse } from "@/api/sign-in";
 import { createContext, ReactNode, useState } from "react";
 
 interface AuthContextProps {
-  userSession: LoginResponse;
+  userSession: LoginResponse | undefined;
   login: (user: LoginResponse) => void;
   // logout: () => void;
 }
@@ -14,9 +14,10 @@ interface AuthContextProvider {
 }
 
 export function AuthProvider({ children }: AuthContextProvider) {
-  const [userSession, setUserSession] = useState<LoginResponse>(
-    JSON.parse(localStorage.getItem("userSession") || "{}"),
-  );
+  const initialValue: LoginResponse | undefined = localStorage.getItem("userSession")
+    ? (JSON.parse(localStorage.getItem("userSession") || "{}") as LoginResponse)
+    : undefined;
+  const [userSession, setUserSession] = useState<LoginResponse | undefined>(initialValue);
 
   function login(user: LoginResponse) {
     localStorage.setItem("userSession", JSON.stringify(user));
