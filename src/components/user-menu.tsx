@@ -16,7 +16,7 @@ export function UserMenu(props: UserMenuProps) {
   const { logout } = useContext(AuthContext);
 
   const handleNavigation = (value: string) => {
-    if (props.isOpaque && (value === "settings" || value === "rent-split")) {
+    if (props.isOpaque && (value === "property-requests" || value === "rent-split")) {
       return;
     }
 
@@ -26,7 +26,7 @@ export function UserMenu(props: UserMenuProps) {
       case "profile":
         navigate("/");
         break;
-      case "settings":
+      case "property-requests":
         navigate("/");
         break;
       case "rent-split":
@@ -70,7 +70,7 @@ export function UserMenu(props: UserMenuProps) {
           </div>
         </SelectItem>
         <SelectItem
-          value="dashboard"
+          value="property-requests"
           className={cn("px-2", props.isOpaque ? "cursor-not-allowed text-muted opacity-50" : null)}
         >
           <div className="flex items-center gap-3">
