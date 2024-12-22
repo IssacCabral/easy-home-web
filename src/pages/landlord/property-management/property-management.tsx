@@ -34,8 +34,11 @@ export function PropertyManagement() {
         </TableHeader>
         <TableBody>
           {isLoading
-            ? Array.from({ length: 5 }).map((_, index) => (
+            ? Array.from({ length: 12 }).map((_, index) => (
                 <TableRow key={index}>
+                  <TableCell>
+                    <Skeleton className="h-4 w-full" />
+                  </TableCell>
                   <TableCell>
                     <Skeleton className="h-4 w-full" />
                   </TableCell>
@@ -65,6 +68,7 @@ export function PropertyManagement() {
                   street={item.street}
                   tenantName={item.tenantName}
                   title={item.title}
+                  status={item.status}
                 />
               ))}
         </TableBody>
