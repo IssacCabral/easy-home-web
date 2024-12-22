@@ -4,7 +4,7 @@ import { createContext, ReactNode, useState } from "react";
 interface AuthContextProps {
   userSession: LoginResponse | undefined;
   login: (user: LoginResponse) => void;
-  // logout: () => void;
+  logout: () => void;
 }
 
 export const AuthContext = createContext({} as AuthContextProps);
@@ -24,10 +24,10 @@ export function AuthProvider({ children }: AuthContextProvider) {
     setUserSession(user);
   }
 
-  // function logout() {
-  //   localStorage.removeItem("accessToken");
-  //   setToken("");
-  // }
+  function logout() {
+    localStorage.removeItem("userSession");
+    setUserSession(undefined);
+  }
 
-  return <AuthContext.Provider value={{ userSession, login }}>{children}</AuthContext.Provider>;
+  return <AuthContext.Provider value={{ userSession, login, logout }}>{children}</AuthContext.Provider>;
 }

@@ -5,6 +5,7 @@ export enum AuthErrors {
   TOKEN_NOT_PROVIDED = "AUTH-002",
   EXPIRED_TOKEN = "JWT-002",
   GENERAL_ERROR = "AUTH-003",
+  FORBIDDEN_ERROR = "AUTH-004",
 }
 
 export const ForbiddenError: IError = {

@@ -37,7 +37,7 @@ export function Details(props: DetailsProps) {
         <h2 className="mb-3 text-lg font-semibold text-landing">Comodidades</h2>
         <div className="flex gap-2">
           {props.property.amenities.map((amenity) => (
-            <Badge badge={amenity.label} variant="amenity" />
+            <Badge key={amenity.id} badge={amenity.label} variant="amenity" />
           ))}
         </div>
       </div>

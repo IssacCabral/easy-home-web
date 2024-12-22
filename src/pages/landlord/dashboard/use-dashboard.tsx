@@ -6,8 +6,8 @@ import { useContext } from "react";
 export function useDashboard() {
   const { userSession } = useContext(AuthContext);
   const { data: result, isLoading } = useQuery({
-    queryKey: ["dashboard-summary", userSession.userId],
-    queryFn: () => getDashboardSummary({ landlordId: userSession.userId }),
+    queryKey: ["dashboard-summary", userSession?.userId],
+    queryFn: () => getDashboardSummary({ landlordId: userSession!.userId }),
   });
 
   return { result, isLoading };
