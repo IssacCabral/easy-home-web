@@ -10,7 +10,7 @@ export function usePropertyManagement() {
   const [searchParams, setSearchParams] = useSearchParams();
 
   const page = searchParams.get("page");
-  // const status = searchParams.get("status");
+  const status = searchParams.get("status");
   const tenantName = searchParams.get("tenantName");
   const title = searchParams.get("title");
 
@@ -20,12 +20,11 @@ export function usePropertyManagement() {
   });
 
   const { data: result, isLoading } = useQuery({
-    queryKey: ["landlord-properties", page, tenantName, title],
+    queryKey: ["landlord-properties", page, tenantName, title, status],
     queryFn: () =>
       findLandlordProperties({
-        landlordId: "d530cb79-8aaa-412e-ae25-18b279e32f96",
         page: Number(page) || 1,
-        // status: PropertyStatus[status as PropertyStatus] || undefined,
+        status: PropertyStatus[status as PropertyStatus] || undefined,
         tenantName: tenantName || undefined,
         title: title || undefined,
       }),
@@ -53,6 +52,8 @@ export function usePropertyManagement() {
     : [];
 
   function handleFindLandlordProperties(data: PropertyManagementForm) {
+    console.log({ data });
+
     setSearchParams((state) => {
       state.set("page", (1).toString());
 
@@ -60,6 +61,12 @@ export function usePropertyManagement() {
         state.set("tenantName", data.tenant);
       } else {
         state.delete("tenantName");
+      }
+
+      if (data.status && data.status !== "all") {
+        state.set("status", data.status);
+      } else {
+        state.delete("status");
       }
 
       if (data.title) {
@@ -76,7 +83,7 @@ export function usePropertyManagement() {
     setSearchParams((state) => {
       state.delete("title");
       state.delete("tenantName");
-      // state.delete("status")
+      state.delete("status");
 
       return state;
     });

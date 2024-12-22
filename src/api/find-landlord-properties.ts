@@ -3,7 +3,6 @@ import { PaginationData, PaginationParams } from "@/shared/pagination";
 import { IPropertyEntity, PropertyStatus } from "@/shared/property";
 
 type FindLandlordPropertiesRequest = {
-  landlordId: string;
   title?: string;
   tenantName?: string;
   status?: PropertyStatus;
