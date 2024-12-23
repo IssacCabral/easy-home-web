@@ -67,7 +67,7 @@ function UpdateMapCenter({ coords }: MapProps) {
 }
 
 export function Map({ coords, foundProperties, foundStreet, isCompact }: MapProps) {
-  const classes = `${isCompact ? "h-56" : "h-80"} w-full rounded-xl`;
+  const classes = `${isCompact ? "h-56" : "h-80"} w-full rounded-xl relative z-10`;
 
   return (
     <MapContainer center={[coords.lat, coords.lon]} zoom={INITIAL_ZOOM} className={classes}>

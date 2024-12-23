@@ -53,7 +53,7 @@ export function UserMenu(props: UserMenuProps) {
         </Avatar>
         <span className="text-sm font-semibold text-foreground">{props.name}</span>
       </SelectTrigger>
-      <SelectContent className="p-1">
+      <SelectContent className="z-50 p-1">
         <SelectItem value="profile" className="px-2">
           <div className="flex items-center gap-3">
             <UserRoundPen size={14} />
