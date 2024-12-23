@@ -1,23 +1,57 @@
-import { Badge } from "@/components/badge";
+import { Badge, BadgeProps } from "@/components/badge";
 import { TableRow, TableCell } from "@/components/ui/table";
+import { ContactRequestStatus } from "@/shared/contact-request";
+import { formatDate } from "@/utils/format-date";
 import { DollarSign, MessageSquareOff, UserRoundCheck } from "lucide-react";
 
-export function ContactRequestsTableRow() {
+interface ContactRequestsTableRowProps {
+  title: string;
+  street: string;
+  addressNumber: number;
+  price: number;
+  requestDate: Date;
+  applicant: string;
+  status: ContactRequestStatus;
+}
+
+export function ContactRequestsTableRow(props: ContactRequestsTableRowProps) {
+  const badValues: BadgeProps = {
+    badge: "",
+    variant: "amenity",
+  };
+
+  switch (props.status) {
+    case ContactRequestStatus.RENTED:
+      badValues.badge = "Alugado";
+      badValues.variant = "available";
+      break;
+    case ContactRequestStatus.FINISHED:
+      badValues.badge = "Finalizado";
+      badValues.variant = "unavailable";
+      break;
+    case ContactRequestStatus.IN_CONTACT:
+      badValues.badge = "Em contato";
+      badValues.variant = "inProgress";
+      break;
+  }
+
   return (
     <TableRow>
-      <TableCell className="text-sm text-landing">Casa da alegria</TableCell>
-      <TableCell className="text-sm text-landing">Avenida Francisco Pinheiro de Almeida, 42</TableCell>
-      <TableCell>
-        <Badge badge="Em contato" variant="inProgress" />
+      <TableCell className="text-sm text-landing">{props.title}</TableCell>
+      <TableCell className="text-sm text-landing">
+        {props.street}, {props.addressNumber}
       </TableCell>
-      <TableCell className="text-landing">01-01-2024</TableCell>
+      <TableCell>
+        <Badge badge={badValues.badge} variant={badValues.variant} />
+      </TableCell>
+      <TableCell className="text-landing">{formatDate(props.requestDate)}</TableCell>
       <TableCell>
         <div className="flex items-center text-sm text-landing">
-          <span>300</span>
+          <span>{props.price}</span>
           <DollarSign size={14} />
         </div>
       </TableCell>
-      <TableCell className="text-sm text-landing">Matheus Pereira</TableCell>
+      <TableCell className="text-sm text-landing">{props.applicant}</TableCell>
 
       <TableCell colSpan={2} className="flex gap-2">
         <button className="flex items-center gap-2 rounded border border-transparent bg-cyan-600 p-2 text-xs text-background transition hover:border-cyan-600 hover:bg-cyan-600/80 focus:outline-none focus:ring-2 focus:ring-cyan-600">

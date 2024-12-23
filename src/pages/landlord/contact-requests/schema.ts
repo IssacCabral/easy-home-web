@@ -9,12 +9,10 @@ export const contactRequestsForm = z.object({
 
 export type ContactRequestsForm = z.infer<typeof contactRequestsForm>;
 
-export type ContactRequestsFormReturn = UseFormReturn<
-  {
-    title?: string | undefined;
-    applicant?: string | undefined;
-    status?: string | undefined;
-  },
-  any,
-  undefined
->;
+export type ContactRequestsFormReturn = UseFormReturn<ContactRequestsForm, any, undefined>;
+
+export const defaultValues: ContactRequestsForm = {
+  status: "all",
+  applicant: "",
+  title: "",
+};

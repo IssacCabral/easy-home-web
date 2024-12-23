@@ -1,38 +1,25 @@
 import { Form } from "@/components/ui/form";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "@/components/ui/button";
 import { Search, X } from "lucide-react";
 import { TitleFormField } from "./form-fields/title";
 import { TenantFormField } from "./form-fields/tenant";
 import { StatusFormField } from "./form-fields/status";
-import { contactRequestsForm, ContactRequestsForm } from "../schema";
+import { ContactRequestsForm, ContactRequestsFormReturn } from "../schema";
 
-export function ContactRequestsTableFilters() {
-  const form = useForm<ContactRequestsForm>({
-    resolver: zodResolver(contactRequestsForm),
-    defaultValues: {
-      status: "all",
-      applicant: "",
-      title: "",
-    },
-  });
+interface ContactRequestsTableFiltersProps {
+  form: ContactRequestsFormReturn;
+  onFindContactRequests: (data: ContactRequestsForm) => void;
+  onClearFilters: () => void;
+}
 
-  function handleFilter(data: ContactRequestsForm) {
-    console.log(data);
-  }
-
-  function handleClearFilters() {
-    form.reset({
-      title: "",
-      applicant: "",
-      status: "all",
-    });
-  }
-
+export function ContactRequestsTableFilters({
+  form,
+  onFindContactRequests,
+  onClearFilters,
+}: ContactRequestsTableFiltersProps) {
   return (
     <Form {...form}>
-      <form className="flex items-center gap-2" onSubmit={form.handleSubmit(handleFilter)}>
+      <form className="flex items-center gap-2" onSubmit={form.handleSubmit(onFindContactRequests)}>
         <span className="text-sm font-semibold">Filtros:</span>
         <TitleFormField form={form} />
         <TenantFormField form={form} />
@@ -41,7 +28,7 @@ export function ContactRequestsTableFilters() {
           <Search className="mr-2 h-4 w-4" />
           Filtrar resultados
         </Button>
-        <Button onClick={handleClearFilters} type="button" variant="removeFilters" size="xs">
+        <Button onClick={onClearFilters} type="button" variant="removeFilters" size="xs">
           <X className="mr-2 h-4 w-4" />
           Remover filtros
         </Button>
