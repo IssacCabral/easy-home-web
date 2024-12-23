@@ -1,5 +1,12 @@
-- Enviar solicitação de Login ao backend
-- Se as credenciais estiverem erradas, exibir erro no front
-- Se as credenciais estiverem corretas, salvar o token.
-- Com o token salvo, enviá-lo a todas as rotas que precisam de token
-- Se o token expirar, deslogar o usuário e redirecionar para a página de login
+TODO:
+
+Locatário
+
+- Avaliar Imóvel
+- Montar avaliação com estrelas dinamicamente
+- Enviar solicitação de contato para o locador
+
+Locador
+
+- Alugar imóvel
+- Encerrar solicitação de contato
