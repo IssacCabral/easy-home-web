@@ -54,7 +54,7 @@ export function Location({ property }: LocationProps) {
             <AlertDialogTitle>Contatar Locador</AlertDialogTitle>
             <AlertDialogDescription className="text-landing">
               O dashboard do locador irá registrar que você está fazendo uma solicitação de contato. Você também será
-              redirecionado para o WhatsApp para contatar o locador. Deseja continuar?
+              redirecionado para o WhatsApp para contatar o locador. <br /> <br /> Deseja continuar?
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>
