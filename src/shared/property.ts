@@ -1,6 +1,7 @@
 import { IAddressEntity } from "./address";
 import { IAmenityEntity } from "./amenity";
 import { IBaseModel } from "./base";
+import { ILandlordEntity } from "./landlord";
 import { ITenantEntity } from "./tenant";
 
 export enum PropertyTypes {
@@ -30,4 +31,5 @@ export interface IPropertyEntity extends IBaseModel {
   photosUrl: string;
   amenities: IAmenityEntity[];
   tenants?: Omit<ITenantEntity, "password">[];
+  landlord?: ILandlordEntity;
 }
