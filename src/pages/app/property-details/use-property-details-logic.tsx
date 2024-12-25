@@ -1,7 +1,8 @@
+import { createContactRequest } from "@/api/create-contact-request";
 import { findProperty } from "@/api/find-property";
 import { Spinner } from "@/components/ui/spinner";
 import { toast } from "@/hooks/use-toast";
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router-dom";
 
 export function usePropertyDetails() {
@@ -48,8 +49,20 @@ export function usePropertyDetails() {
     );
   }
 
+  const { mutateAsync: createContactRequestFn } = useMutation({
+    mutationFn: createContactRequest,
+  });
+
+  async function confirmContact(data: { propertyId: string; tenantId: string }) {
+    return await createContactRequestFn({
+      propertyId: data.propertyId,
+      tenantId: data.tenantId,
+    });
+  }
+
   return {
     loadingOrError,
     result,
+    confirmContact,
   };
 }

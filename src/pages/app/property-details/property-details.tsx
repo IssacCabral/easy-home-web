@@ -4,7 +4,7 @@ import { Location } from "./components/location";
 import { usePropertyDetails } from "./use-property-details-logic";
 
 export function PropertyDetails() {
-  const { loadingOrError, result } = usePropertyDetails();
+  const { loadingOrError, result, confirmContact } = usePropertyDetails();
 
   return (
     <div className="mt-6 flex justify-center gap-14">
@@ -13,7 +13,7 @@ export function PropertyDetails() {
         <>
           <Details property={result!} />
           <div className="flex w-[477px] flex-col gap-4">
-            <Location property={result!} />
+            <Location property={result!} onConfirmContact={confirmContact} />
             {/* <Comments /> */}
           </div>
         </>

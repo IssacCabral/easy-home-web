@@ -12,24 +12,52 @@ import {
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
 import { Button } from "@/components/ui/button";
+import { AuthContext } from "@/contexts/auth-context";
+import { Toast, toast } from "@/hooks/use-toast";
+import { ContactRequestErrors } from "@/shared/contact-request-errors";
 import { IPropertyEntity } from "@/shared/property";
 import { formatPhoneNumber } from "@/utils/format-phone-number";
+import { isAxiosError } from "axios";
+import { useContext } from "react";
 
 interface LocationProps {
   property: IPropertyEntity;
+  onConfirmContact: (data: { propertyId: string; tenantId: string }) => Promise<any>;
 }
 
-export function Location({ property }: LocationProps) {
+export function Location({ property, onConfirmContact }: LocationProps) {
+  const { userSession } = useContext(AuthContext);
+
   const street = property.address.street;
 
-  function handleContact() {
-    const rawPhoneNumber = property.landlord!.phone;
-    const whatsappNumber = formatPhoneNumber(rawPhoneNumber);
-    const message = encodeURIComponent("Olá, estou interessado no seu imóvel!");
+  async function handleConfirmContact() {
+    try {
+      await onConfirmContact({
+        propertyId: property.id,
+        tenantId: userSession!.userId,
+      });
 
-    const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${message}`;
+      const rawPhoneNumber = property.landlord!.phone;
+      const whatsappNumber = formatPhoneNumber(rawPhoneNumber);
+      const message = encodeURIComponent("Olá, estou interessado no seu imóvel!");
 
-    window.open(whatsappUrl, "_blank");
+      const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${message}`;
+
+      window.open(whatsappUrl, "_blank");
+    } catch (err: any) {
+      const toastData: Toast = {
+        variant: "destructive",
+        description: "algum erro ocorreu",
+      };
+
+      if (isAxiosError(err)) {
+        if (err.response?.data?.code === ContactRequestErrors.CONTACT_REQUEST_ALREADY_EXISTS) {
+          toastData.description = "Você já possui um contato para esse imóvel.";
+        }
+      }
+
+      toast(toastData);
+    }
   }
 
   return (
@@ -59,7 +87,7 @@ export function Location({ property }: LocationProps) {
           </AlertDialogHeader>
           <AlertDialogFooter>
             <AlertDialogCancel>Cancelar</AlertDialogCancel>
-            <AlertDialogAction onClick={handleContact}>Continuar</AlertDialogAction>
+            <AlertDialogAction onClick={handleConfirmContact}>Continuar</AlertDialogAction>
           </AlertDialogFooter>
         </AlertDialogContent>
       </AlertDialog>
