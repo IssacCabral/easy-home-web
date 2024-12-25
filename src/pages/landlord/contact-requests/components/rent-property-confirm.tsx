@@ -1,3 +1,4 @@
+import { rentProperty } from "@/api/rent-property";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -9,18 +10,29 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
+import { clearCache } from "@/lib/react-query";
 import { ContactRequestStatus } from "@/shared/contact-request";
 import { UserRoundCheck } from "lucide-react";
+import { useSearchParams } from "react-router-dom";
 
 interface RentPropertyConfirmProps {
-  contactRequestStatus: ContactRequestStatus;
+  status: ContactRequestStatus;
+  id: string;
 }
 
 export function RentPropertyConfirm(props: RentPropertyConfirmProps) {
-  const isEnabled = props.contactRequestStatus === ContactRequestStatus.IN_CONTACT;
+  const [_, setSearchParams] = useSearchParams();
+  const isEnabled = props.status === ContactRequestStatus.IN_CONTACT;
 
-  function handleRentPropertyConfirm() {
-    console.log("Alugou");
+  async function handleRentPropertyConfirm() {
+    await rentProperty({ contactRequestId: props.id });
+    setSearchParams((state) => {
+      state.set("page", (1).toString());
+      state.set("status", ContactRequestStatus.RENTED);
+
+      return state;
+    });
+    clearCache();
   }
 
   return (
