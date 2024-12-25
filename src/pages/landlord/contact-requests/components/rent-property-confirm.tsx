@@ -9,13 +9,31 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
+import { ContactRequestStatus } from "@/shared/contact-request";
 import { UserRoundCheck } from "lucide-react";
 
-export function RentPropertyConfirm() {
+interface RentPropertyConfirmProps {
+  contactRequestStatus: ContactRequestStatus;
+}
+
+export function RentPropertyConfirm(props: RentPropertyConfirmProps) {
+  const isEnabled = props.contactRequestStatus === ContactRequestStatus.IN_CONTACT;
+
+  function handleRentPropertyConfirm() {
+    console.log("Alugou");
+  }
+
   return (
     <AlertDialog>
       <AlertDialogTrigger asChild>
-        <button className="flex items-center gap-2 rounded border border-transparent bg-cyan-600 p-2 text-xs text-background transition hover:border-cyan-600 hover:bg-cyan-600/80 focus:outline-none focus:ring-2 focus:ring-cyan-600">
+        <button
+          className={`flex items-center gap-2 rounded border border-transparent p-2 text-xs text-background transition focus:outline-none focus:ring-2 ${
+            isEnabled
+              ? "bg-cyan-600 hover:border-cyan-600 hover:bg-cyan-600/80 focus:ring-cyan-600"
+              : "cursor-not-allowed bg-cyan-600/30"
+          }`}
+          disabled={!isEnabled}
+        >
           <UserRoundCheck size={14} />
           <span>Alugar</span>
         </button>
@@ -30,7 +48,9 @@ export function RentPropertyConfirm() {
         </AlertDialogHeader>
         <AlertDialogFooter>
           <AlertDialogCancel>Cancelar</AlertDialogCancel>
-          <AlertDialogAction onClick={() => console.log("Alugou")}>Continuar</AlertDialogAction>
+          <AlertDialogAction onClick={handleRentPropertyConfirm} disabled={!isEnabled}>
+            Continuar
+          </AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>
     </AlertDialog>

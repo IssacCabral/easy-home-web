@@ -54,10 +54,9 @@ export function ContactRequestsTableRow(props: ContactRequestsTableRowProps) {
         </div>
       </TableCell>
       <TableCell className="text-sm text-landing">{props.applicant}</TableCell>
-
       <TableCell colSpan={2} className="flex gap-2">
-        <RentPropertyConfirm />
-        <CloseContactConfirm />
+        <RentPropertyConfirm contactRequestStatus={props.status} />
+        <CloseContactConfirm contactRequestStatus={props.status} />
       </TableCell>
     </TableRow>
   );
