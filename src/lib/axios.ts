@@ -37,5 +37,7 @@ api.interceptors.response.use(
     if (authErrorCodes.includes(errorCode)) {
       window.location.href = "/sign-in";
     }
+
+    return Promise.reject(error);
   },
 );
