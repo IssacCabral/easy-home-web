@@ -65,6 +65,7 @@ export function ContactRequests() {
             : foundContactRequests.map((item) => (
                 <ContactRequestsTableRow
                   key={item.id}
+                  id={item.id}
                   addressNumber={item.addressNumber}
                   price={item.price}
                   street={item.street}

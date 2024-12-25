@@ -1,3 +1,4 @@
+import { closeContactRequest } from "@/api/close-contact-request";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -10,22 +11,36 @@ import {
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
 import { Textarea } from "@/components/ui/textarea";
+import { clearCache } from "@/lib/react-query";
 import { ContactRequestStatus } from "@/shared/contact-request";
 import { MessageSquareOff } from "lucide-react";
 import { useState } from "react";
+import { useSearchParams } from "react-router-dom";
 
 interface CloseContactConfirmProps {
-  contactRequestStatus: ContactRequestStatus;
+  status: ContactRequestStatus;
+  id: string;
 }
 
 export function CloseContactConfirm(props: CloseContactConfirmProps) {
-  const isEnabled = props.contactRequestStatus === ContactRequestStatus.IN_CONTACT;
+  const [_, setSearchParams] = useSearchParams();
+  const isEnabled = props.status === ContactRequestStatus.IN_CONTACT;
 
   const [reason, setReason] = useState<string>("");
 
-  function handleCloseContactConfirm() {
-    console.log("Encerrou! Motivo:", reason);
+  async function handleCloseContactConfirm() {
+    await closeContactRequest({
+      id: props.id,
+      reason,
+    });
+    setSearchParams((state) => {
+      state.set("page", (1).toString());
+      state.set("status", ContactRequestStatus.FINISHED);
+
+      return state;
+    });
     setReason("");
+    clearCache();
   }
 
   function handleChange(event: React.ChangeEvent<HTMLTextAreaElement>) {
@@ -51,14 +66,12 @@ export function CloseContactConfirm(props: CloseContactConfirmProps) {
         <AlertDialogHeader>
           <AlertDialogTitle>Encerrar Contato</AlertDialogTitle>
           <AlertDialogDescription className="text-landing">
-            <div className="grid w-full gap-1.5">
-              <Textarea
-                className="placeholder:text-landing/70"
-                placeholder="Informe ao locatário, o motivo do encerramento do contato."
-                value={reason}
-                onChange={handleChange}
-              />
-            </div>
+            <Textarea
+              className="placeholder:text-landing/70"
+              placeholder="Informe ao locatário, o motivo do encerramento do contato."
+              value={reason}
+              onChange={handleChange}
+            />
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>

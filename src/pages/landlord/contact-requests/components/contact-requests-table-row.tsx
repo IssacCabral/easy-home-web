@@ -7,6 +7,7 @@ import { RentPropertyConfirm } from "./rent-property-confirm";
 import { CloseContactConfirm } from "./close-contact-confirm";
 
 interface ContactRequestsTableRowProps {
+  id: string;
   title: string;
   street: string;
   addressNumber: number;
@@ -55,8 +56,8 @@ export function ContactRequestsTableRow(props: ContactRequestsTableRowProps) {
       </TableCell>
       <TableCell className="text-sm text-landing">{props.applicant}</TableCell>
       <TableCell colSpan={2} className="flex gap-2">
-        <RentPropertyConfirm contactRequestStatus={props.status} />
-        <CloseContactConfirm contactRequestStatus={props.status} />
+        <CloseContactConfirm id={props.id} status={props.status} />
+        <RentPropertyConfirm id={props.id} status={props.status} />
       </TableCell>
     </TableRow>
   );
