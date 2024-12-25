@@ -2,7 +2,9 @@ import { Badge, BadgeProps } from "@/components/badge";
 import { TableRow, TableCell } from "@/components/ui/table";
 import { ContactRequestStatus } from "@/shared/contact-request";
 import { formatDate } from "@/utils/format-date";
-import { DollarSign, MessageSquareOff, UserRoundCheck } from "lucide-react";
+import { DollarSign } from "lucide-react";
+import { RentPropertyConfirm } from "./rent-property-confirm";
+import { CloseContactConfirm } from "./close-contact-confirm";
 
 interface ContactRequestsTableRowProps {
   title: string;
@@ -54,14 +56,8 @@ export function ContactRequestsTableRow(props: ContactRequestsTableRowProps) {
       <TableCell className="text-sm text-landing">{props.applicant}</TableCell>
 
       <TableCell colSpan={2} className="flex gap-2">
-        <button className="flex items-center gap-2 rounded border border-transparent bg-cyan-600 p-2 text-xs text-background transition hover:border-cyan-600 hover:bg-cyan-600/80 focus:outline-none focus:ring-2 focus:ring-cyan-600">
-          <UserRoundCheck size={14} />
-          <span>Alugar</span>
-        </button>
-        <button className="flex items-center gap-2 rounded border border-transparent bg-rose-500 p-2 text-xs text-background transition hover:border-rose-500 hover:bg-rose-500/80 focus:outline-none focus:ring-2 focus:ring-rose-500">
-          <MessageSquareOff size={14} />
-          <span>Encerrar</span>
-        </button>
+        <RentPropertyConfirm />
+        <CloseContactConfirm />
       </TableCell>
     </TableRow>
   );
