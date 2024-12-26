@@ -16,7 +16,7 @@ export function UserMenu(props: UserMenuProps) {
   const { logout } = useContext(AuthContext);
 
   const handleNavigation = (value: string) => {
-    if (props.isOpaque && (value === "property-requests" || value === "rent-split")) {
+    if (props.isOpaque && (value === "properties-of-interest" || value === "rent-split")) {
       return;
     }
 
