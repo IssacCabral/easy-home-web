@@ -14,6 +14,7 @@ import { Dashboard } from "./pages/landlord/dashboard/dashboard";
 import { PropertyManagement } from "./pages/landlord/property-management/property-management";
 import { ContactRequests } from "./pages/landlord/contact-requests/contact-requests";
 import { DashboardLayout } from "./pages/_layouts/dashboard";
+import { PropertiesOfInterest } from "./pages/app/properties-of-interest/properties-of-interest";
 
 export const router = createBrowserRouter([
   {
@@ -24,6 +25,7 @@ export const router = createBrowserRouter([
       { path: "/", element: <LandingPage /> },
       { path: "/properties", element: <PropertyList /> },
       { path: "/properties/:id", element: <PropertyDetails /> },
+      { path: "/properties-of-interest", element: <PropertiesOfInterest /> },
     ],
   },
   {

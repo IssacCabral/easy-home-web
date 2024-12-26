@@ -52,8 +52,6 @@ export function usePropertyManagement() {
     : [];
 
   function handleFindLandlordProperties(data: PropertyManagementForm) {
-    console.log({ data });
-
     setSearchParams((state) => {
       state.set("page", (1).toString());
 

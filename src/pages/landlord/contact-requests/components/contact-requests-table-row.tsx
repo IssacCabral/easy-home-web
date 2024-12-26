@@ -18,23 +18,23 @@ interface ContactRequestsTableRowProps {
 }
 
 export function ContactRequestsTableRow(props: ContactRequestsTableRowProps) {
-  const badValues: BadgeProps = {
+  const badgeValues: BadgeProps = {
     badge: "",
     variant: "amenity",
   };
 
   switch (props.status) {
     case ContactRequestStatus.RENTED:
-      badValues.badge = "Alugado";
-      badValues.variant = "available";
+      badgeValues.badge = "Alugado";
+      badgeValues.variant = "available";
       break;
     case ContactRequestStatus.FINISHED:
-      badValues.badge = "Finalizado";
-      badValues.variant = "unavailable";
+      badgeValues.badge = "Finalizado";
+      badgeValues.variant = "unavailable";
       break;
     case ContactRequestStatus.IN_CONTACT:
-      badValues.badge = "Em contato";
-      badValues.variant = "inProgress";
+      badgeValues.badge = "Em contato";
+      badgeValues.variant = "inProgress";
       break;
   }
 
@@ -45,7 +45,7 @@ export function ContactRequestsTableRow(props: ContactRequestsTableRowProps) {
         {props.street}, {props.addressNumber}
       </TableCell>
       <TableCell>
-        <Badge badge={badValues.badge} variant={badValues.variant} />
+        <Badge badge={badgeValues.badge} variant={badgeValues.variant} />
       </TableCell>
       <TableCell className="text-landing">{formatDate(props.requestDate)}</TableCell>
       <TableCell>

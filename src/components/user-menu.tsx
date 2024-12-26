@@ -26,8 +26,8 @@ export function UserMenu(props: UserMenuProps) {
       case "profile":
         navigate("/");
         break;
-      case "property-requests":
-        navigate("/");
+      case "properties-of-interest":
+        navigate("/properties-of-interest");
         break;
       case "rent-split":
         navigate("/");
@@ -70,7 +70,7 @@ export function UserMenu(props: UserMenuProps) {
           </div>
         </SelectItem>
         <SelectItem
-          value="property-requests"
+          value="properties-of-interest"
           className={cn("px-2", props.isOpaque ? "cursor-not-allowed text-muted opacity-50" : null)}
         >
           <div className="flex items-center gap-3">
