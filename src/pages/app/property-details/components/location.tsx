@@ -18,7 +18,9 @@ import { ContactRequestErrors } from "@/shared/contact-request-errors";
 import { IPropertyEntity } from "@/shared/property";
 import { formatPhoneNumber } from "@/utils/format-phone-number";
 import { isAxiosError } from "axios";
+import { CheckCircle } from "lucide-react";
 import { useContext } from "react";
+import { useNavigate } from "react-router-dom";
 
 interface LocationProps {
   property: IPropertyEntity;
@@ -27,6 +29,7 @@ interface LocationProps {
 
 export function Location({ property, onConfirmContact }: LocationProps) {
   const { userSession } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const street = property.address.street;
 
@@ -44,6 +47,16 @@ export function Location({ property, onConfirmContact }: LocationProps) {
       const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${message}`;
 
       window.open(whatsappUrl, "_blank");
+      navigate("/properties-of-interest");
+      toast({
+        description: (
+          <div className="flex items-center gap-2">
+            <CheckCircle /> Solicitação de contato enviada com sucesso.
+          </div>
+        ),
+        className: "bg-green-500 text-muted-foreground border-0",
+        duration: Infinity,
+      });
     } catch (err: any) {
       const toastData: Toast = {
         variant: "destructive",
