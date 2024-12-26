@@ -19,6 +19,7 @@ export function PropertiesOfInterest() {
               <TableHead className="w-[180px] text-xs text-foreground">Solicitado em</TableHead>
               <TableHead className="text-xs text-foreground">Preço</TableHead>
               <TableHead className="text-xs text-foreground">Responsável</TableHead>
+              <TableHead className="text-xs text-foreground">Mais</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
@@ -48,12 +49,14 @@ export function PropertiesOfInterest() {
               : foundPropertiesOfInterest.map((item) => (
                   <PropertiesOfInteresTableRow
                     key={item.id}
+                    id={item.id}
                     landlord={item.property.landlord!.name}
                     price={item.property.price}
                     requestedAt={new Date(item.requestDate)}
                     status={item.status}
                     title={item.property.title}
                     type={item.type}
+                    finalizationReason={item.finalizationReason}
                   />
                 ))}
           </TableBody>

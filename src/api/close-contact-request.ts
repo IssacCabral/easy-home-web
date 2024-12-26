@@ -3,7 +3,7 @@ import { IContactRequestEntity } from "@/shared/contact-request";
 
 interface CloseContactRequestRequest {
   id: string;
-  reason: string;
+  reason?: string;
 }
 
 export async function closeContactRequest(request: CloseContactRequestRequest) {
