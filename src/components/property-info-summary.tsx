@@ -5,6 +5,7 @@ import { PropertyStatus, PropertyTypes } from "@/shared/property";
 interface PropertyInfoSummaryProps {
   type: PropertyTypes;
   status: PropertyStatus;
+  rating: number;
 }
 
 type PropertyInfoMap = {
@@ -40,16 +41,20 @@ const TypeAndStatusMapper: PropertyInfoMap = {
   },
 } as const;
 
-export function PropertyInfoSummary({ type, status }: PropertyInfoSummaryProps) {
+export function PropertyInfoSummary({ type, status, rating }: PropertyInfoSummaryProps) {
+  const stars = Array.from({ length: 5 }, (_, index) => {
+    const props = {
+      color: "#FCDE40",
+      size: 16,
+      ...(index < rating && { fill: "#FCDE40" }),
+    };
+
+    return <Star key={index} {...props} />;
+  });
+
   return (
     <div className="flex flex-col gap-1">
-      <div className="flex gap-1">
-        <Star color="#FCDE40" size={16} fill="#FCDE40" />
-        <Star color="#FCDE40" size={16} fill="#FCDE40" />
-        <Star color="#FCDE40" size={16} fill="#FCDE40" />
-        <Star color="#FCDE40" size={16} />
-        <Star color="#FCDE40" size={16} />
-      </div>
+      <div className="flex gap-1">{stars}</div>
       <div className="flex items-center gap-2">
         <span className="text-base font-semibold text-type">{TypeAndStatusMapper.types[type]}</span>
         <Badge badge={TypeAndStatusMapper.status[status].badge} variant={TypeAndStatusMapper.status[status].variant} />

@@ -1,6 +1,7 @@
 import { createContactRequest } from "@/api/create-contact-request";
 import { createShareRequest } from "@/api/create-share-request";
 import { findProperty } from "@/api/find-property";
+import { findPropertyRating } from "@/api/find-property-rating";
 import { Spinner } from "@/components/ui/spinner";
 import { toast } from "@/hooks/use-toast";
 import { useMutation, useQuery } from "@tanstack/react-query";
@@ -72,10 +73,31 @@ export function usePropertyDetails() {
     });
   }
 
+  const { data: propertyRatingResult } = useQuery({
+    queryKey: ["property-rating", id],
+    queryFn: async () => {
+      try {
+        const propertyRating = await findPropertyRating({ propertyId: id! });
+        if (!propertyRating) {
+          throw new Error("Avaliação não encontrada.");
+        }
+
+        return propertyRating;
+      } catch (err) {
+        throw toast({
+          variant: "destructive",
+          description: "Avaliação não encontrada.",
+        });
+      }
+    },
+    retry: false,
+  });
+
   return {
     loadingOrError,
     result,
     confirmContactRequest,
     confirmShareRequest,
+    propertyRatingResult,
   };
 }

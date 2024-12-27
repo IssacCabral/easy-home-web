@@ -7,6 +7,7 @@ import { DollarSign } from "lucide-react";
 
 interface DetailsProps {
   property: IPropertyEntity;
+  rating: number;
 }
 
 export function Details(props: DetailsProps) {
@@ -16,7 +17,7 @@ export function Details(props: DetailsProps) {
       <div className="flex justify-between">
         <h1 className="text-3xl font-bold text-landing">{props.property.title}</h1>
         <div className="flex gap-5">
-          <PropertyInfoSummary status={props.property.status} type={props.property.type} />
+          <PropertyInfoSummary status={props.property.status} type={props.property.type} rating={props.rating} />
           <div className="flex items-center">
             <DollarSign size={32} className="text-landing" />
             <span className="text-3xl font-semibold text-landing">{props.property.price}</span>
