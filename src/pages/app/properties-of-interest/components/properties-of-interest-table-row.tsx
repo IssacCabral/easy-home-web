@@ -1,4 +1,5 @@
 import { closeContactRequest } from "@/api/close-contact-request";
+import { finishShareRequest } from "@/api/finish-share-request";
 import { Badge, BadgeProps } from "@/components/badge";
 import {
   AlertDialog,
@@ -53,8 +54,10 @@ export function PropertiesOfInteresTableRow(props: PropertiesOfInteresTableRowPr
         reason: "Encerrado pelo locatário.",
       });
     } else {
-      console.log(props.id);
-      // todo: chamar a rota para encerrar shareRequest
+      await finishShareRequest({
+        id: props.id,
+        reason: "Encerrado pelo locatário.",
+      });
     }
 
     clearCache();
