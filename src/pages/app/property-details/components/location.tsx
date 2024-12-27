@@ -15,7 +15,7 @@ import { Button } from "@/components/ui/button";
 import { AuthContext } from "@/contexts/auth-context";
 import { Toast, toast } from "@/hooks/use-toast";
 import { ContactRequestErrors } from "@/shared/contact-request-errors";
-import { IPropertyEntity } from "@/shared/property";
+import { IPropertyEntity, PropertyStatus } from "@/shared/property";
 import { formatPhoneNumber } from "@/utils/format-phone-number";
 import { isAxiosError } from "axios";
 import { CheckCircle } from "lucide-react";
@@ -24,10 +24,11 @@ import { useNavigate } from "react-router-dom";
 
 interface LocationProps {
   property: IPropertyEntity;
-  onConfirmContact: (data: { propertyId: string; tenantId: string }) => Promise<any>;
+  onConfirmContactRequest: (data: { propertyId: string; tenantId: string }) => Promise<any>;
+  onConfirmShareRequest: (data: { propertyId: string; tenantId: string }) => Promise<any>;
 }
 
-export function Location({ property, onConfirmContact }: LocationProps) {
+export function Location({ property, onConfirmContactRequest, onConfirmShareRequest }: LocationProps) {
   const { userSession } = useContext(AuthContext);
   const navigate = useNavigate();
 
@@ -35,10 +36,17 @@ export function Location({ property, onConfirmContact }: LocationProps) {
 
   async function handleConfirmContact() {
     try {
-      await onConfirmContact({
-        propertyId: property.id,
-        tenantId: userSession!.userId,
-      });
+      if (property.status === PropertyStatus.SPLIT) {
+        await onConfirmShareRequest({
+          propertyId: property.id,
+          tenantId: userSession!.userId,
+        });
+      } else {
+        await onConfirmContactRequest({
+          propertyId: property.id,
+          tenantId: userSession!.userId,
+        });
+      }
 
       const rawPhoneNumber = property.landlord!.phone;
       const whatsappNumber = formatPhoneNumber(rawPhoneNumber);

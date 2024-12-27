@@ -53,6 +53,7 @@ export function PropertiesOfInteresTableRow(props: PropertiesOfInteresTableRowPr
         reason: "Encerrado pelo locatário.",
       });
     } else {
+      console.log(props.id);
       // todo: chamar a rota para encerrar shareRequest
     }
 

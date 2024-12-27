@@ -1,4 +1,5 @@
 import { createContactRequest } from "@/api/create-contact-request";
+import { createShareRequest } from "@/api/create-share-request";
 import { findProperty } from "@/api/find-property";
 import { Spinner } from "@/components/ui/spinner";
 import { toast } from "@/hooks/use-toast";
@@ -53,8 +54,19 @@ export function usePropertyDetails() {
     mutationFn: createContactRequest,
   });
 
-  async function confirmContact(data: { propertyId: string; tenantId: string }) {
+  async function confirmContactRequest(data: { propertyId: string; tenantId: string }) {
     return await createContactRequestFn({
+      propertyId: data.propertyId,
+      tenantId: data.tenantId,
+    });
+  }
+
+  const { mutateAsync: createShareRequestFn } = useMutation({
+    mutationFn: createShareRequest,
+  });
+
+  async function confirmShareRequest(data: { propertyId: string; tenantId: string }) {
+    return await createShareRequestFn({
       propertyId: data.propertyId,
       tenantId: data.tenantId,
     });
@@ -63,6 +75,7 @@ export function usePropertyDetails() {
   return {
     loadingOrError,
     result,
-    confirmContact,
+    confirmContactRequest,
+    confirmShareRequest,
   };
 }
