@@ -9,13 +9,12 @@ export function PropertyDetails() {
   const {
     loadingOrError,
     result,
-    confirmContactRequest,
-    confirmShareRequest,
+    tenantId,
     propertyRatingResult,
     propertyReviewsResult,
+    confirmShareRequest,
+    confirmContactRequest,
   } = usePropertyDetails();
-
-  console.log({ propertyReviewsResult });
 
   return (
     <div className="mt-6 flex justify-center gap-14">
@@ -29,7 +28,7 @@ export function PropertyDetails() {
               onConfirmContactRequest={confirmContactRequest}
               onConfirmShareRequest={confirmShareRequest}
             />
-            <FeedbackForm />
+            <FeedbackForm propertyId={result!.id} tenantId={tenantId!} />
             {propertyReviewsResult &&
               propertyReviewsResult.map((propertyReview) => (
                 <Feedback

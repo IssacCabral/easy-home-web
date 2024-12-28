@@ -4,12 +4,16 @@ import { findProperty } from "@/api/find-property";
 import { findPropertyRating } from "@/api/find-property-rating";
 import { findPropertyReviews } from "@/api/find-property-reviews";
 import { Spinner } from "@/components/ui/spinner";
+import { AuthContext } from "@/contexts/auth-context";
 import { toast } from "@/hooks/use-toast";
 import { useMutation, useQuery } from "@tanstack/react-query";
+import { useContext } from "react";
 import { useParams } from "react-router-dom";
 
 export function usePropertyDetails() {
   const { id } = useParams();
+  const { userSession } = useContext(AuthContext);
+  const tenantId = userSession?.userId;
 
   const {
     data: result,
@@ -119,6 +123,7 @@ export function usePropertyDetails() {
     result,
     propertyRatingResult,
     propertyReviewsResult,
+    tenantId,
     confirmContactRequest,
     confirmShareRequest,
   };
