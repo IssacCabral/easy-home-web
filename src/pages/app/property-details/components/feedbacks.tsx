@@ -1,15 +1,21 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Star } from "lucide-react";
 
-export function Feedback() {
+interface FeedbackProps {
+  tenantName: string;
+  rating: number;
+  comment: string;
+}
+
+export function Feedback(props: FeedbackProps) {
   const stars = Array.from({ length: 5 }, (_, index) => {
-    const props = {
+    const starProps = {
       color: "#FCDE40",
       size: 16,
-      ...(index < 3 && { fill: "#FCDE40" }),
+      ...(index < props.rating && { fill: "#FCDE40" }),
     };
 
-    return <Star key={index} {...props} />;
+    return <Star key={index} {...starProps} />;
   });
 
   return (
@@ -21,13 +27,10 @@ export function Feedback() {
         </Avatar>
         <div className="flex flex-col gap-2">
           <div className="flex items-center gap-2">
-            <p className="text-sm">Inquilino Maluquinho</p>
+            <p className="text-sm">{props.tenantName}</p>
             <div className="flex">{stars}</div>
           </div>
-          <p className="text-sm">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis quisquam consequatur neque autem adipisci
-            inventore sed, dolorem rem atque, dolorum ratione. Pariatur a animi quasi? Consequatur et labore nemo odio.
-          </p>
+          <p className="text-sm">{props.comment}</p>
         </div>
       </div>
     </div>

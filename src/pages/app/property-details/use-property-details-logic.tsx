@@ -2,6 +2,7 @@ import { createContactRequest } from "@/api/create-contact-request";
 import { createShareRequest } from "@/api/create-share-request";
 import { findProperty } from "@/api/find-property";
 import { findPropertyRating } from "@/api/find-property-rating";
+import { findPropertyReviews } from "@/api/find-property-reviews";
 import { Spinner } from "@/components/ui/spinner";
 import { toast } from "@/hooks/use-toast";
 import { useMutation, useQuery } from "@tanstack/react-query";
@@ -93,10 +94,31 @@ export function usePropertyDetails() {
     retry: false,
   });
 
+  const { data: propertyReviewsResult } = useQuery({
+    queryKey: ["property-reviews", id],
+    queryFn: async () => {
+      try {
+        const propertyReviews = await findPropertyReviews(id!);
+        if (!propertyReviews) {
+          throw new Error("Avaliações não encontradas.");
+        }
+
+        return propertyReviews;
+      } catch (err) {
+        throw toast({
+          variant: "destructive",
+          description: "Avaliações não encontradas.",
+        });
+      }
+    },
+    retry: false,
+  });
+
   return {
     loadingOrError,
     result,
     propertyRatingResult,
+    propertyReviewsResult,
     confirmContactRequest,
     confirmShareRequest,
   };

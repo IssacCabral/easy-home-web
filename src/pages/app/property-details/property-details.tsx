@@ -6,8 +6,16 @@ import { FeedbackForm } from "./components/feedback-form";
 import { Feedback } from "./components/feedbacks";
 
 export function PropertyDetails() {
-  const { loadingOrError, result, confirmContactRequest, confirmShareRequest, propertyRatingResult } =
-    usePropertyDetails();
+  const {
+    loadingOrError,
+    result,
+    confirmContactRequest,
+    confirmShareRequest,
+    propertyRatingResult,
+    propertyReviewsResult,
+  } = usePropertyDetails();
+
+  console.log({ propertyReviewsResult });
 
   return (
     <div className="mt-6 flex justify-center gap-14">
@@ -22,9 +30,15 @@ export function PropertyDetails() {
               onConfirmShareRequest={confirmShareRequest}
             />
             <FeedbackForm />
-            <Feedback/>
-            <Feedback />
-            <Feedback />
+            {propertyReviewsResult &&
+              propertyReviewsResult.map((propertyReview) => (
+                <Feedback
+                  key={propertyReview.id}
+                  comment={propertyReview.comment}
+                  rating={propertyReview.rating}
+                  tenantName={propertyReview.tenant.name}
+                />
+              ))}
           </div>
         </>
       )}
