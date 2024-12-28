@@ -96,8 +96,8 @@ export function usePropertyDetails() {
   return {
     loadingOrError,
     result,
+    propertyRatingResult,
     confirmContactRequest,
     confirmShareRequest,
-    propertyRatingResult,
   };
 }

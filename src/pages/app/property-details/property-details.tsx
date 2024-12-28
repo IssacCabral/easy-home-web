@@ -2,12 +2,12 @@ import { Helmet } from "react-helmet-async";
 import { Details } from "./components/details";
 import { Location } from "./components/location";
 import { usePropertyDetails } from "./use-property-details-logic";
+import { FeedbackForm } from "./components/feedback-form";
+import { Feedback } from "./components/feedbacks";
 
 export function PropertyDetails() {
   const { loadingOrError, result, confirmContactRequest, confirmShareRequest, propertyRatingResult } =
     usePropertyDetails();
-
-  console.log({ propertyRatingResult });
 
   return (
     <div className="mt-6 flex justify-center gap-14">
@@ -21,7 +21,10 @@ export function PropertyDetails() {
               onConfirmContactRequest={confirmContactRequest}
               onConfirmShareRequest={confirmShareRequest}
             />
-            {/* <Comments /> */}
+            <FeedbackForm />
+            <Feedback/>
+            <Feedback />
+            <Feedback />
           </div>
         </>
       )}
