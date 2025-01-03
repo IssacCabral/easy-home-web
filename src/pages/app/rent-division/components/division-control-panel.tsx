@@ -1,7 +1,7 @@
 import { LocationInfo } from "@/components/location-info";
 import { PropertyInfoSummary } from "@/components/property-info-summary";
 import { Button } from "@/components/ui/button";
-import { IPropertyEntity } from "@/shared/property";
+import { IPropertyEntity, PropertyStatus } from "@/shared/property";
 import { DollarSign } from "lucide-react";
 
 interface DivisionControlPanelProps {
@@ -10,6 +10,17 @@ interface DivisionControlPanelProps {
 }
 
 export function DivisionControlPanel(props: DivisionControlPanelProps) {
+  const panelButtonsMap: Record<PropertyStatus, JSX.Element> = {
+    [PropertyStatus.BUSY]: <Button className="mt-3 w-32">Abrir divisão</Button>,
+    [PropertyStatus.SPLIT]: (
+      <>
+        <Button className="mt-3 w-32">Concluir divisão</Button>
+        <Button className="mt-3 w-32 bg-type hover:bg-type/90">Cancelar divisão</Button>
+      </>
+    ),
+    [PropertyStatus.FREE]: <></>,
+  };
+
   return (
     <div className="flex w-full flex-col rounded-xl border border-solid border-border py-10 pl-20">
       <div className="flex items-center gap-5">
@@ -26,7 +37,7 @@ export function DivisionControlPanel(props: DivisionControlPanelProps) {
         street={props.property.address.street}
         district="Lisboa"
       />
-      <Button className="mt-3 w-32">Abrir divisão</Button>
+      <div className="flex gap-3">{panelButtonsMap[props.property.status]}</div>
     </div>
   );
 }
