@@ -1,4 +1,4 @@
-import { BookUser, House, LogOut, Settings, Sofa } from "lucide-react";
+import { BookUser, House, Sofa } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 
 export function DashSidebar() {
@@ -44,26 +44,6 @@ export function DashSidebar() {
           >
             <BookUser size={20} />
             <span className={`text-sm font-semibold`}>Pedidos de Contato</span>
-          </div>
-        </Link>
-      </div>
-
-      <div>
-        <Link to="">
-          <div
-            className={`flex w-full items-center gap-2 rounded-lg py-2 pl-3 text-foreground transition-all duration-300 hover:bg-muted/20`}
-          >
-            <Settings size={20} />
-            <span className={`text-sm font-semibold`}>Configurações</span>
-          </div>
-        </Link>
-
-        <Link to="">
-          <div
-            className={`flex w-full items-center gap-2 rounded-lg py-2 pl-3 text-foreground transition-all duration-300 hover:bg-muted/20`}
-          >
-            <LogOut size={20} />
-            <span className={`text-sm font-semibold`}>Sair</span>
           </div>
         </Link>
       </div>
