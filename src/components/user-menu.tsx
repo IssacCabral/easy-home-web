@@ -13,14 +13,15 @@ interface UserMenuProps {
 
 export function UserMenu(props: UserMenuProps) {
   const navigate = useNavigate();
-  const { logout } = useContext(AuthContext);
+  const { logout, userSession } = useContext(AuthContext);
 
   const handleNavigation = (value: string) => {
-    if (props.isOpaque && (value === "properties-of-interest" || value === "rent-split")) {
+    if (props.isOpaque && (value === "properties-of-interest" || value === "rent-division")) {
       return;
     }
 
     if (!props.isOpaque && value === "dashboard") return;
+    if (!props.isOpaque && !userSession?.property && value === "rent-division") return;
 
     switch (value) {
       case "profile":
@@ -29,8 +30,8 @@ export function UserMenu(props: UserMenuProps) {
       case "properties-of-interest":
         navigate("/properties-of-interest");
         break;
-      case "rent-split":
-        navigate("/");
+      case "rent-division":
+        navigate("/rent-division");
         break;
       case "dashboard":
         navigate("/dashboard");
@@ -43,6 +44,8 @@ export function UserMenu(props: UserMenuProps) {
         break;
     }
   };
+
+  const foo = props.isOpaque || (!props.isOpaque && !userSession?.property);
 
   return (
     <Select onValueChange={handleNavigation}>
@@ -79,8 +82,8 @@ export function UserMenu(props: UserMenuProps) {
           </div>
         </SelectItem>
         <SelectItem
-          value="rent-split"
-          className={cn("px-2", props.isOpaque ? "cursor-not-allowed text-muted opacity-50" : null)}
+          value="rent-division"
+          className={cn("px-2", foo ? "cursor-not-allowed text-muted opacity-50" : null)}
         >
           <div className="flex items-center gap-3">
             <SquareSplitHorizontal size={14} />
