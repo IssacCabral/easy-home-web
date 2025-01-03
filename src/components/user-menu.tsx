@@ -45,7 +45,7 @@ export function UserMenu(props: UserMenuProps) {
     }
   };
 
-  const foo = props.isOpaque || (!props.isOpaque && !userSession?.property);
+  const shouldDisableRentDivision = props.isOpaque || (!props.isOpaque && !userSession?.property);
 
   return (
     <Select onValueChange={handleNavigation}>
@@ -83,7 +83,7 @@ export function UserMenu(props: UserMenuProps) {
         </SelectItem>
         <SelectItem
           value="rent-division"
-          className={cn("px-2", foo ? "cursor-not-allowed text-muted opacity-50" : null)}
+          className={cn("px-2", shouldDisableRentDivision ? "cursor-not-allowed text-muted opacity-50" : null)}
         >
           <div className="flex items-center gap-3">
             <SquareSplitHorizontal size={14} />
