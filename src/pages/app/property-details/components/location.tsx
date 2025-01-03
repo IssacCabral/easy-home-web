@@ -81,6 +81,18 @@ export function Location({ property, onConfirmContactRequest, onConfirmShareRequ
     }
   }
 
+  const alertDialogIsDisabled = property.status === PropertyStatus.BUSY || userSession?.property === property.id;
+  const alertDialogTriggerContent =
+    userSession?.property === property.id ? (
+      <span className="font-semibold text-type">Você mora aqui</span>
+    ) : (
+      <AlertDialogTrigger asChild>
+        <Button className="w-24" disabled={alertDialogIsDisabled}>
+          Contatar
+        </Button>
+      </AlertDialogTrigger>
+    );
+
   return (
     <section className="flex flex-col gap-4 rounded-xl border border-solid border-border px-5 py-4">
       <h2 className="text-lg font-semibold text-landing">Localização</h2>
@@ -95,9 +107,7 @@ export function Location({ property, onConfirmContactRequest, onConfirmShareRequ
         foundStreet={`${street}, ${property.address.addressNumber}`}
       />
       <AlertDialog>
-        <AlertDialogTrigger asChild>
-          <Button className="w-24">Contatar</Button>
-        </AlertDialogTrigger>
+        {alertDialogTriggerContent}
         <AlertDialogContent>
           <AlertDialogHeader>
             <AlertDialogTitle>Contatar Locador</AlertDialogTitle>

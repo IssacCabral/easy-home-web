@@ -11,6 +11,7 @@ export interface LoginResponse {
   name: string;
   isLandlord: boolean;
   accessToken: string;
+  property?: string;
 }
 
 export async function signIn(request: LoginRequest): Promise<LoginResponse> {
