@@ -28,7 +28,6 @@ export function Details(props: DetailsProps) {
       <LocationInfo
         street={props.property.address.street}
         addressNumber={props.property.address.addressNumber.toString()}
-        district="Lisboa" // todo: pegar dinamicamente
       />
       <div className="rounded-xl border border-solid border-border px-5 py-4">
         <h2 className="mb-3 text-lg font-semibold text-landing">Descrição</h2>

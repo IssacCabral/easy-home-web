@@ -37,7 +37,6 @@ export function DivisionControlPanel(props: DivisionControlPanelProps) {
       <LocationInfo
         addressNumber={props.property.address.addressNumber.toString()}
         street={props.property.address.street}
-        district="Lisboa"
       />
       <div className="flex gap-3">{panelButtonsMap[props.property.status]}</div>
     </div>

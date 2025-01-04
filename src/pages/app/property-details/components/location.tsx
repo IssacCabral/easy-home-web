@@ -96,11 +96,7 @@ export function Location({ property, onConfirmContactRequest, onConfirmShareRequ
   return (
     <section className="flex flex-col gap-4 rounded-xl border border-solid border-border px-5 py-4">
       <h2 className="text-lg font-semibold text-landing">Localização</h2>
-      <LocationInfo
-        street={street}
-        addressNumber={property.address.addressNumber.toString()}
-        district="Lisboa" // todo: pegar dinamicamente
-      />
+      <LocationInfo street={street} addressNumber={property.address.addressNumber.toString()} />
       <Map
         coords={{ lat: property.address.lat, lon: property.address.lon }}
         foundProperties={[]}
