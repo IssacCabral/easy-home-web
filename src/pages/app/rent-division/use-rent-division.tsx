@@ -1,11 +1,14 @@
 import { cancelRentDivision } from "@/api/cancel-rent-division";
+import { completeRentDivision } from "@/api/complete-rent-division";
 import { findProperty } from "@/api/find-property";
 import { findPropertyRating } from "@/api/find-property-rating";
 import { openRentDivision } from "@/api/open-rent-division";
 import { Spinner } from "@/components/ui/spinner";
 import { AuthContext } from "@/contexts/auth-context";
-import { toast } from "@/hooks/use-toast";
+import { Toast, toast } from "@/hooks/use-toast";
+import { RentDivisionErrors } from "@/shared/rent-division-errors";
 import { useQuery } from "@tanstack/react-query";
+import { isAxiosError } from "axios";
 import { useContext } from "react";
 
 export function UseRentDivision() {
@@ -72,7 +75,25 @@ export function UseRentDivision() {
     }
   }
 
-  async function confirmCompleteRentDivision() {}
+  async function confirmCompleteRentDivision() {
+    try {
+      await completeRentDivision(userSession!.property!);
+      window.location.reload();
+    } catch (err) {
+      const toastData: Toast = {
+        variant: "destructive",
+        description: "Um erro ocorreu ao concluir a divisão.",
+      };
+
+      if (isAxiosError(err)) {
+        if (err.response?.data.code === RentDivisionErrors.NO_TENANTS_SELECTED) {
+          toastData.description = "Você precisa selecionar pelo menos um usuário para dividir aluguel.";
+        }
+      }
+
+      throw toast(toastData);
+    }
+  }
 
   async function confirmCancelRentDivision() {
     try {

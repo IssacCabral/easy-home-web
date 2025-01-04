@@ -1,10 +1,10 @@
 import { LocationInfo } from "@/components/location-info";
 import { PropertyInfoSummary } from "@/components/property-info-summary";
-import { Button } from "@/components/ui/button";
 import { IPropertyEntity, PropertyStatus } from "@/shared/property";
 import { DollarSign } from "lucide-react";
 import { OpenDivisionDialog } from "./open-division-dialog";
 import { CancelDivisionDialog } from "./cancel-division-dialog";
+import { CompleteDivisionDialog } from "./complete-division-dialog";
 
 interface DivisionControlPanelProps {
   property: IPropertyEntity;
@@ -16,7 +16,7 @@ export function DivisionControlPanel(props: DivisionControlPanelProps) {
     [PropertyStatus.BUSY]: <OpenDivisionDialog />,
     [PropertyStatus.SPLIT]: (
       <>
-        <Button className="mt-3 w-32">Concluir divisão</Button>
+        <CompleteDivisionDialog />
         <CancelDivisionDialog />
       </>
     ),
