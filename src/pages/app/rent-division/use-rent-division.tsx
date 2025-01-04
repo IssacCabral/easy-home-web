@@ -1,5 +1,6 @@
 import { findProperty } from "@/api/find-property";
 import { findPropertyRating } from "@/api/find-property-rating";
+import { openRentDivision } from "@/api/open-rent-division";
 import { Spinner } from "@/components/ui/spinner";
 import { AuthContext } from "@/contexts/auth-context";
 import { toast } from "@/hooks/use-toast";
@@ -57,9 +58,29 @@ export function UseRentDivision() {
     retry: false,
   });
 
+  async function confirmOpenRentDivision() {
+    try {
+      await openRentDivision(userSession!.property!);
+      window.location.reload();
+    } catch (err) {
+      console.log(err);
+      throw toast({
+        variant: "destructive",
+        description: "Um erro ocorreu",
+      });
+    }
+  }
+
+  async function confirmCompleteRentDivision() {}
+
+  async function confirmCancelRentDivision() {}
+
   return {
     property,
     loading,
     propertyRatingResult,
+    confirmOpenRentDivision,
+    confirmCompleteRentDivision,
+    confirmCancelRentDivision,
   };
 }

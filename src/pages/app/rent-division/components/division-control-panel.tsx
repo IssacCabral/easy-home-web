@@ -3,6 +3,7 @@ import { PropertyInfoSummary } from "@/components/property-info-summary";
 import { Button } from "@/components/ui/button";
 import { IPropertyEntity, PropertyStatus } from "@/shared/property";
 import { DollarSign } from "lucide-react";
+import { OpenDivisionDialog } from "./open-division-dialog";
 
 interface DivisionControlPanelProps {
   property: IPropertyEntity;
@@ -11,7 +12,7 @@ interface DivisionControlPanelProps {
 
 export function DivisionControlPanel(props: DivisionControlPanelProps) {
   const panelButtonsMap: Record<PropertyStatus, JSX.Element> = {
-    [PropertyStatus.BUSY]: <Button className="mt-3 w-32">Abrir divisão</Button>,
+    [PropertyStatus.BUSY]: <OpenDivisionDialog />,
     [PropertyStatus.SPLIT]: (
       <>
         <Button className="mt-3 w-32">Concluir divisão</Button>
