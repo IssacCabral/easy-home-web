@@ -1,4 +1,4 @@
-import { DivisionControlPanel } from "./components/division-control-panel";
+import { DivisionControlPanel } from "./components/division-control-panel/division-control-panel";
 import { UseRentDivision } from "./use-rent-division";
 
 export function RentDivision() {

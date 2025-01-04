@@ -1,3 +1,4 @@
+import { cancelRentDivision } from "@/api/cancel-rent-division";
 import { findProperty } from "@/api/find-property";
 import { findPropertyRating } from "@/api/find-property-rating";
 import { openRentDivision } from "@/api/open-rent-division";
@@ -66,14 +67,25 @@ export function UseRentDivision() {
       console.log(err);
       throw toast({
         variant: "destructive",
-        description: "Um erro ocorreu",
+        description: "Um erro ocorreu ao abrir a divisão de aluguel",
       });
     }
   }
 
   async function confirmCompleteRentDivision() {}
 
-  async function confirmCancelRentDivision() {}
+  async function confirmCancelRentDivision() {
+    try {
+      await cancelRentDivision(userSession!.property!);
+      window.location.reload();
+    } catch (err) {
+      console.log(err);
+      throw toast({
+        variant: "destructive",
+        description: "Um erro ocorreu ao cancelar a divisão de aluguel",
+      });
+    }
+  }
 
   return {
     property,

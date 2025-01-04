@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { IPropertyEntity, PropertyStatus } from "@/shared/property";
 import { DollarSign } from "lucide-react";
 import { OpenDivisionDialog } from "./open-division-dialog";
+import { CancelDivisionDialog } from "./cancel-division-dialog";
 
 interface DivisionControlPanelProps {
   property: IPropertyEntity;
@@ -16,7 +17,7 @@ export function DivisionControlPanel(props: DivisionControlPanelProps) {
     [PropertyStatus.SPLIT]: (
       <>
         <Button className="mt-3 w-32">Concluir divisão</Button>
-        <Button className="mt-3 w-32 bg-type hover:bg-type/90">Cancelar divisão</Button>
+        <CancelDivisionDialog />
       </>
     ),
     [PropertyStatus.FREE]: <></>,
