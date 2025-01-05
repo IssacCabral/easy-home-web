@@ -11,16 +11,18 @@ import {
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
 import { Textarea } from "@/components/ui/textarea";
+import { ShareRequestStatus } from "@/shared/share-request";
 import { MessageSquareOff } from "lucide-react";
 import { useState } from "react";
 
 interface FinishShareRequestConfirmProps {
   id: string;
+  status: ShareRequestStatus;
 }
 
 export function FinishShareRequestConfirm(props: FinishShareRequestConfirmProps) {
   const [reason, setReason] = useState<string>("");
-  const isEnabled = true;
+  const isEnabled = props.status === ShareRequestStatus.IN_CONTACT;
 
   function handleChange(event: React.ChangeEvent<HTMLTextAreaElement>) {
     setReason(event.target.value);

@@ -41,8 +41,8 @@ export function ShareRequestTableRow(props: ShareRequestTableRowProps) {
         <Badge badge={badgeValues.badge} variant={badgeValues.variant} />
       </TableCell>
       <TableCell colSpan={2} className="flex gap-2">
-        <FinishShareRequestConfirm id={props.id} />
-        <SelectShareRequestConfirm id={props.id} />
+        <FinishShareRequestConfirm id={props.id} status={props.status} />
+        <SelectShareRequestConfirm id={props.id} status={props.status} />
       </TableCell>
     </TableRow>
   );

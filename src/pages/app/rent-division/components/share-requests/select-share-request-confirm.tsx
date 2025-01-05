@@ -10,14 +10,16 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
+import { ShareRequestStatus } from "@/shared/share-request";
 import { UserRoundCheck } from "lucide-react";
 
 interface SelectShareRequestConfirmProps {
   id: string;
+  status: ShareRequestStatus;
 }
 
 export function SelectShareRequestConfirm(props: SelectShareRequestConfirmProps) {
-  const isEnabled = true;
+  const isEnabled = props.status === ShareRequestStatus.IN_CONTACT;
 
   async function handleSelectShareRequestConfirm() {
     await selectShareRequest(props.id);
@@ -43,7 +45,8 @@ export function SelectShareRequestConfirm(props: SelectShareRequestConfirmProps)
         <AlertDialogHeader>
           <AlertDialogTitle>Selecionar Morador</AlertDialogTitle>
           <AlertDialogDescription className="text-landing">
-            Após continuar, esse usuário dividirá aluguel com você. Tem certeza que deseja continuar?
+            Após continuar, esse usuário ficará elegivel para dividir aluguel com você. Tem certeza que deseja
+            continuar?
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
