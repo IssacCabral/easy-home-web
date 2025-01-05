@@ -1,4 +1,5 @@
 import { DivisionControlPanel } from "./components/division-control-panel/division-control-panel";
+import { ShareRequests } from "./components/share-requests/share-requests";
 import { UseRentDivision } from "./use-rent-division";
 
 export function RentDivision() {
@@ -7,7 +8,12 @@ export function RentDivision() {
   return (
     <div className="m-auto flex max-w-[1050px] flex-col items-center gap-3">
       <h1 className="text-xl font-semibold text-landing">Divisão de Aluguel</h1>
-      {loading || <DivisionControlPanel property={property!} rating={propertyRatingResult?.rating ?? 0} />}
+      {loading || (
+        <>
+          <DivisionControlPanel property={property!} rating={propertyRatingResult?.rating ?? 0} />
+          <ShareRequests />
+        </>
+      )}
     </div>
   );
 }
