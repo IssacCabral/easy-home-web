@@ -22,7 +22,7 @@ export function SharedRentalTenants(props: SharedRentalTenantsProps) {
         <TableBody>
           {props.items.map((item) => {
             if (item.id !== userSession?.userId) {
-              return <ShareRentalTenantTableRow key={item.id} tenant={item.name} />;
+              return <ShareRentalTenantTableRow key={item.id} tenant={item.name} tenantId={item.id} />;
             }
           })}
         </TableBody>

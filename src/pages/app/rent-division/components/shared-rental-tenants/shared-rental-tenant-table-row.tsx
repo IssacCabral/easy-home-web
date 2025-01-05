@@ -1,3 +1,4 @@
+import { stopTenantRentDivision } from "@/api/stop-tenant-rent-division";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -10,13 +11,26 @@ import {
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
 import { TableCell, TableRow } from "@/components/ui/table";
+import { AuthContext } from "@/contexts/auth-context";
 import { Trash2 } from "lucide-react";
+import { useContext } from "react";
 
 interface ShareRentalTenantTableRowProps {
   tenant: string;
+  tenantId: string;
 }
 
 export function ShareRentalTenantTableRow(props: ShareRentalTenantTableRowProps) {
+  const { userSession } = useContext(AuthContext);
+
+  async function handleStopSharedRentalTenant() {
+    await stopTenantRentDivision({
+      propertyId: userSession!.property!,
+      tenantId: props.tenantId,
+    });
+    window.location.reload();
+  }
+
   return (
     <TableRow>
       <TableCell className="text-xs text-landing">{props.tenant}</TableCell>
@@ -36,7 +50,7 @@ export function ShareRentalTenantTableRow(props: ShareRentalTenantTableRowProps)
             </AlertDialogHeader>
             <AlertDialogFooter>
               <AlertDialogCancel>Cancelar</AlertDialogCancel>
-              <AlertDialogAction>Continuar</AlertDialogAction>
+              <AlertDialogAction onClick={handleStopSharedRentalTenant}>Continuar</AlertDialogAction>
             </AlertDialogFooter>
           </AlertDialogContent>
         </AlertDialog>
