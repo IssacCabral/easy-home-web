@@ -1,3 +1,4 @@
+import { selectShareRequest } from "@/api/select-share-request";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -11,8 +12,17 @@ import {
 } from "@/components/ui/alert-dialog";
 import { UserRoundCheck } from "lucide-react";
 
-export function SelectShareRequestConfirm() {
+interface SelectShareRequestConfirmProps {
+  id: string;
+}
+
+export function SelectShareRequestConfirm(props: SelectShareRequestConfirmProps) {
   const isEnabled = true;
+
+  async function handleSelectShareRequestConfirm() {
+    await selectShareRequest(props.id);
+    window.location.reload();
+  }
 
   return (
     <AlertDialog>
@@ -38,7 +48,9 @@ export function SelectShareRequestConfirm() {
         </AlertDialogHeader>
         <AlertDialogFooter>
           <AlertDialogCancel>Cancelar</AlertDialogCancel>
-          <AlertDialogAction disabled={!isEnabled}>Continuar</AlertDialogAction>
+          <AlertDialogAction disabled={!isEnabled} onClick={handleSelectShareRequestConfirm}>
+            Continuar
+          </AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>
     </AlertDialog>

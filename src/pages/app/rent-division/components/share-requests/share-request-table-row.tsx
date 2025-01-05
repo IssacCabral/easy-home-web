@@ -42,7 +42,7 @@ export function ShareRequestTableRow(props: ShareRequestTableRowProps) {
       </TableCell>
       <TableCell colSpan={2} className="flex gap-2">
         <FinishShareRequestConfirm id={props.id} />
-        <SelectShareRequestConfirm />
+        <SelectShareRequestConfirm id={props.id} />
       </TableCell>
     </TableRow>
   );
