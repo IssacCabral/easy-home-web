@@ -1,3 +1,4 @@
+import { finishShareRequest } from "@/api/finish-share-request";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -13,12 +14,26 @@ import { Textarea } from "@/components/ui/textarea";
 import { MessageSquareOff } from "lucide-react";
 import { useState } from "react";
 
-export function FinishShareRequestConfirm() {
+interface FinishShareRequestConfirmProps {
+  id: string;
+}
+
+export function FinishShareRequestConfirm(props: FinishShareRequestConfirmProps) {
   const [reason, setReason] = useState<string>("");
   const isEnabled = true;
 
   function handleChange(event: React.ChangeEvent<HTMLTextAreaElement>) {
     setReason(event.target.value);
+  }
+
+  async function handleFinishShareRequestConfirm() {
+    await finishShareRequest({
+      id: props.id,
+      reason,
+    });
+
+    setReason("");
+    window.location.reload();
   }
 
   return (
@@ -50,7 +65,9 @@ export function FinishShareRequestConfirm() {
         </AlertDialogHeader>
         <AlertDialogFooter>
           <AlertDialogCancel onClick={() => setReason("")}>Cancelar</AlertDialogCancel>
-          <AlertDialogAction disabled={reason.trim() === ""}>Continuar</AlertDialogAction>
+          <AlertDialogAction disabled={reason.trim() === ""} onClick={handleFinishShareRequestConfirm}>
+            Continuar
+          </AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>
     </AlertDialog>

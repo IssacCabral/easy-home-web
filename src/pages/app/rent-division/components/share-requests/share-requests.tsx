@@ -21,6 +21,7 @@ export function ShareRequests(props: ShareRequestsProps) {
           {props.items.map((item) => (
             <ShareRequestTableRow
               key={item.id}
+              id={item.id}
               applicant={item.tenant.name}
               requestDate={new Date(item.requestDate)}
               status={item.status}

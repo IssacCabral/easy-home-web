@@ -6,6 +6,7 @@ import { FinishShareRequestConfirm } from "./finish-share-request-confirm";
 import { SelectShareRequestConfirm } from "./select-share-request-confirm";
 
 interface ShareRequestTableRowProps {
+  id: string;
   applicant: string;
   requestDate: Date;
   status: ShareRequestStatus;
@@ -40,7 +41,7 @@ export function ShareRequestTableRow(props: ShareRequestTableRowProps) {
         <Badge badge={badgeValues.badge} variant={badgeValues.variant} />
       </TableCell>
       <TableCell colSpan={2} className="flex gap-2">
-        <FinishShareRequestConfirm />
+        <FinishShareRequestConfirm id={props.id} />
         <SelectShareRequestConfirm />
       </TableCell>
     </TableRow>
