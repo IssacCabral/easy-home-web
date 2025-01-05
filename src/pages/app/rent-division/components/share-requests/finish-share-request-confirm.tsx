@@ -32,7 +32,7 @@ export function FinishShareRequestConfirm() {
           }`}
           disabled={!isEnabled}
         >
-          <MessageSquareOff size={14} />
+          <MessageSquareOff size={12} />
           <span>Finalizar</span>
         </button>
       </AlertDialogTrigger>

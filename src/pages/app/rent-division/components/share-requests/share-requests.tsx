@@ -1,8 +1,12 @@
 import { Table, TableBody, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { ShareRequestTableRow } from "./share-request-table-row";
-import { ShareRequestStatus } from "@/shared/share-request";
+import { IShareRequestEntity } from "@/shared/share-request";
 
-export function ShareRequests() {
+interface ShareRequestsProps {
+  items: IShareRequestEntity[];
+}
+
+export function ShareRequests(props: ShareRequestsProps) {
   return (
     <div className="w-full gap-3 rounded-xl border border-solid border-border p-5">
       <Table className="border border-solid border-border">
@@ -14,13 +18,14 @@ export function ShareRequests() {
           </TableRow>
         </TableHeader>
         <TableBody>
-          <ShareRequestTableRow
-            applicant="João Romeo"
-            requestDate={new Date()}
-            status={ShareRequestStatus.IN_CONTACT}
-          />
-          <ShareRequestTableRow applicant="João Romeo" requestDate={new Date()} status={ShareRequestStatus.FINISHED} />
-          <ShareRequestTableRow applicant="João Romeo" requestDate={new Date()} status={ShareRequestStatus.SELECTED} />
+          {props.items.map((item) => (
+            <ShareRequestTableRow
+              key={item.id}
+              applicant={item.tenant.name}
+              requestDate={new Date(item.requestDate)}
+              status={item.status}
+            />
+          ))}
         </TableBody>
       </Table>
     </div>

@@ -25,7 +25,7 @@ export function SelectShareRequestConfirm() {
           }`}
           disabled={!isEnabled}
         >
-          <UserRoundCheck size={14} />
+          <UserRoundCheck size={12} />
           <span>Selecionar</span>
         </button>
       </AlertDialogTrigger>

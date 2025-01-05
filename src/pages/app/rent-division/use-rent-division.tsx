@@ -2,6 +2,7 @@ import { cancelRentDivision } from "@/api/cancel-rent-division";
 import { completeRentDivision } from "@/api/complete-rent-division";
 import { findProperty } from "@/api/find-property";
 import { findPropertyRating } from "@/api/find-property-rating";
+import { findShareRequests } from "@/api/find-share-requests";
 import { openRentDivision } from "@/api/open-rent-division";
 import { Spinner } from "@/components/ui/spinner";
 import { AuthContext } from "@/contexts/auth-context";
@@ -62,6 +63,30 @@ export function UseRentDivision() {
     retry: false,
   });
 
+  const { data: shareRequestsResult, isLoading: isLoadingShareRequests } = useQuery({
+    queryKey: ["share-requests", userSession?.property],
+    queryFn: async () => {
+      try {
+        return await findShareRequests(userSession!.property!);
+      } catch (err) {
+        throw toast({
+          variant: "destructive",
+          description: "Erro ao buscar solicitações.",
+        });
+      }
+    },
+  });
+
+  let loadingShareRequests = null;
+
+  if (isLoadingShareRequests) {
+    loadingShareRequests = (
+      <div className="items-center justify-center">
+        <Spinner />
+      </div>
+    );
+  }
+
   async function confirmOpenRentDivision() {
     try {
       await openRentDivision(userSession!.property!);
@@ -111,7 +136,9 @@ export function UseRentDivision() {
   return {
     property,
     loading,
+    loadingShareRequests,
     propertyRatingResult,
+    shareRequestsResult,
     confirmOpenRentDivision,
     confirmCompleteRentDivision,
     confirmCancelRentDivision,
