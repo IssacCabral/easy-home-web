@@ -3,6 +3,7 @@ import { completeRentDivision } from "@/api/complete-rent-division";
 import { findProperty } from "@/api/find-property";
 import { findPropertyRating } from "@/api/find-property-rating";
 import { findShareRequests } from "@/api/find-share-requests";
+import { findSharedRentalTenants } from "@/api/find-shared-rental-tenants";
 import { openRentDivision } from "@/api/open-rent-division";
 import { Spinner } from "@/components/ui/spinner";
 import { AuthContext } from "@/contexts/auth-context";
@@ -87,6 +88,30 @@ export function UseRentDivision() {
     );
   }
 
+  const { data: sharedRentalTenantsResult, isLoading: isLoadingSharedRentalTenants } = useQuery({
+    queryKey: ["shared-rental-tenants", userSession?.property],
+    queryFn: async () => {
+      try {
+        return await findSharedRentalTenants(userSession!.property!);
+      } catch (err) {
+        throw toast({
+          variant: "destructive",
+          description: "Erro ao buscar colegas de imóvel.",
+        });
+      }
+    },
+  });
+
+  let loadingSharedRentalTenants = null;
+
+  if (isLoadingSharedRentalTenants) {
+    loadingSharedRentalTenants = (
+      <div className="items-center justify-center">
+        <Spinner />
+      </div>
+    );
+  }
+
   async function confirmOpenRentDivision() {
     try {
       await openRentDivision(userSession!.property!);
@@ -137,8 +162,10 @@ export function UseRentDivision() {
     property,
     loading,
     loadingShareRequests,
+    loadingSharedRentalTenants,
     propertyRatingResult,
     shareRequestsResult,
+    sharedRentalTenantsResult,
     confirmOpenRentDivision,
     confirmCompleteRentDivision,
     confirmCancelRentDivision,
