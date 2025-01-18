@@ -6,10 +6,14 @@ import { usePropertyManagement } from "./use-property-management";
 import { perPageLimit } from "@/api/find-landlord-properties";
 import { Skeleton } from "@/components/ui/skeleton";
 import { AddPropertyDrawer } from "./components/add-property-drawer/add-property-drawer";
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
 
 export function PropertyManagement() {
   const { form, handleFindLandlordProperties, handleClearFilters, foundProperties, handlePaginate, result, isLoading } =
     usePropertyManagement();
+
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
   return (
     <main className="flex flex-1 flex-col gap-3 rounded-xl border border-solid border-border p-5">
@@ -19,8 +23,9 @@ export function PropertyManagement() {
           onFindLandlordProperties={handleFindLandlordProperties}
           onClearFilters={handleClearFilters}
         />
-        <AddPropertyDrawer />
+        <Button onClick={() => setIsDrawerOpen(true)}>Adicionar Imóvel</Button>
       </div>
+      <AddPropertyDrawer isOpen={isDrawerOpen} setOpen={setIsDrawerOpen} />
       <Table className="border border-solid border-border">
         <TableHeader>
           <TableRow>
