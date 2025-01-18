@@ -8,6 +8,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { AddPropertyDrawer } from "./components/add-property-drawer/add-property-drawer";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
+import { Dialog, DialogTrigger } from "@/components/ui/dialog";
 
 export function PropertyManagement() {
   const { form, handleFindLandlordProperties, handleClearFilters, foundProperties, handlePaginate, result, isLoading } =
@@ -23,9 +24,13 @@ export function PropertyManagement() {
           onFindLandlordProperties={handleFindLandlordProperties}
           onClearFilters={handleClearFilters}
         />
-        <Button onClick={() => setIsDrawerOpen(true)}>Adicionar Imóvel</Button>
+        <Dialog open={isDrawerOpen} onOpenChange={setIsDrawerOpen}>
+          <DialogTrigger asChild>
+            <Button>Adicionar Imóvel</Button>
+          </DialogTrigger>
+          <AddPropertyDrawer isOpen={isDrawerOpen} />
+        </Dialog>
       </div>
-      <AddPropertyDrawer isOpen={isDrawerOpen} setOpen={setIsDrawerOpen} />
       <Table className="border border-solid border-border">
         <TableHeader>
           <TableRow>
