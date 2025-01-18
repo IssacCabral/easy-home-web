@@ -95,7 +95,7 @@ export function AddPropertyDrawer({ isOpen }: Props) {
               name="width"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className="text-landing">Largura (em metros)</FormLabel>
+                  <FormLabel className="text-landing">Largura</FormLabel>
                   <FormControl>
                     <Input
                       id="width"
@@ -113,13 +113,33 @@ export function AddPropertyDrawer({ isOpen }: Props) {
               name="depth"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className="text-landing">Profundidade (em metros)</FormLabel>
+                  <FormLabel className="text-landing">Profundidade</FormLabel>
                   <FormControl>
                     <Input
                       id="depth"
                       type="number"
                       value={field.value || ""}
                       onChange={(e) => field.onChange(Number(e.target.value))}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="price"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel className="text-landing">Preço (em R$)</FormLabel>
+                  <FormControl>
+                    <Input
+                      id="price"
+                      type="number"
+                      value={field.value || ""}
+                      onChange={(e) => field.onChange(Number(e.target.value))}
+                      placeholder="Ex.: 1500"
+                      className="placeholder:text-landing/70"
                     />
                   </FormControl>
                   <FormMessage />

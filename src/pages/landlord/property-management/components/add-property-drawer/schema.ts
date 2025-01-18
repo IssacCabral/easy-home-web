@@ -4,7 +4,7 @@ export const addPropertyDrawerFormSchema = z.object({
   title: z.string().min(8, { message: "Forneça uma descrição de pelo menos 8 caracteres." }),
   type: z.enum(["HOUSE", "DUPLEX", "APARTMENT"], { message: "Escolha uma tipo de imóvel." }),
   description: z.string().min(20, { message: "Forneça uma descrição de pelo menos 20 caracteres." }),
-  // price: z.number().min(100, { message: "O mínimo é 100." }).max(2000, { message: "O máximo é 2000." }),
+  price: z.number().min(100, { message: "O mínimo é 100." }).max(2000, { message: "O máximo é 2000." }),
   bedroomsAmount: z
     .number()
     .min(1, { message: "O imóvel deve ter pelo menos 1 quarto." })
@@ -30,7 +30,7 @@ export const defaultValues: AddPropertyDrawerFormType = {
   title: "",
   type: "HOUSE",
   description: "",
-  // price: 100,
+  price: 100,
   bedroomsAmount: 1,
   bathroomsAmount: 1,
   depth: 1,
