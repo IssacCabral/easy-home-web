@@ -7,6 +7,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { useEffect } from "react";
 
 interface Props {
   isOpen: boolean;
@@ -18,13 +19,23 @@ export function AddPropertyDrawer({ isOpen }: Props) {
     defaultValues,
   });
 
-  // Função de submissão
   function onSubmit(data: AddPropertyDrawerFormType) {
     console.log({ data });
   }
 
+  // evita a barra de rolagem e compensa com padding, quando abre o drawer
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = "hidden"; // Evita a rolagem.
+      document.body.style.paddingRight = "15px"; // Compensa a barra de rolagem.
+    } else {
+      document.body.style.overflow = "";
+      document.body.style.paddingRight = "";
+    }
+  }, [isOpen]);
+
   return (
-    <DialogContent className="min-w-[40%]">
+    <DialogContent>
       <DialogHeader>
         <DialogTitle className="text-3xl font-semibold text-primary">Adição de Imóvel</DialogTitle>
         <DialogDescription>Make changes to your profile here. Click save when you're done.</DialogDescription>
