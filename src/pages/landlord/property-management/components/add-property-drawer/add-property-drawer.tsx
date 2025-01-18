@@ -38,7 +38,7 @@ export function AddPropertyDrawer({ isOpen }: Props) {
     <DialogContent>
       <DialogHeader>
         <DialogTitle className="text-3xl font-semibold text-primary">Adição de Imóvel</DialogTitle>
-        <DialogDescription>Make changes to your profile here. Click save when you're done.</DialogDescription>
+        <DialogDescription hidden>Make changes to your profile here. Click save when you're done.</DialogDescription>
       </DialogHeader>
       <Form {...form}>
         <form className="space-y-4" onSubmit={form.handleSubmit(onSubmit)}>
@@ -61,34 +61,7 @@ export function AddPropertyDrawer({ isOpen }: Props) {
               </FormItem>
             )}
           />
-          <FormField
-            control={form.control}
-            name="type"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel className="text-landing">Tipo de Imóvel</FormLabel>
-                <Select onValueChange={field.onChange} defaultValue={field.value}>
-                  <FormControl>
-                    <SelectTrigger>
-                      <SelectValue placeholder="Selecione um tipo de imóvel" />
-                    </SelectTrigger>
-                  </FormControl>
-                  <SelectContent>
-                    <SelectItem className="hover:bg-primary hover:text-card" value="HOUSE">
-                      Casa
-                    </SelectItem>
-                    <SelectItem className="hover:bg-primary hover:text-card" value="APARTMENT">
-                      Apartamento
-                    </SelectItem>
-                    <SelectItem className="hover:bg-primary hover:text-card" value="DUPLEX">
-                      Duplex
-                    </SelectItem>
-                  </SelectContent>
-                </Select>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
+
           <div className="flex gap-4">
             <FormField
               control={form.control}
@@ -151,16 +124,44 @@ export function AddPropertyDrawer({ isOpen }: Props) {
           <div className="flex gap-4">
             <FormField
               control={form.control}
+              name="type"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel className="text-landing">Tipo de Imóvel</FormLabel>
+                  <Select onValueChange={field.onChange} defaultValue={field.value}>
+                    <FormControl>
+                      <SelectTrigger className="w-36">
+                        <SelectValue placeholder="Selecione um tipo de imóvel" />
+                      </SelectTrigger>
+                    </FormControl>
+                    <SelectContent>
+                      <SelectItem className="hover:bg-primary hover:text-card" value="HOUSE">
+                        Casa
+                      </SelectItem>
+                      <SelectItem className="hover:bg-primary hover:text-card" value="APARTMENT">
+                        Apartamento
+                      </SelectItem>
+                      <SelectItem className="hover:bg-primary hover:text-card" value="DUPLEX">
+                        Duplex
+                      </SelectItem>
+                    </SelectContent>
+                  </Select>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
               name="bedroomsAmount"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className="text-landing">Quantidade de Quartos</FormLabel>
+                  <FormLabel className="text-landing">Quartos</FormLabel>
                   <Select
                     onValueChange={(value) => field.onChange(Number(value))}
                     defaultValue={field.value?.toString()}
                   >
                     <FormControl>
-                      <SelectTrigger>
+                      <SelectTrigger className="w-36">
                         <SelectValue placeholder="Selecione a quantidade de quartos" />
                       </SelectTrigger>
                     </FormControl>
@@ -181,13 +182,13 @@ export function AddPropertyDrawer({ isOpen }: Props) {
               name="bathroomsAmount"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className="text-landing">Quantidade de Banheiros</FormLabel>
+                  <FormLabel className="text-landing">Banheiros</FormLabel>
                   <Select
                     onValueChange={(value) => field.onChange(Number(value))}
                     defaultValue={field.value?.toString()}
                   >
                     <FormControl>
-                      <SelectTrigger>
+                      <SelectTrigger className="w-36">
                         <SelectValue placeholder="Selecione a quantidade de banheiros" />
                       </SelectTrigger>
                     </FormControl>
