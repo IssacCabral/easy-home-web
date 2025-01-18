@@ -2,10 +2,10 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { PropertyManagementTableRow } from "./components/property-management-table-row";
 import { Pagination } from "@/components/pagination";
 import { PropertyManagementTableFilters } from "./components/property-management-table-filters";
-import { Button } from "@/components/ui/button";
 import { usePropertyManagement } from "./use-property-management";
 import { perPageLimit } from "@/api/find-landlord-properties";
 import { Skeleton } from "@/components/ui/skeleton";
+import { AddPropertyDrawer } from "./components/add-property-drawer/add-property-drawer";
 
 export function PropertyManagement() {
   const { form, handleFindLandlordProperties, handleClearFilters, foundProperties, handlePaginate, result, isLoading } =
@@ -19,7 +19,7 @@ export function PropertyManagement() {
           onFindLandlordProperties={handleFindLandlordProperties}
           onClearFilters={handleClearFilters}
         />
-        <Button>Adicionar Imóvel</Button>
+        <AddPropertyDrawer />
       </div>
       <Table className="border border-solid border-border">
         <TableHeader>
