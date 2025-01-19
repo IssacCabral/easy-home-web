@@ -24,6 +24,8 @@ export const addPropertyDrawerFormSchema = z.object({
   amenities: z.array(z.string()).refine((value) => value.some((item) => item), {
     message: "Você deve selecionar pelo menos uma comodidade.",
   }),
+  location: z.string().min(3, "Forneça pelo menos 3 caracteres para pesquisar"),
+  addressNumber: z.number().min(1, { message: "O número do imóvel deve ser no mínimo 1." }),
 });
 
 export type AddPropertyDrawerFormType = z.infer<typeof addPropertyDrawerFormSchema>;
@@ -38,4 +40,6 @@ export const defaultValues: AddPropertyDrawerFormType = {
   depth: 1,
   width: 1,
   amenities: [],
+  location: "",
+  addressNumber: 1,
 };

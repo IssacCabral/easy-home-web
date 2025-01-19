@@ -1,5 +1,5 @@
 import { getAllAmenities } from "@/api/get-all-amenities";
-import { FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
+import { FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { useQuery } from "@tanstack/react-query";
 import { UseFormReturn } from "react-hook-form";
 import { AddPropertyDrawerFormType } from "../schema";
@@ -25,9 +25,6 @@ export function Amenities({ form, isOpen }: Props) {
         <FormItem>
           <div className="mb-4">
             <FormLabel className="text-landing">Comodidades</FormLabel>
-            <FormDescription className="text-landing/70">
-              Selecione as comodidades que esse imóvel irá dispor.
-            </FormDescription>
           </div>
           {!isLoading && (
             <div className="flex flex-wrap items-center gap-4">

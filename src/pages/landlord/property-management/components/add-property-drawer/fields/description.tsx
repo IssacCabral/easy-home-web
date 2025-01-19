@@ -1,8 +1,10 @@
 import { FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Textarea } from "@/components/ui/textarea";
+import { UseFormReturn } from "react-hook-form";
+import { AddPropertyDrawerFormType } from "../schema";
 
 interface Props {
-  form: any;
+  form: UseFormReturn<AddPropertyDrawerFormType>;
 }
 
 export function Description({ form }: Props) {

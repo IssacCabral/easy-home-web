@@ -9,6 +9,7 @@ import { Title } from "./fields/title";
 import { Attributes } from "./fields/attributes";
 import { Description } from "./fields/description";
 import { Amenities } from "./fields/amenities";
+import { FetchAddress } from "./fields/fetchAddress";
 
 interface Props {
   isOpen: boolean;
@@ -44,10 +45,10 @@ export function AddPropertyDrawer({ isOpen }: Props) {
       <Form {...form}>
         <form className="space-y-4" onSubmit={form.handleSubmit(onSubmit)}>
           <Title form={form} />
+          <FetchAddress form={form} />
           <Attributes form={form} />
           <Description form={form} />
           <Amenities form={form} isOpen={isOpen} />
-
           <div className="flex justify-end">
             <Button type="submit">Adicionar</Button>
           </div>

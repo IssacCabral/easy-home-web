@@ -24,12 +24,14 @@ export function PropertyManagement() {
           onFindLandlordProperties={handleFindLandlordProperties}
           onClearFilters={handleClearFilters}
         />
-        <Dialog open={isDrawerOpen} onOpenChange={setIsDrawerOpen}>
-          <DialogTrigger asChild>
-            <Button>Adicionar Imóvel</Button>
-          </DialogTrigger>
-          <AddPropertyDrawer isOpen={isDrawerOpen} />
-        </Dialog>
+        {!isLoading && (
+          <Dialog open={isDrawerOpen} onOpenChange={setIsDrawerOpen}>
+            <DialogTrigger asChild>
+              <Button>Adicionar Imóvel</Button>
+            </DialogTrigger>
+            <AddPropertyDrawer isOpen={isDrawerOpen} />
+          </Dialog>
+        )}
       </div>
       <Table className="border border-solid border-border">
         <TableHeader>
