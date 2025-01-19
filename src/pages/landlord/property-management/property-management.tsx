@@ -29,7 +29,7 @@ export function PropertyManagement() {
             <DialogTrigger asChild>
               <Button>Adicionar Imóvel</Button>
             </DialogTrigger>
-            <AddPropertyDrawer isOpen={isDrawerOpen} />
+            <AddPropertyDrawer isOpen={isDrawerOpen} openChange={setIsDrawerOpen} />
           </Dialog>
         )}
       </div>
