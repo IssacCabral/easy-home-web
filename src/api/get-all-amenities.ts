@@ -1,6 +1,6 @@
 import { api } from "@/lib/axios";
 
-interface Amenity {
+export interface Amenity {
   id: string;
   label: string;
 }

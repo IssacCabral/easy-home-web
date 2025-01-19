@@ -1,28 +1,20 @@
 import { DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
-import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { useForm } from "react-hook-form";
 import { addPropertyDrawerFormSchema, AddPropertyDrawerFormType, defaultValues } from "./schema";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
-import { Textarea } from "@/components/ui/textarea";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Form } from "@/components/ui/form";
 import { useEffect } from "react";
-import { useQuery } from "@tanstack/react-query";
-import { getAllAmenities } from "@/api/get-all-amenities";
-import { Checkbox } from "@/components/ui/checkbox";
+import { Title } from "./fields/title";
+import { Attributes } from "./fields/attributes";
+import { Description } from "./fields/description";
+import { Amenities } from "./fields/amenities";
 
 interface Props {
   isOpen: boolean;
 }
 
 export function AddPropertyDrawer({ isOpen }: Props) {
-  const { data: amenities, isLoading } = useQuery({
-    queryKey: ["amenities"],
-    queryFn: getAllAmenities,
-    enabled: isOpen,
-  });
-
   const form = useForm<AddPropertyDrawerFormType>({
     resolver: zodResolver(addPropertyDrawerFormSchema),
     defaultValues,
@@ -51,235 +43,10 @@ export function AddPropertyDrawer({ isOpen }: Props) {
       </DialogHeader>
       <Form {...form}>
         <form className="space-y-4" onSubmit={form.handleSubmit(onSubmit)}>
-          <FormField
-            control={form.control}
-            name="title"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel className="text-landing">Título</FormLabel>
-                <FormControl>
-                  <Input
-                    id="title"
-                    type="text"
-                    className="placeholder:text-landing/70"
-                    placeholder="Insira o título do imóvel..."
-                    {...field}
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-
-          <div className="rounded-xl border p-4">
-            <div className="flex gap-4">
-              <FormField
-                control={form.control}
-                name="width"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel className="text-landing">Largura</FormLabel>
-                    <FormControl>
-                      <Input
-                        id="width"
-                        type="number"
-                        value={field.value || ""}
-                        onChange={(e) => field.onChange(Number(e.target.value))}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="depth"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel className="text-landing">Profundidade</FormLabel>
-                    <FormControl>
-                      <Input
-                        id="depth"
-                        type="number"
-                        value={field.value || ""}
-                        onChange={(e) => field.onChange(Number(e.target.value))}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="price"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel className="text-landing">Preço (em R$)</FormLabel>
-                    <FormControl>
-                      <Input
-                        id="price"
-                        type="number"
-                        value={field.value || ""}
-                        onChange={(e) => field.onChange(Number(e.target.value))}
-                        placeholder="Ex.: 1500"
-                        className="placeholder:text-landing/70"
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-            </div>
-
-            <div className="flex gap-4">
-              <FormField
-                control={form.control}
-                name="type"
-                render={({ field }) => (
-                  <FormItem className="w-full">
-                    <FormLabel className="text-landing">Tipo de Imóvel</FormLabel>
-                    <Select onValueChange={field.onChange} defaultValue={field.value}>
-                      <FormControl>
-                        <SelectTrigger>
-                          <SelectValue placeholder="Selecione um tipo de imóvel" />
-                        </SelectTrigger>
-                      </FormControl>
-                      <SelectContent>
-                        <SelectItem className="hover:bg-primary hover:text-card" value="HOUSE">
-                          Casa
-                        </SelectItem>
-                        <SelectItem className="hover:bg-primary hover:text-card" value="APARTMENT">
-                          Apartamento
-                        </SelectItem>
-                        <SelectItem className="hover:bg-primary hover:text-card" value="DUPLEX">
-                          Duplex
-                        </SelectItem>
-                      </SelectContent>
-                    </Select>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="bedroomsAmount"
-                render={({ field }) => (
-                  <FormItem className="w-full">
-                    <FormLabel className="text-landing">Quartos</FormLabel>
-                    <Select
-                      onValueChange={(value) => field.onChange(Number(value))}
-                      defaultValue={field.value?.toString()}
-                    >
-                      <FormControl>
-                        <SelectTrigger>
-                          <SelectValue placeholder="Selecione a quantidade de quartos" />
-                        </SelectTrigger>
-                      </FormControl>
-                      <SelectContent>
-                        {Array.from({ length: 10 }, (_, i) => i + 1).map((value) => (
-                          <SelectItem key={value} value={value.toString()} className="hover:bg-primary hover:text-card">
-                            {value}
-                          </SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="bathroomsAmount"
-                render={({ field }) => (
-                  <FormItem className="w-full">
-                    <FormLabel className="text-landing">Banheiros</FormLabel>
-                    <Select
-                      onValueChange={(value) => field.onChange(Number(value))}
-                      defaultValue={field.value?.toString()}
-                    >
-                      <FormControl>
-                        <SelectTrigger>
-                          <SelectValue placeholder="Selecione a quantidade de banheiros" />
-                        </SelectTrigger>
-                      </FormControl>
-                      <SelectContent>
-                        {Array.from({ length: 10 }, (_, i) => i + 1).map((value) => (
-                          <SelectItem key={value} value={value.toString()} className="hover:bg-primary hover:text-card">
-                            {value}
-                          </SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-            </div>
-          </div>
-
-          <FormField
-            control={form.control}
-            name="description"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel className="text-landing">Descrição</FormLabel>
-                <FormControl>
-                  <Textarea
-                    className="placeholder:text-landing/70"
-                    placeholder="Insira uma descrição para o imóvel..."
-                    {...field}
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-
-          <FormField
-            control={form.control}
-            name="amenities"
-            render={() => (
-              <FormItem>
-                <div className="mb-4">
-                  <FormLabel className="text-landing">Comodidades</FormLabel>
-                  <FormDescription className="text-landing/70">
-                    Selecione as comodidades que esse imóvel irá dispor.
-                  </FormDescription>
-                </div>
-                {!isLoading && (
-                  <div className="flex flex-wrap items-center gap-4">
-                    {amenities!.map((item) => (
-                      <FormField
-                        key={item.id}
-                        control={form.control}
-                        name="amenities"
-                        render={({ field }) => {
-                          return (
-                            <FormItem key={item.id}>
-                              <div className="flex items-center space-x-2">
-                                <FormControl>
-                                  <Checkbox
-                                    checked={field.value?.includes(item.id)}
-                                    onCheckedChange={(checked) => {
-                                      return checked
-                                        ? field.onChange([...field.value, item.id])
-                                        : field.onChange(field.value?.filter((value) => value !== item.id));
-                                    }}
-                                  />
-                                </FormControl>
-                                <FormLabel className="font-normal">{item.label}</FormLabel>
-                              </div>
-                            </FormItem>
-                          );
-                        }}
-                      />
-                    ))}
-                  </div>
-                )}
-                <FormMessage />
-              </FormItem>
-            )}
-          />
+          <Title form={form} />
+          <Attributes form={form} />
+          <Description form={form} />
+          <Amenities form={form} isOpen={isOpen} />
 
           <div className="flex justify-end">
             <Button type="submit">Adicionar</Button>
