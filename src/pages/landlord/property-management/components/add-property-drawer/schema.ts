@@ -21,7 +21,9 @@ export const addPropertyDrawerFormSchema = z.object({
     .number()
     .min(1, { message: "A largura deve ser no mínimo 1 metro." })
     .max(50, { message: "O imóvel deve ter no máximo 50 metros de fundo." }),
-  // amenities: z.array(),
+  amenities: z.array(z.string()).refine((value) => value.some((item) => item), {
+    message: "Você deve selecionar pelo menos uma comodidade.",
+  }),
 });
 
 export type AddPropertyDrawerFormType = z.infer<typeof addPropertyDrawerFormSchema>;
@@ -35,4 +37,5 @@ export const defaultValues: AddPropertyDrawerFormType = {
   bathroomsAmount: 1,
   depth: 1,
   width: 1,
+  amenities: [],
 };

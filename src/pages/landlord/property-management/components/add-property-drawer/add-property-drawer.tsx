@@ -4,16 +4,25 @@ import { Button } from "@/components/ui/button";
 import { useForm } from "react-hook-form";
 import { addPropertyDrawerFormSchema, AddPropertyDrawerFormType, defaultValues } from "./schema";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
+import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useEffect } from "react";
+import { useQuery } from "@tanstack/react-query";
+import { getAllAmenities } from "@/api/get-all-amenities";
+import { Checkbox } from "@/components/ui/checkbox";
 
 interface Props {
   isOpen: boolean;
 }
 
 export function AddPropertyDrawer({ isOpen }: Props) {
+  const { data: amenities, isLoading } = useQuery({
+    queryKey: ["amenities"],
+    queryFn: getAllAmenities,
+    enabled: isOpen,
+  });
+
   const form = useForm<AddPropertyDrawerFormType>({
     resolver: zodResolver(addPropertyDrawerFormSchema),
     defaultValues,
@@ -225,6 +234,53 @@ export function AddPropertyDrawer({ isOpen }: Props) {
               </FormItem>
             )}
           />
+
+          <FormField
+            control={form.control}
+            name="amenities"
+            render={() => (
+              <FormItem>
+                <div className="mb-4">
+                  <FormLabel className="text-landing">Comodidades</FormLabel>
+                  <FormDescription className="text-landing/70">
+                    Selecione as comodidades que esse imóvel irá dispor.
+                  </FormDescription>
+                </div>
+                {!isLoading && (
+                  <div className="flex flex-wrap items-center gap-4">
+                    {amenities!.map((item) => (
+                      <FormField
+                        key={item.id}
+                        control={form.control}
+                        name="amenities"
+                        render={({ field }) => {
+                          return (
+                            <FormItem key={item.id}>
+                              <div className="flex items-center space-x-2">
+                                <FormControl>
+                                  <Checkbox
+                                    checked={field.value?.includes(item.id)}
+                                    onCheckedChange={(checked) => {
+                                      return checked
+                                        ? field.onChange([...field.value, item.id])
+                                        : field.onChange(field.value?.filter((value) => value !== item.id));
+                                    }}
+                                  />
+                                </FormControl>
+                                <FormLabel className="font-normal">{item.label}</FormLabel>
+                              </div>
+                            </FormItem>
+                          );
+                        }}
+                      />
+                    ))}
+                  </div>
+                )}
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
           <div className="flex justify-end">
             <Button type="submit">Adicionar</Button>
           </div>
